@@ -1,2 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\cocos2d.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\cocos2d.h" />
+    <ClInclude Include="..\include\ccMacros.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{9e2fe7fe-fc30-4d2f-aaf7-2151b2635710}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

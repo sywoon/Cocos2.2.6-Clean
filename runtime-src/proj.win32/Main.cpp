@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <iostream>
+#include "cocos2d.h"
 
 #define WIN32_LEAN_AND_MEAN
 #define USE_WIN32_CONSOLE
@@ -22,6 +23,6 @@ int APIENTRY WinMain(
 	freopen("CONOUT$", "w", stderr);
 #endif
 
-	std::cout << "hello" << std::endl;
+	std::cout << "hello" << addTest(1, 2) << std::endl;
 	return 0;
 }
