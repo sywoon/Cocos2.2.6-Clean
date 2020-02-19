@@ -2,16 +2,31 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\cocos2d.cpp" />
+    <ClCompile Include="..\platform\win32\Application.cpp">
+      <Filter>platform\win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
     <ClInclude Include="..\include\ccMacros.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\platform\ApplicationProtocol.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\Application.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
       <UniqueIdentifier>{9e2fe7fe-fc30-4d2f-aaf7-2151b2635710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{a4f9112c-a93d-4953-9cfd-0350c5f90a45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\win32">
+      <UniqueIdentifier>{7a62949c-fe66-4068-8e01-f40c014576fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,5 +1,12 @@
 #pragma once
 
-int _declspec(dllexport) addTest(int a, int b);
+#include "ccMacros.h"
+
+
+#include "platform/ApplicationProtocol.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include "platform/win32/Application.h"
+#endif
 
 

@@ -21,11 +21,15 @@
   <ItemGroup>
     <ClCompile Include="..\cocos2d.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cocos2d.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="..\platform\win32\Application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
     <ClInclude Include="..\include\ccMacros.h" />
+    <ClInclude Include="..\platform\ApplicationProtocol.h" />
+    <ClInclude Include="..\platform\win32\Application.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -100,7 +104,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;LIBCOCOS2D_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>cocos2d.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;$(ProjectDir)/../platform;$(ProjectDir)/../platform/win32</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>cocos2d.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
