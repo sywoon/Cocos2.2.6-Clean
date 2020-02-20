@@ -5,6 +5,51 @@
     <ClCompile Include="..\platform\win32\Application.cpp">
       <Filter>platform\win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\platform\win32\EGLView.cpp">
+      <Filter>platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\EGLViewProtocol.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Object.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\win32\PlatformBase.cpp">
+      <Filter>platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\AutoReleasePool.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Array.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\data_support\ccCArray.cpp">
+      <Filter>cocoa\data_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Bool.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Double.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Float.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Integer.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Set.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Dictionary.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\String.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\Geometry.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -17,6 +62,57 @@
     <ClInclude Include="..\platform\win32\Application.h">
       <Filter>platform\win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\platform\win32\EGLView.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\EGLViewProtocol.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Object.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\PlatformBase.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\AutoReleasePool.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Array.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\data_support\utlist.h">
+      <Filter>cocoa\data_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\data_support\ccCArray.h">
+      <Filter>cocoa\data_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\data_support\uthash.h">
+      <Filter>cocoa\data_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Bool.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Double.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Float.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Integer.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Set.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Dictionary.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\String.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\Geometry.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -27,6 +123,12 @@
     </Filter>
     <Filter Include="platform\win32">
       <UniqueIdentifier>{7a62949c-fe66-4068-8e01-f40c014576fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocoa">
+      <UniqueIdentifier>{24078b4c-4a1c-4fa4-b1e3-7a24330dc953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocoa\data_support">
+      <UniqueIdentifier>{3b582fa5-9502-42d2-b642-a5b5e39b8786}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

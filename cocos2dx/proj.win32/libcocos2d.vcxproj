@@ -19,17 +19,49 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\cocoa\Array.cpp" />
+    <ClCompile Include="..\cocoa\AutoReleasePool.cpp" />
+    <ClCompile Include="..\cocoa\Bool.cpp" />
+    <ClCompile Include="..\cocoa\data_support\ccCArray.cpp" />
+    <ClCompile Include="..\cocoa\Dictionary.cpp" />
+    <ClCompile Include="..\cocoa\Double.cpp" />
+    <ClCompile Include="..\cocoa\Float.cpp" />
+    <ClCompile Include="..\cocoa\Geometry.cpp" />
+    <ClCompile Include="..\cocoa\Integer.cpp" />
+    <ClCompile Include="..\cocoa\Object.cpp" />
+    <ClCompile Include="..\cocoa\Set.cpp" />
+    <ClCompile Include="..\cocoa\String.cpp" />
     <ClCompile Include="..\cocos2d.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cocos2d.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="..\platform\EGLViewProtocol.cpp" />
     <ClCompile Include="..\platform\win32\Application.cpp" />
+    <ClCompile Include="..\platform\win32\EGLView.cpp" />
+    <ClCompile Include="..\platform\win32\PlatformBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\cocoa\Array.h" />
+    <ClInclude Include="..\cocoa\AutoReleasePool.h" />
+    <ClInclude Include="..\cocoa\Bool.h" />
+    <ClInclude Include="..\cocoa\data_support\ccCArray.h" />
+    <ClInclude Include="..\cocoa\data_support\uthash.h" />
+    <ClInclude Include="..\cocoa\data_support\utlist.h" />
+    <ClInclude Include="..\cocoa\Dictionary.h" />
+    <ClInclude Include="..\cocoa\Double.h" />
+    <ClInclude Include="..\cocoa\Float.h" />
+    <ClInclude Include="..\cocoa\Geometry.h" />
+    <ClInclude Include="..\cocoa\Integer.h" />
+    <ClInclude Include="..\cocoa\Object.h" />
+    <ClInclude Include="..\cocoa\Set.h" />
+    <ClInclude Include="..\cocoa\String.h" />
     <ClInclude Include="..\cocos2d.h" />
     <ClInclude Include="..\include\ccMacros.h" />
     <ClInclude Include="..\platform\ApplicationProtocol.h" />
+    <ClInclude Include="..\platform\EGLViewProtocol.h" />
+    <ClInclude Include="..\platform\PlatformBase.h" />
     <ClInclude Include="..\platform\win32\Application.h" />
+    <ClInclude Include="..\platform\win32\EGLView.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -43,7 +75,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -101,11 +133,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;LIBCOCOS2D_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;LIBCOCOS2D_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>cocos2d.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;$(ProjectDir)/../platform;$(ProjectDir)/../platform/win32</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>cocos2d.h</ForcedIncludeFiles>
+      <DisableSpecificWarnings>4251;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
