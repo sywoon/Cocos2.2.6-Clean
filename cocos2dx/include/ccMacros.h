@@ -33,6 +33,29 @@
 #endif
 #endif  // CCAssert
 
+#define __CCLOGWITHFUNCTION(s, ...) \
+    CCLog("%s : %s",__FUNCTION__, String::createWithFormat(s, ##__VA_ARGS__)->getCString())
+
+// cocos2d debug
+#if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0
+#define CCLOG(...)       do {} while (0)
+#define CCLOGINFO(...)   do {} while (0)
+#define CCLOGERROR(...)  do {} while (0)
+#define CCLOGWARN(...)   do {} while (0)
+
+#elif COCOS2D_DEBUG == 1
+#define CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGERROR(format,...)  cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGINFO(format,...)   do {} while (0)
+#define CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
+
+#elif COCOS2D_DEBUG > 1
+#define CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGERROR(format,...)  cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGINFO(format,...)   cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
+#endif // COCOS2D_DEBUG
+
 
 
 #ifdef _USRDLL

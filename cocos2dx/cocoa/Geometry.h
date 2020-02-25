@@ -6,6 +6,12 @@
 NS_CC_BEGIN
 
 
+#define PointMake(x, y) Point((float)(x), (float)(y))
+#define SizeMake(width, height) Size((float)(width), (float)(height))
+#define RectMake(x, y, width, height) Rect((float)(x), (float)(y), (float)(width), (float)(height))
+
+
+
 class CC_DLL Size;
 
 class CC_DLL Point
@@ -174,5 +180,12 @@ public:
 	bool containsPoint(const Point& point) const;
 	bool intersectsRect(const Rect& rect) const;
 };
+
+
+
+const Point PointZero = PointMake(0, 0);
+const Size  SizeZero  = SizeMake(0, 0);
+const Rect  RectZero  = RectMake(0, 0, 0, 0);
+
 
 NS_CC_END

@@ -27,6 +27,7 @@
     <ClCompile Include="..\cocoa\Double.cpp" />
     <ClCompile Include="..\cocoa\Float.cpp" />
     <ClCompile Include="..\cocoa\Geometry.cpp" />
+    <ClCompile Include="..\cocoa\GeometryAssit.cpp" />
     <ClCompile Include="..\cocoa\Integer.cpp" />
     <ClCompile Include="..\cocoa\Object.cpp" />
     <ClCompile Include="..\cocoa\Set.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="..\cocoa\Double.h" />
     <ClInclude Include="..\cocoa\Float.h" />
     <ClInclude Include="..\cocoa\Geometry.h" />
+    <ClInclude Include="..\cocoa\GeometryAssit.h" />
     <ClInclude Include="..\cocoa\Integer.h" />
     <ClInclude Include="..\cocoa\Object.h" />
     <ClInclude Include="..\cocoa\Set.h" />
@@ -136,7 +138,7 @@
       <PreprocessorDefinitions>COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;LIBCOCOS2D_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>cocos2d.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;$(ProjectDir)/../platform;$(ProjectDir)/../platform/win32</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;$(ProjectDir)/../platform;$(ProjectDir)/../platform/win32;$(ProjectDir)../platform/third_party/win32/glew</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>cocos2d.h</ForcedIncludeFiles>
       <DisableSpecificWarnings>4251;</DisableSpecificWarnings>
     </ClCompile>
@@ -144,7 +146,14 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\platform\third_party\win32\libraries\*.*" "$(OutDir)"
+</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

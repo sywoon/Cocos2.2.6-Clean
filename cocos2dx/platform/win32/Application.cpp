@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "ccMacros.h"
-
+#include "EGLView.h"
 
 
 NS_CC_BEGIN
@@ -112,6 +112,9 @@ int Application::run()
 	{
 		return 0;
 	}
+
+	EGLView* pMainWnd = EGLView::sharedOpenGLView();
+	ShowWindow(pMainWnd->getHWnd(), SW_SHOW);
 
 	while (1)
 	{

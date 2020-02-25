@@ -46,6 +46,9 @@ public:
 public:
 	virtual bool	isEqual(const Object* pObject);
 
+protected:
+	virtual Object* cloneSelf();
+
 
 private:
 	bool initWithFormatAndValist(const char* format, va_list ap);

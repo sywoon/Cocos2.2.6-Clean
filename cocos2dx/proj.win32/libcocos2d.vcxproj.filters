@@ -50,6 +50,9 @@
     <ClCompile Include="..\cocoa\Geometry.cpp">
       <Filter>cocoa</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocoa\GeometryAssit.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -111,6 +114,9 @@
       <Filter>cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocoa\Geometry.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\GeometryAssit.h">
       <Filter>cocoa</Filter>
     </ClInclude>
   </ItemGroup>

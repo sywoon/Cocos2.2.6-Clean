@@ -172,6 +172,13 @@ bool String::isEqual(const Object* pObject)
 	return bRet;
 }
 
+Object* String::cloneSelf(void)
+{
+	String* p = new String(*this);
+
+	return p;
+}
+
 
 bool String::initWithFormatAndValist(const char* format, va_list ap)
 {
