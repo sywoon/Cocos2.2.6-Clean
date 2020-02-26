@@ -22,6 +22,7 @@
     <ClCompile Include="..\cocoa\Array.cpp" />
     <ClCompile Include="..\cocoa\AutoReleasePool.cpp" />
     <ClCompile Include="..\cocoa\Bool.cpp" />
+    <ClCompile Include="..\cocoa\DataVisitor.cpp" />
     <ClCompile Include="..\cocoa\data_support\ccCArray.cpp" />
     <ClCompile Include="..\cocoa\Dictionary.cpp" />
     <ClCompile Include="..\cocoa\Double.cpp" />
@@ -36,15 +37,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cocos2d.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="..\Configuration.cpp" />
+    <ClCompile Include="..\Director.cpp" />
     <ClCompile Include="..\platform\EGLViewProtocol.cpp" />
     <ClCompile Include="..\platform\win32\Application.cpp" />
     <ClCompile Include="..\platform\win32\EGLView.cpp" />
     <ClCompile Include="..\platform\win32\PlatformBase.cpp" />
+    <ClCompile Include="..\shaders\GLStateCache.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocoa\Array.h" />
     <ClInclude Include="..\cocoa\AutoReleasePool.h" />
     <ClInclude Include="..\cocoa\Bool.h" />
+    <ClInclude Include="..\cocoa\DataVisitor.h" />
     <ClInclude Include="..\cocoa\data_support\ccCArray.h" />
     <ClInclude Include="..\cocoa\data_support\uthash.h" />
     <ClInclude Include="..\cocoa\data_support\utlist.h" />
@@ -58,12 +63,19 @@
     <ClInclude Include="..\cocoa\Set.h" />
     <ClInclude Include="..\cocoa\String.h" />
     <ClInclude Include="..\cocos2d.h" />
+    <ClInclude Include="..\Configuration.h" />
+    <ClInclude Include="..\Director.h" />
+    <ClInclude Include="..\include\ccClassMacros.h" />
+    <ClInclude Include="..\include\ccConfig.h" />
     <ClInclude Include="..\include\ccMacros.h" />
+    <ClInclude Include="..\include\ccTypeInfo.h" />
     <ClInclude Include="..\platform\ApplicationProtocol.h" />
+    <ClInclude Include="..\platform\PlatformMacros.h" />
     <ClInclude Include="..\platform\EGLViewProtocol.h" />
     <ClInclude Include="..\platform\PlatformBase.h" />
     <ClInclude Include="..\platform\win32\Application.h" />
     <ClInclude Include="..\platform\win32\EGLView.h" />
+    <ClInclude Include="..\shaders\GLStateCache.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

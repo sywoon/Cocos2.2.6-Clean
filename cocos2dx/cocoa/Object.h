@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ccMacros.h"
+#include "DataVisitor.h"
+
 
 NS_CC_BEGIN
 
@@ -22,6 +24,7 @@ public:
 
 public:
 	virtual bool	isEqual(const Object* pObject);
+	virtual void	acceptVisitor(DataVisitor& visitor);
 	
 protected:
 	virtual Object* cloneSelf();

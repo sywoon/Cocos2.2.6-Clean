@@ -75,5 +75,10 @@ bool Object::isEqual(const Object* pObject)
 	return this == pObject;
 }
 
+void Object::acceptVisitor(DataVisitor& visitor)
+{
+	visitor.visitObject(this);
+}
+
 
 NS_CC_END

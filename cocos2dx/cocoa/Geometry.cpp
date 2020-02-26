@@ -88,8 +88,8 @@ void Point::setPoint(float x, float y)
 
 bool Point::equals(const Point & target) const
 {
-	return (fabs(this->x - target.x) < FLT_EPSILON)
-		&& (fabs(this->y - target.y) < FLT_EPSILON);
+	return (fabsf(this->x - target.x) < FLT_EPSILON)
+		&& (fabsf(this->y - target.y) < FLT_EPSILON);
 }
 
 float Point::getAngle(const Point & other) const
@@ -169,8 +169,8 @@ void Size::setSize(float width, float height)
 
 bool Size::equals(const Size & target) const
 {
-	return (fabs(this->width - target.width) < FLT_EPSILON)
-		&& (fabs(this->height - target.height) < FLT_EPSILON);
+	return (fabsf(this->width - target.width) < FLT_EPSILON)
+		&& (fabsf(this->height - target.height) < FLT_EPSILON);
 }
 
 

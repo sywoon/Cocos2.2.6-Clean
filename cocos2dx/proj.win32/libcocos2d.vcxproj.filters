@@ -53,6 +53,14 @@
     <ClCompile Include="..\cocoa\GeometryAssit.cpp">
       <Filter>cocoa</Filter>
     </ClCompile>
+    <ClCompile Include="..\Director.cpp" />
+    <ClCompile Include="..\Configuration.cpp" />
+    <ClCompile Include="..\cocoa\DataVisitor.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shaders\GLStateCache.cpp">
+      <Filter>shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -119,6 +127,26 @@
     <ClInclude Include="..\cocoa\GeometryAssit.h">
       <Filter>cocoa</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\ccTypeInfo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Director.h" />
+    <ClInclude Include="..\include\ccClassMacros.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Configuration.h" />
+    <ClInclude Include="..\platform\PlatformMacros.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\DataVisitor.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\GLStateCache.h">
+      <Filter>shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ccConfig.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -135,6 +163,9 @@
     </Filter>
     <Filter Include="cocoa\data_support">
       <UniqueIdentifier>{3b582fa5-9502-42d2-b642-a5b5e39b8786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{b5b3d276-d5eb-47af-9f19-ecaf97dea075}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

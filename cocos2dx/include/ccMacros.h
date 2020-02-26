@@ -10,8 +10,13 @@
 #define MAX(x,y) (((x) < (y)) ? (y) : (x))
 #endif
 
+// from "float.h"
 #ifndef FLT_EPSILON
-#define FLT_EPSILON     1.192092896e-07F
+#define FLT_EPSILON     1.192092896e-07F        // smallest such that 1.0+FLT_EPSILON != 1.0
+#endif
+
+#ifndef DBL_EPSILON
+#define DBL_EPSILON      2.2204460492503131e-016
 #endif
 
 #if CC_DISABLE_ASSERT > 0
@@ -119,3 +124,21 @@
 #define CC_RADIANS_TO_DEGREES(__ANGLE__) ((__ANGLE__) * 57.29577951f) // PI * 180
 
 
+#if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0
+#define CHECK_GL_ERROR_DEBUG()
+#else
+#define CHECK_GL_ERROR_DEBUG() \
+    do { \
+        GLenum __error = glGetError(); \
+        if(__error) { \
+            CCLog("OpenGL error 0x%04X in %s %s %d\n", __error, __FILE__, __FUNCTION__, __LINE__); \
+        } \
+    } while (false)
+#endif
+
+
+//=========================================
+// opengl
+//
+#define CC_BLEND_SRC GL_ONE
+#define CC_BLEND_DST GL_ONE_MINUS_SRC_ALPHA

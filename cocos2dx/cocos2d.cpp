@@ -1,7 +1,11 @@
 #include "cocos2d.h"
 
 
-int addTest(int a, int b)
+NS_CC_BEGIN
+
+const char* cocos2dVersion()
 {
-	return a + b;
+	return "cocos2d-x 2.2.6-clean";
 }
+
+NS_CC_END
