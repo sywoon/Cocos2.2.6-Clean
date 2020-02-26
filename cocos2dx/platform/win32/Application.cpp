@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "ccMacros.h"
 #include "EGLView.h"
+#include "Director.h"
+
 
 
 NS_CC_BEGIN
@@ -125,7 +127,7 @@ int Application::run()
 			if (nNow.QuadPart - nLast.QuadPart > _nAnimationInterval.QuadPart)
 			{
 				nLast.QuadPart = nNow.QuadPart;
-				//CCDirector::sharedDirector()->mainLoop();
+				Director::sharedDirector()->mainLoop();
 			}
 			else
 			{

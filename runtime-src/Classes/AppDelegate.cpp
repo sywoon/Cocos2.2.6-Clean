@@ -20,7 +20,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-	CCDirector* pDirector = CCDirector::sharedDirector();
+	Director* pDirector = Director::sharedDirector();
 	EGLView* pEGLView = EGLView::sharedOpenGLView();
 
 	pDirector->setOpenGLView(pEGLView);

@@ -9,28 +9,28 @@
 NS_CC_BEGIN
 
 
-static CCDirector* s_SharedDirector = NULL;
+static Director* s_SharedDirector = NULL;
 #define kDefaultFPS        60  // 60 frames per second
 
 
-CCDirector* CCDirector::sharedDirector(void)
+Director* Director::sharedDirector(void)
 {
 	if (!s_SharedDirector)
 	{
-		s_SharedDirector = new CCDirector();
+		s_SharedDirector = new Director();
 		s_SharedDirector->init();
 	}
 
 	return s_SharedDirector;
 }
 
-long CCDirector::getClassTypeId()
+long Director::getClassTypeId()
 {
-	static const long id = getHashCodeByString(typeid(cocos2d::CCDirector).name());
+	static const long id = getHashCodeByString(typeid(cocos2d::Director).name());
 	return id;
 }
 
-CCDirector::CCDirector()
+Director::Director()
 	: _pobOpenGLView(NULL)
 	, _dAnimationInterval(60.0)
 	, _dOldAnimationInterval(60.0)
@@ -39,7 +39,7 @@ CCDirector::CCDirector()
 {
 }
 
-bool CCDirector::init(void)
+bool Director::init(void)
 {
 	setDefaultValues();
 
@@ -51,17 +51,25 @@ bool CCDirector::init(void)
 	return true;
 }
 
-CCDirector::~CCDirector(void)
+Director::~Director(void)
 {
-	// pop the autorelease pool
 	PoolManager::sharedPoolManager()->pop();
 	PoolManager::purgePoolManager();
 
 	s_SharedDirector = NULL;
 }
 
+void Director::stopAnimation(void)
+{
+	_bDrawScene = true;
+}
 
-void CCDirector::setOpenGLView(EGLView* pobOpenGLView)
+void Director::startAnimation(void)
+{
+	_bDrawScene = false;
+}
+
+void Director::setOpenGLView(EGLView* pobOpenGLView)
 {
 	CCAssert(pobOpenGLView, "opengl view should not be null");
 
@@ -87,7 +95,7 @@ void CCDirector::setOpenGLView(EGLView* pobOpenGLView)
 }
 
 
-void CCDirector::setDefaultValues(void)
+void Director::setDefaultValues(void)
 {
 	Configuration* conf = Configuration::sharedConfiguration();
 
@@ -106,7 +114,7 @@ void CCDirector::setDefaultValues(void)
 }
 
 
-void CCDirector::setGLDefaultValues(void)
+void Director::setGLDefaultValues(void)
 {
 	CCAssert(_pobOpenGLView, "opengl view should not be null");
 
@@ -118,7 +126,7 @@ void CCDirector::setGLDefaultValues(void)
 }
 
 
-void CCDirector::setAlphaBlending(bool bOn)
+void Director::setAlphaBlending(bool bOn)
 {
 	if (bOn)
 	{
@@ -132,7 +140,7 @@ void CCDirector::setAlphaBlending(bool bOn)
 	CHECK_GL_ERROR_DEBUG();
 }
 
-void CCDirector::setDepthTest(bool bOn)
+void Director::setDepthTest(bool bOn)
 {
 	if (bOn)
 	{
@@ -149,7 +157,7 @@ void CCDirector::setDepthTest(bool bOn)
 }
 
 
-void CCDirector::setProjection(ccDirectorProjection kProjection)
+void Director::setProjection(ccDirectorProjection kProjection)
 {
 	Size size = _obWinSizeInPoints;
 
@@ -211,7 +219,7 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
 	//ccSetProjectionMatrixDirty();
 }
 
-void CCDirector::setViewport()
+void Director::setViewport()
 {
 	if (_pobOpenGLView)
 	{
@@ -219,8 +227,50 @@ void CCDirector::setViewport()
 	}
 }
 
+void Director::end()
+{
+	_bPurgeDirecotorInNextLoop = true;
+}
 
 
+void Director::mainLoop(void)
+{
+	if (_bPurgeDirecotorInNextLoop)
+	{
+		_bPurgeDirecotorInNextLoop = false;
+		purgeDirector();
+	}
+	else if (!_bDrawScene)
+	{
+		drawScene();
+
+		PoolManager::sharedPoolManager()->pop();
+	}
+}
+
+void Director::drawScene(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if (_pobOpenGLView)
+	{
+		_pobOpenGLView->swapBuffers();
+	}
+}
+
+void Director::purgeDirector()
+{
+	stopAnimation();
+
+	CHECK_GL_ERROR_DEBUG();
+
+	// OpenGL view
+	_pobOpenGLView->end();
+	_pobOpenGLView = NULL;
+
+	// delete this
+	release();
+}
 
 
 NS_CC_END

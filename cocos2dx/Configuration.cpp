@@ -230,7 +230,6 @@ void Configuration::setObject(const char* key, Object * value)
 
 void Configuration::dumpInfo(void) const
 {
-	// Dump
 	PrettyPrinter visitor(0);
 	_pValueDict->acceptVisitor(visitor);
 

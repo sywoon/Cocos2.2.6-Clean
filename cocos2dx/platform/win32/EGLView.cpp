@@ -1,7 +1,9 @@
+#include <stdio.h>
 #include "EGLView.h"
 #include "GL/glew.h"
 #include "platform/PlatformBase.h"
-#include <stdio.h>
+#include "Director.h"
+
 
 
 NS_CC_BEGIN
@@ -456,7 +458,7 @@ LRESULT EGLView::windowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_CLOSE:
-		this->end();
+		Director::sharedDirector()->end();
 		break;
 
 	case WM_DESTROY:
