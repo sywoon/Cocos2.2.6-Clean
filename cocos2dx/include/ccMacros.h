@@ -19,6 +19,26 @@
 #define DBL_EPSILON      2.2204460492503131e-016
 #endif
 
+
+#ifdef _USRDLL
+#define CC_DLL _declspec(dllexport)
+#else
+#define CC_DLL _declspec(dllimport)
+#endif
+
+// namespace cocos2d {}
+#ifdef __cplusplus
+#define NS_CC_BEGIN                     namespace cocos2d {
+#define NS_CC_END                       }
+#define USING_NS_CC                     using namespace cocos2d;
+#else
+#define NS_CC_BEGIN 
+#define NS_CC_END 
+#define USING_NS_CC 
+#endif 
+
+
+
 #if CC_DISABLE_ASSERT > 0
 #define CC_ASSERT(cond)
 #else
@@ -60,25 +80,6 @@
 #define CCLOGINFO(format,...)   cocos2d::CCLog(format, ##__VA_ARGS__)
 #define CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
 #endif // COCOS2D_DEBUG
-
-
-
-#ifdef _USRDLL
-#define CC_DLL _declspec(dllexport)
-#else
-#define CC_DLL _declspec(dllimport)
-#endif
-
-// namespace cocos2d {}
-#ifdef __cplusplus
-#define NS_CC_BEGIN                     namespace cocos2d {
-#define NS_CC_END                       }
-#define USING_NS_CC                     using namespace cocos2d;
-#else
-#define NS_CC_BEGIN 
-#define NS_CC_END 
-#define USING_NS_CC 
-#endif 
 
 
 /*

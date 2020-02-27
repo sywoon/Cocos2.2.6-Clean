@@ -39,6 +39,58 @@
     </ClCompile>
     <ClCompile Include="..\Configuration.cpp" />
     <ClCompile Include="..\Director.cpp" />
+    <ClCompile Include="..\kazmath\aabb.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\GL\mat4stack.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\GL\matrix.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\mat3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\mat4.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\neon_matrix_impl.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\plane.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\quaternion.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\ray2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\utility.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\vec2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\vec3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\kazmath\vec4.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
     <ClCompile Include="..\platform\EGLViewProtocol.cpp" />
     <ClCompile Include="..\platform\win32\Application.cpp" />
     <ClCompile Include="..\platform\win32\EGLView.cpp" />
@@ -69,6 +121,20 @@
     <ClInclude Include="..\include\ccConfig.h" />
     <ClInclude Include="..\include\ccMacros.h" />
     <ClInclude Include="..\include\ccTypeInfo.h" />
+    <ClInclude Include="..\kazmath\aabb.h" />
+    <ClInclude Include="..\kazmath\GL\mat4stack.h" />
+    <ClInclude Include="..\kazmath\GL\matrix.h" />
+    <ClInclude Include="..\kazmath\kazmath.h" />
+    <ClInclude Include="..\kazmath\mat3.h" />
+    <ClInclude Include="..\kazmath\mat4.h" />
+    <ClInclude Include="..\kazmath\neon_matrix_impl.h" />
+    <ClInclude Include="..\kazmath\plane.h" />
+    <ClInclude Include="..\kazmath\quaternion.h" />
+    <ClInclude Include="..\kazmath\ray2.h" />
+    <ClInclude Include="..\kazmath\utility.h" />
+    <ClInclude Include="..\kazmath\vec2.h" />
+    <ClInclude Include="..\kazmath\vec3.h" />
+    <ClInclude Include="..\kazmath\vec4.h" />
     <ClInclude Include="..\platform\ApplicationProtocol.h" />
     <ClInclude Include="..\platform\PlatformMacros.h" />
     <ClInclude Include="..\platform\EGLViewProtocol.h" />
@@ -152,7 +218,7 @@
       <PrecompiledHeaderFile>cocos2d.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;$(ProjectDir)/../platform;$(ProjectDir)/../platform/win32;$(ProjectDir)../platform/third_party/win32/glew</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>cocos2d.h</ForcedIncludeFiles>
-      <DisableSpecificWarnings>4251;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;4244;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

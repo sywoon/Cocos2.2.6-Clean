@@ -72,6 +72,8 @@ public:
 class String;
 class CC_DLL Dictionary : public Object
 {
+	ACCEPT_VISITOR;
+
 	//第一次调用setObject  将确定本字典key的形式
 	enum CCDictType
 	{
@@ -89,25 +91,25 @@ public:
 	~Dictionary();
 
 	// 若已有 则删除和释放旧的 用新的替换
-	void setObject(Object* pObject, const std::string& key);
-	void setObject(Object* pObject, intptr_t key);
+	void		setObject(Object* pObject, const std::string& key);
+	void		setObject(Object* pObject, intptr_t key);
 
-	void removeObjectForKey(const std::string& key);
-	void removeObjectForKey(intptr_t key);
-	void removeObjectsForKeys(Array* pKeyArray);
+	void		removeObjectForKey(const std::string& key);
+	void		removeObjectForKey(intptr_t key);
+	void		removeObjectsForKeys(Array* pKeyArray);
 
 	// 真正删除元素的地方 
 	// 先release DictElement 中的Object 然后delete这个DictElement
-	void removeObjectForElememt(DictElement* pElement);
+	void		removeObjectForElememt(DictElement* pElement);
 
-	void removeAllObjects();
+	void		removeAllObjects();
 
 	//    CCString* pStr = (CCString*)pDict->objectForKey("key1");
 	//    CCString* pStr2 = dynamic_cast<CCString*>(pDict->objectForKey("key1"));
 	//    if (pStr2 != NULL) {
-	Object* objectForKey(const std::string& key);
-	Object* objectForKey(intptr_t key);
-	Object* randomObject();
+	Object*		objectForKey(const std::string& key);
+	Object*		objectForKey(intptr_t key);
+	Object*		randomObject();
 
 	// 元素必须是String*
 	const String* valueForKey(const std::string& key);
@@ -117,10 +119,10 @@ public:
 	unsigned int count();
 
 	//return  The array contains all keys of elements. It's an autorelease object yet.
-	Array* allKeys();
+	Array*		allKeys();
 
 	// return   The array contains all keys for the specified object. It's an autorelease object yet.
-	Array* allKeysForObject(Object* object);
+	Array*		allKeysForObject(Object* object);
 
 
 protected:
@@ -129,8 +131,8 @@ protected:
 
 private:
 	// retain Object 并加入_pElements中
-	void setObjectUnSafe(Object* pObject, const std::string& key);
-	void setObjectUnSafe(Object* pObject, const intptr_t key);
+	void		setObjectUnSafe(Object* pObject, const std::string& key);
+	void		setObjectUnSafe(Object* pObject, const intptr_t key);
 
 
 public:

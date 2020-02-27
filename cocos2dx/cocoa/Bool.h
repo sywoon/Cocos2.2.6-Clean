@@ -7,6 +7,8 @@ NS_CC_BEGIN
 
 class CC_DLL Bool : public Object
 {
+	ACCEPT_VISITOR;
+
 public:
 	static Bool*	create(bool v);
 

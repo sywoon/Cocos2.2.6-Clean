@@ -7,6 +7,8 @@ NS_CC_BEGIN
 
 class CC_DLL Float : public Object
 {
+	ACCEPT_VISITOR;
+
 public:
 	static Float*	create(float v);
 

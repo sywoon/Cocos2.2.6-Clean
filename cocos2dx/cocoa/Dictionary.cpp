@@ -398,5 +398,4 @@ Object* Dictionary::cloneSelf()
 
 
 
-
 NS_CC_END

@@ -73,6 +73,8 @@ NS_CC_BEGIN
 
 class CC_DLL Array : public Object
 {
+	ACCEPT_VISITOR;
+
 public:
 	~Array();
 

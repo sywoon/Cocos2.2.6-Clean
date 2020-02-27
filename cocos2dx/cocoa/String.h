@@ -11,6 +11,8 @@ NS_CC_BEGIN
 
 class CC_DLL String : public Object
 {
+	ACCEPT_VISITOR;
+
 public:
 	String();
 	String(const char* str);

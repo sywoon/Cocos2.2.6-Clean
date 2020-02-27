@@ -13,7 +13,7 @@ public:
 	Application();
 	virtual ~Application();
 
-	static Application*	sharedApplication();
+	static Application*		sharedApplication();
 
 public:
 	virtual void			setAnimationInterval(double interval);
@@ -30,7 +30,7 @@ protected:
 	HINSTANCE				_hInstance;
 	LARGE_INTEGER			_nAnimationInterval;
 
-	static Application*	s_pSharedApplication;
+	static Application*		s_pSharedApplication;
 };
 
 

@@ -12,6 +12,8 @@ typedef std::set<Object*>::iterator SetIterator;
 
 class CC_DLL Set : public Object
 {
+	ACCEPT_VISITOR;
+
 public:
 	Set(void);
 	Set(const Set& rSetObject);

@@ -5,6 +5,11 @@
 
 NS_CC_BEGIN
 
+#define ACCEPT_VISITOR \
+public: virtual void acceptVisitor(DataVisitor& visitor) \
+{	return visitor.visit(this);  }
+
+
 
 class Object;
 class Bool;
