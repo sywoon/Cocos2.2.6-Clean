@@ -27,6 +27,42 @@ void CCMessageBox(const char* pszMsg, const char* pszTitle)
 }
 
 
+static int gettimeofday(struct timeval* val, struct timezone*)
+{
+	if (val)
+	{
+		LARGE_INTEGER liTime, liFreq;
+		QueryPerformanceFrequency(&liFreq);
+		QueryPerformanceCounter(&liTime);
+		val->tv_sec = (long)(liTime.QuadPart / liFreq.QuadPart);
+		val->tv_usec = (long)(liTime.QuadPart * 1000000.0 / liFreq.QuadPart - val->tv_sec * 1000000.0);
+	}
+	return 0;
+}
+
+
+int CCTime::gettimeofdayCocos2d(struct cc_timeval* tp, void* tzp)
+{
+	CC_UNUSED_PARAM(tzp);
+	if (tp)
+	{
+		gettimeofday((struct timeval*)tp, 0);
+	}
+	return 0;
+}
+
+double CCTime::timersubCocos2d(struct cc_timeval* start, struct cc_timeval* end)
+{
+	if (!start || !end)
+	{
+		return 0;
+	}
+
+	return ((end->tv_sec * 1000.0 + end->tv_usec / 1000.0) - (start->tv_sec * 1000.0 + start->tv_usec / 1000.0));
+}
+
+
+
 NS_CC_END
 
 

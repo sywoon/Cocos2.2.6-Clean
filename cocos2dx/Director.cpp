@@ -4,6 +4,7 @@
 #include "platform/PlatformBase.h"
 #include "EGLView.h"
 #include "shaders/GLStateCache.h"
+#include "kazmath/GL/matrix.h"
 
 
 NS_CC_BEGIN
@@ -32,10 +33,16 @@ long Director::getClassTypeId()
 
 Director::Director()
 	: _pobOpenGLView(NULL)
-	, _dAnimationInterval(60.0)
-	, _dOldAnimationInterval(60.0)
+	, _dAnimationInterval(1/60.0)
+	, _dOldAnimationInterval(1/60.0)
 	, _bDisplayStats(false)
 	, _eProjection(kCCDirectorProjectionDefault)
+
+	, _uTotalFrames(0)
+	, _uFrames(0)
+	, _fSecondsPerFrame(0.0f)
+	, _fDeltaTime(0.0f)
+	, _pLastUpdate(NULL)
 {
 }
 
@@ -44,6 +51,7 @@ bool Director::init(void)
 	setDefaultValues();
 
 	_pobOpenGLView = NULL;
+	_pLastUpdate = new struct cc_timeval();
 
 	
 	PoolManager::sharedPoolManager()->push();
@@ -56,8 +64,25 @@ Director::~Director(void)
 	PoolManager::sharedPoolManager()->pop();
 	PoolManager::purgePoolManager();
 
+	CC_SAFE_DELETE(_pLastUpdate);
+
 	s_SharedDirector = NULL;
 }
+
+void Director::purgeDirector()
+{
+	stopAnimation();
+
+	CHECK_GL_ERROR_DEBUG();
+
+	// OpenGL view
+	_pobOpenGLView->end();
+	_pobOpenGLView = NULL;
+
+	// delete this
+	release();
+}
+
 
 void Director::stopAnimation(void)
 {
@@ -83,7 +108,7 @@ void Director::setOpenGLView(EGLView* pobOpenGLView)
 		CC_SAFE_DELETE(_pobOpenGLView);
 		_pobOpenGLView = pobOpenGLView;
 
-		_obWinSizeInPoints = _pobOpenGLView->getDesignResolutionSize();
+		_sizeWinInPoints = _pobOpenGLView->getDesignResolutionSize();
 
 		if (_pobOpenGLView)
 		{
@@ -159,7 +184,7 @@ void Director::setDepthTest(bool bOn)
 
 void Director::setProjection(ccDirectorProjection kProjection)
 {
-	Size size = _obWinSizeInPoints;
+	Size size = _sizeWinInPoints;
 
 	setViewport();
 
@@ -167,46 +192,39 @@ void Director::setProjection(ccDirectorProjection kProjection)
 	{
 	case kCCDirectorProjection2D:
 	{
-//		kmGLMatrixMode(KM_GL_PROJECTION);
-//		kmGLLoadIdentity();
-//#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-//		kmGLMultMatrix(CCEGLView::sharedOpenGLView()->getOrientationMatrix());
-//#endif
-//		kmMat4 orthoMatrix;
-//		kmMat4OrthographicProjection(&orthoMatrix, 0, size.width, 0, size.height, -1024, 1024);
-//		kmGLMultMatrix(&orthoMatrix);
-//		kmGLMatrixMode(KM_GL_MODELVIEW);
-//		kmGLLoadIdentity();
+		kmGLMatrixMode(KM_GL_PROJECTION);
+		kmGLLoadIdentity();
+
+		kmMat4 orthoMatrix;
+		kmMat4OrthographicProjection(&orthoMatrix, 0, size.width, 0, size.height, -1024, 1024);
+		kmGLMultMatrix(&orthoMatrix);
+
+		kmGLMatrixMode(KM_GL_MODELVIEW);
+		kmGLLoadIdentity();
 	}
 	break;
 
 	case kCCDirectorProjection3D:
 	{
-//		float zeye = this->getZEye();
-//
-//		kmMat4 matrixPerspective, matrixLookup;
-//
-//		kmGLMatrixMode(KM_GL_PROJECTION);
-//		kmGLLoadIdentity();
-//
-//#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-//		//if needed, we need to add a rotation for Landscape orientations on Windows Phone 8 since it is always in Portrait Mode
-//		kmGLMultMatrix(CCEGLView::sharedOpenGLView()->getOrientationMatrix());
-//#endif
-//		// issue #1334
-//		kmMat4PerspectiveProjection(&matrixPerspective, 60, (GLfloat)size.width / size.height, 0.1f, zeye * 2);
-//		// kmMat4PerspectiveProjection( &matrixPerspective, 60, (GLfloat)size.width/size.height, 0.1f, 1500);
-//
-//		kmGLMultMatrix(&matrixPerspective);
-//
-//		kmGLMatrixMode(KM_GL_MODELVIEW);
-//		kmGLLoadIdentity();
-//		kmVec3 eye, center, up;
-//		kmVec3Fill(&eye, size.width / 2, size.height / 2, zeye);
-//		kmVec3Fill(&center, size.width / 2, size.height / 2, 0.0f);
-//		kmVec3Fill(&up, 0.0f, 1.0f, 0.0f);
-//		kmMat4LookAt(&matrixLookup, &eye, &center, &up);
-//		kmGLMultMatrix(&matrixLookup);
+		float zeye = this->getZEye();
+
+		kmMat4 matrixPerspective, matrixLookup;
+
+		kmGLMatrixMode(KM_GL_PROJECTION);
+		kmGLLoadIdentity();
+
+		kmMat4PerspectiveProjection(&matrixPerspective, 60, (GLfloat)size.width / size.height, 0.1f, zeye * 2);
+
+		kmGLMultMatrix(&matrixPerspective);
+
+		kmGLMatrixMode(KM_GL_MODELVIEW);
+		kmGLLoadIdentity();
+		kmVec3 eye, center, up;
+		kmVec3Fill(&eye, size.width / 2, size.height / 2, zeye);
+		kmVec3Fill(&center, size.width / 2, size.height / 2, 0.0f);
+		kmVec3Fill(&up, 0.0f, 1.0f, 0.0f);
+		kmMat4LookAt(&matrixLookup, &eye, &center, &up);
+		kmGLMultMatrix(&matrixLookup);
 	}
 	break;
 
@@ -216,14 +234,18 @@ void Director::setProjection(ccDirectorProjection kProjection)
 	}
 
 	_eProjection = kProjection;
-	//ccSetProjectionMatrixDirty();
+}
+
+float Director::getZEye(void)
+{
+	return (_sizeWinInPoints.height / 1.1566f);
 }
 
 void Director::setViewport()
 {
 	if (_pobOpenGLView)
 	{
-		_pobOpenGLView->setViewPortInPoints(0, 0, _obWinSizeInPoints.width, _obWinSizeInPoints.height);
+		_pobOpenGLView->setViewPortInPoints(0, 0, _sizeWinInPoints.width, _sizeWinInPoints.height);
 	}
 }
 
@@ -250,7 +272,20 @@ void Director::mainLoop(void)
 
 void Director::drawScene(void)
 {
+	calculateDeltaTime();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	kmGLPushMatrix();
+
+	//if (m_pRunningScene)
+	//{
+	//	m_pRunningScene->visit();
+	//}
+
+	kmGLPopMatrix();
+
+	_uTotalFrames++;
 
 	if (_pobOpenGLView)
 	{
@@ -258,19 +293,43 @@ void Director::drawScene(void)
 	}
 }
 
-void Director::purgeDirector()
+
+void Director::calculateDeltaTime(void)
 {
-	stopAnimation();
+	struct cc_timeval now;
 
-	CHECK_GL_ERROR_DEBUG();
+	if (CCTime::gettimeofdayCocos2d(&now, NULL) != 0)
+	{
+		CCLOG("error in gettimeofday");
+		_fDeltaTime = 0;
+		return;
+	}
 
-	// OpenGL view
-	_pobOpenGLView->end();
-	_pobOpenGLView = NULL;
+	_fDeltaTime = (now.tv_sec - _pLastUpdate->tv_sec) + (now.tv_usec - _pLastUpdate->tv_usec) / 1000000.0f;
+	_fDeltaTime = MAX(0, _fDeltaTime);
 
-	// delete this
-	release();
+#ifdef DEBUG   //vsµ÷ÊÔÊ±Îªtrue
+	// If we are debugging our code, prevent big delta time
+	if (_fDeltaTime > 0.2f)
+	{
+		_fDeltaTime = 1 / 60.0f;
+	}
+#endif
+
+	*_pLastUpdate = now;
 }
+
+void Director::setAnimationInterval(double dValue)
+{
+	_dAnimationInterval = dValue;
+	if (!_bDrawScene)
+	{
+		stopAnimation();
+		startAnimation();
+	}
+}
+
+
 
 
 NS_CC_END

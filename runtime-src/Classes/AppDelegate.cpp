@@ -25,6 +25,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	pDirector->setOpenGLView(pEGLView);
 
+	pEGLView->setDesignResolutionSize(960, 640, kResolutionNoBorder);
+
 	return true;
 }
 

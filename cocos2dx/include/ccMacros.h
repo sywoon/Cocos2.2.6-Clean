@@ -37,7 +37,7 @@
 #define USING_NS_CC 
 #endif 
 
-
+#define CC_UNUSED_PARAM(unusedparam) (void)unusedparam
 
 #if CC_DISABLE_ASSERT > 0
 #define CC_ASSERT(cond)

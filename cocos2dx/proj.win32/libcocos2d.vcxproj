@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\cocoa\AffineTransform.cpp" />
     <ClCompile Include="..\cocoa\Array.cpp" />
     <ClCompile Include="..\cocoa\AutoReleasePool.cpp" />
     <ClCompile Include="..\cocoa\Bool.cpp" />
@@ -26,6 +27,8 @@
     <ClCompile Include="..\cocoa\data_support\ccCArray.cpp" />
     <ClCompile Include="..\cocoa\Dictionary.cpp" />
     <ClCompile Include="..\cocoa\Double.cpp" />
+    <ClCompile Include="..\cocoa\extend\AffineExtend.cpp" />
+    <ClCompile Include="..\cocoa\extend\PointExtend.cpp" />
     <ClCompile Include="..\cocoa\Float.cpp" />
     <ClCompile Include="..\cocoa\Geometry.cpp" />
     <ClCompile Include="..\cocoa\GeometryAssit.cpp" />
@@ -91,13 +94,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
     </ClCompile>
+    <ClCompile Include="..\nodes\base_nodes\Node.cpp" />
     <ClCompile Include="..\platform\EGLViewProtocol.cpp" />
     <ClCompile Include="..\platform\win32\Application.cpp" />
     <ClCompile Include="..\platform\win32\EGLView.cpp" />
     <ClCompile Include="..\platform\win32\PlatformBase.cpp" />
+    <ClCompile Include="..\shaders\GLProgram.cpp" />
     <ClCompile Include="..\shaders\GLStateCache.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\cocoa\AffineTransform.h" />
     <ClInclude Include="..\cocoa\Array.h" />
     <ClInclude Include="..\cocoa\AutoReleasePool.h" />
     <ClInclude Include="..\cocoa\Bool.h" />
@@ -107,6 +113,8 @@
     <ClInclude Include="..\cocoa\data_support\utlist.h" />
     <ClInclude Include="..\cocoa\Dictionary.h" />
     <ClInclude Include="..\cocoa\Double.h" />
+    <ClInclude Include="..\cocoa\extend\AffineExtend.h" />
+    <ClInclude Include="..\cocoa\extend\PointExtend.h" />
     <ClInclude Include="..\cocoa\Float.h" />
     <ClInclude Include="..\cocoa\Geometry.h" />
     <ClInclude Include="..\cocoa\GeometryAssit.h" />
@@ -135,12 +143,14 @@
     <ClInclude Include="..\kazmath\vec2.h" />
     <ClInclude Include="..\kazmath\vec3.h" />
     <ClInclude Include="..\kazmath\vec4.h" />
+    <ClInclude Include="..\nodes\base_nodes\Node.h" />
     <ClInclude Include="..\platform\ApplicationProtocol.h" />
     <ClInclude Include="..\platform\PlatformMacros.h" />
     <ClInclude Include="..\platform\EGLViewProtocol.h" />
     <ClInclude Include="..\platform\PlatformBase.h" />
     <ClInclude Include="..\platform\win32\Application.h" />
     <ClInclude Include="..\platform\win32\EGLView.h" />
+    <ClInclude Include="..\shaders\GLProgram.h" />
     <ClInclude Include="..\shaders\GLStateCache.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

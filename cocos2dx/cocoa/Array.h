@@ -35,7 +35,7 @@ do {                                                                  \
     if(pArray && pArray->count() > 0)                                 \
     {                                                                 \
         Object* child;                                              \
-        CCARRAY_FOREACH(pArray, child)                                \
+        ARRAY_FOREACH(pArray, child)                                \
         {                                                             \
             elementType pNode = (elementType) child;                  \
             if(pNode)                                                 \
@@ -53,7 +53,7 @@ do {                                                                  \
     if(pArray && pArray->count() > 0)                                 \
     {                                                                 \
         Object* child = NULL;                                       \
-        CCARRAY_FOREACH(pArray, child)                                \
+        ARRAY_FOREACH(pArray, child)                                \
         {                                                             \
             elementType pNode = (elementType) child;                  \
             if(pNode)                                                 \

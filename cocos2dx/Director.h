@@ -44,7 +44,13 @@ public:
 	inline EGLView*		getOpenGLView(void) { return _pobOpenGLView; }
 	void				setOpenGLView(EGLView* pobOpenGLView);
 
+	inline unsigned int getTotalFrames(void) { return _uTotalFrames; }
+	inline double		getAnimationInterval(void) { return _dAnimationInterval; }
+	virtual void		setAnimationInterval(double dValue);
+
 protected:
+	void				purgeDirector();
+
 	bool				init(void);
 	void				setDefaultValues(void);
 	void				setGLDefaultValues(void);
@@ -54,9 +60,11 @@ protected:
 
 	void				setProjection(ccDirectorProjection kProjection);
 	void				setViewport();
+	float				getZEye(void);
 
-	void				purgeDirector();
 	void				drawScene(void);
+
+	void				calculateDeltaTime();
 
 protected:
 	EGLView*			_pobOpenGLView;
@@ -66,10 +74,18 @@ protected:
 	double				_dOldAnimationInterval;
 	bool				_bDisplayStats;
 
-	Size				_obWinSizeInPoints;
+	Size				_sizeWinInPoints;
 
 	bool				_bPurgeDirecotorInNextLoop;
 	bool				_bDrawScene;
+
+	unsigned int		_uTotalFrames;
+	unsigned int		_uFrames;
+	float				_fSecondsPerFrame;
+
+	float				_fDeltaTime;
+	struct cc_timeval*	_pLastUpdate;
+
 
 	// CCEGLViewProtocol will recreate stats labels to fit visible rect
 	friend class CCEGLViewProtocol;

@@ -6,6 +6,10 @@ NS_CC_BEGIN
 static GLenum    s_eBlendingSource = -1;
 static GLenum    s_eBlendingDest = -1;
 
+static GLuint    s_uCurrentShaderProgram = -1;
+
+
+
 static void SetBlending(GLenum sfactor, GLenum dfactor)
 {
 	if (sfactor == GL_ONE && dfactor == GL_ZERO)
@@ -30,7 +34,31 @@ void ccGLBlendFunc(GLenum sfactor, GLenum dfactor)
 	}
 #else
 	SetBlending(sfactor, dfactor);
-#endif // CC_ENABLE_GL_STATE_CACHE
+#endif
+}
+
+void ccGLUseProgram(GLuint program)
+{
+#if CC_ENABLE_GL_STATE_CACHE
+	if (program != s_uCurrentShaderProgram) {
+		s_uCurrentShaderProgram = program;
+		glUseProgram(program);
+	}
+#else
+	glUseProgram(program);
+#endif
+}
+
+void ccGLDeleteProgram(GLuint program)
+{
+#if CC_ENABLE_GL_STATE_CACHE
+	if (program == s_uCurrentShaderProgram)
+	{
+		s_uCurrentShaderProgram = -1;
+	}
+#endif
+
+	glDeleteProgram(program);
 }
 
 

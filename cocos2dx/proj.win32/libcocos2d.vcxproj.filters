@@ -100,6 +100,21 @@
     <ClCompile Include="..\kazmath\GL\mat4stack.c">
       <Filter>kazmath\GL</Filter>
     </ClCompile>
+    <ClCompile Include="..\nodes\base_nodes\Node.cpp">
+      <Filter>nodes\base_nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\extend\PointExtend.cpp">
+      <Filter>cocoa\extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\AffineTransform.cpp">
+      <Filter>cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocoa\extend\AffineExtend.cpp">
+      <Filter>cocoa\extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shaders\GLProgram.cpp">
+      <Filter>shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -228,6 +243,21 @@
     <ClInclude Include="..\kazmath\GL\mat4stack.h">
       <Filter>kazmath\GL</Filter>
     </ClInclude>
+    <ClInclude Include="..\nodes\base_nodes\Node.h">
+      <Filter>nodes\base_nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\extend\PointExtend.h">
+      <Filter>cocoa\extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\AffineTransform.h">
+      <Filter>cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocoa\extend\AffineExtend.h">
+      <Filter>cocoa\extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\GLProgram.h">
+      <Filter>shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -253,6 +283,15 @@
     </Filter>
     <Filter Include="kazmath\GL">
       <UniqueIdentifier>{7d84b4b8-ef75-4d9b-bbe3-f8c258604903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nodes">
+      <UniqueIdentifier>{aa4295e7-8174-4109-8dcb-ec2049a2d951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nodes\base_nodes">
+      <UniqueIdentifier>{ef835cbe-ed06-40a9-aa90-fd1fb1a2ccd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocoa\extend">
+      <UniqueIdentifier>{5896f4bb-a905-4b61-864a-7304824fc8b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
