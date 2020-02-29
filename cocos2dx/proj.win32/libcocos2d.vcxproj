@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -94,6 +94,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
     </ClCompile>
+    <ClCompile Include="..\keypad\KeypadDispatcher.cpp" />
+    <ClCompile Include="..\keypad\KeypadHandler.cpp" />
     <ClCompile Include="..\nodes\base_nodes\Node.cpp" />
     <ClCompile Include="..\nodes\Scene.cpp" />
     <ClCompile Include="..\platform\EGLViewProtocol.cpp" />
@@ -103,7 +105,9 @@
     <ClCompile Include="..\shaders\GLProgram.cpp" />
     <ClCompile Include="..\shaders\GLStateCache.cpp" />
     <ClCompile Include="..\touch\Touch.cpp" />
+    <ClCompile Include="..\touch\TouchDelegate.cpp" />
     <ClCompile Include="..\touch\TouchDispatcher.cpp" />
+    <ClCompile Include="..\touch\TouchHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocoa\AffineTransform.h" />
@@ -146,6 +150,9 @@
     <ClInclude Include="..\kazmath\vec2.h" />
     <ClInclude Include="..\kazmath\vec3.h" />
     <ClInclude Include="..\kazmath\vec4.h" />
+    <ClInclude Include="..\keypad\KeypadDelegate.h" />
+    <ClInclude Include="..\keypad\KeypadDispatcher.h" />
+    <ClInclude Include="..\keypad\KeypadHandler.h" />
     <ClInclude Include="..\nodes\base_nodes\Node.h" />
     <ClInclude Include="..\nodes\Scene.h" />
     <ClInclude Include="..\platform\ApplicationProtocol.h" />
@@ -157,7 +164,9 @@
     <ClInclude Include="..\shaders\GLProgram.h" />
     <ClInclude Include="..\shaders\GLStateCache.h" />
     <ClInclude Include="..\touch\Touch.h" />
+    <ClInclude Include="..\touch\TouchDelegate.h" />
     <ClInclude Include="..\touch\TouchDispatcher.h" />
+    <ClInclude Include="..\touch\TouchHandler.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

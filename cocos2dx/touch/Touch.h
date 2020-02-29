@@ -37,11 +37,11 @@ public:
 
 
 private:
-	int		m_nId;
-	bool	m_startPointCaptured;	
-	Point	m_startPoint;			// 第一次touch
-	Point	m_point;				// 当前
-	Point	m_prevPoint;			// 上一个
+	int		_nId;
+	bool	_startPointCaptured;	
+	Point	_startPoint;			// 第一次touch
+	Point	_point;				// 当前
+	Point	_prevPoint;			// 上一个
 };
 
 

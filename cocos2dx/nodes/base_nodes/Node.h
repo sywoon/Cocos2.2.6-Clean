@@ -22,7 +22,7 @@ public:
     Node(void);
     virtual ~Node(void);
 
-    static Node*      create(void);
+    static Node*        create(void);
 
 public:
     const char*         description(void);
@@ -165,12 +165,12 @@ public:
     void                setAdditionalTransform(const AffineTransform& additionalTransform);
 
 
-    Point   convertToNodeSpace(const Point& worldPoint);
-    Point   convertToWorldSpace(const Point& nodePoint);
-    Point   convertToNodeSpaceAR(const Point& worldPoint);  //忽略锚点 以坐下为中心
-    Point   convertToWorldSpaceAR(const Point& nodePoint);
-    Point   convertTouchToNodeSpace(Touch* touch);
-    Point   convertTouchToNodeSpaceAR(Touch* touch);
+    Point               convertToNodeSpace(const Point& worldPoint);
+    Point               convertToWorldSpace(const Point& nodePoint);
+    Point               convertToNodeSpaceAR(const Point& worldPoint);  //忽略锚点 以坐下为中心
+    Point               convertToWorldSpaceAR(const Point& nodePoint);
+    Point               convertTouchToNodeSpace(Touch* touch);
+    Point               convertTouchToNodeSpaceAR(Touch* touch);
 
 
 protected:

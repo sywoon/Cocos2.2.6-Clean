@@ -21,7 +21,10 @@ typedef enum {
 } ccDirectorProjection;
 
 
+
 class EGLView;
+class KeypadDispatcher;
+class TouchDispatcher;
 class CC_DLL Director : public Object, public TypeInfo
 {
 public:
@@ -70,6 +73,12 @@ protected:
 	void				drawScene(void);
 
 	void				calculateDeltaTime();
+
+
+public:
+	CC_PROPERTY(KeypadDispatcher*, _pKeypadDispatcher, KeypadDispatcher);
+	CC_PROPERTY(TouchDispatcher*, _pTouchDispatcher, TouchDispatcher);
+
 
 protected:
 	EGLView*			_pobOpenGLView;

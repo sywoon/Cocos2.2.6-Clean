@@ -4,6 +4,8 @@
 #include "platform/PlatformBase.h"
 #include "Director.h"
 #include "cocoa/extend/PointExtend.h"
+#include "keypad/KeypadDispatcher.h"
+#include "touch/TouchDispatcher.h"
 
 
 
@@ -577,6 +579,16 @@ LRESULT EGLView::windowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_KEYDOWN:
+		if (wParam == VK_F1 || wParam == VK_F2)
+		{
+			Director* pDirector = Director::sharedDirector();
+			if (GetKeyState(VK_LSHIFT) < 0 || GetKeyState(VK_RSHIFT) < 0 || GetKeyState(VK_SHIFT) < 0)
+				pDirector->getKeypadDispatcher()->dispatchKeypadMSG(wParam == VK_F1 ? kTypeBackClicked : kTypeMenuClicked);
+		}
+		else if (wParam == VK_ESCAPE)
+		{
+			Director::sharedDirector()->getKeypadDispatcher()->dispatchKeypadMSG(kTypeBackClicked);
+		}
 		break;
 	case WM_KEYUP:
 		break;

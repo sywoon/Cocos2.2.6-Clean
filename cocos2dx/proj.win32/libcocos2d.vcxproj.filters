@@ -124,6 +124,18 @@
     <ClCompile Include="..\touch\Touch.cpp">
       <Filter>touch</Filter>
     </ClCompile>
+    <ClCompile Include="..\keypad\KeypadDispatcher.cpp">
+      <Filter>keypad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\touch\TouchHandler.cpp">
+      <Filter>touch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\touch\TouchDelegate.cpp">
+      <Filter>touch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\keypad\KeypadHandler.cpp">
+      <Filter>keypad</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -276,6 +288,21 @@
     <ClInclude Include="..\touch\Touch.h">
       <Filter>touch</Filter>
     </ClInclude>
+    <ClInclude Include="..\keypad\KeypadDispatcher.h">
+      <Filter>keypad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\keypad\KeypadDelegate.h">
+      <Filter>keypad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\touch\TouchDelegate.h">
+      <Filter>touch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\touch\TouchHandler.h">
+      <Filter>touch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\keypad\KeypadHandler.h">
+      <Filter>keypad</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -313,6 +340,9 @@
     </Filter>
     <Filter Include="touch">
       <UniqueIdentifier>{9f204642-6862-4611-beba-4e051b3950f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="keypad">
+      <UniqueIdentifier>{f44015ee-f447-4429-9f90-b884d7854b8d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

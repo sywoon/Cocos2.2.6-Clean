@@ -6,44 +6,44 @@ NS_CC_BEGIN
 
 
 Touch::Touch()
-	: m_nId(0)
-	, m_startPointCaptured(false)
+	: _nId(0)
+	, _startPointCaptured(false)
 {}
 
 void Touch::setTouchInfo(int id, float x, float y)
 {
-	m_nId = id;
-	m_prevPoint = m_point;
-	m_point.x = x;
-	m_point.y = y;
+	_nId = id;
+	_prevPoint = _point;
+	_point.x = x;
+	_point.y = y;
 
-	if (!m_startPointCaptured)
+	if (!_startPointCaptured)
 	{
-		m_startPoint = m_point;
-		m_startPointCaptured = true;
+		_startPoint = _point;
+		_startPointCaptured = true;
 	}
 }
 
 int Touch::getID() const
 {
-	return m_nId;
+	return _nId;
 }
 
 
 Point Touch::getLocation() const
 {
-	return Director::sharedDirector()->convertToGL(m_point);
+	return Director::sharedDirector()->convertToGL(_point);
 }
 
 Point Touch::getPreviousLocation() const
 {
-	return Director::sharedDirector()->convertToGL(m_prevPoint);
+	return Director::sharedDirector()->convertToGL(_prevPoint);
 }
 
 // returns the start touch location in OpenGL coordinates
 Point Touch::getStartLocation() const
 {
-	return Director::sharedDirector()->convertToGL(m_startPoint);
+	return Director::sharedDirector()->convertToGL(_startPoint);
 }
 
 Point Touch::getDelta() const
@@ -53,17 +53,17 @@ Point Touch::getDelta() const
 
 Point Touch::getLocationInView() const
 {
-	return m_point;
+	return _point;
 }
 
 Point Touch::getPreviousLocationInView() const
 {
-	return m_prevPoint;
+	return _prevPoint;
 }
 
 Point Touch::getStartLocationInView() const
 {
-	return m_startPoint;
+	return _startPoint;
 }
 
 

@@ -7,6 +7,9 @@
 #include "shaders/GLStateCache.h"
 #include "kazmath/GL/matrix.h"
 
+#include "keypad/KeypadDispatcher.h"
+#include "touch/TouchDispatcher.h"
+
 
 NS_CC_BEGIN
 
@@ -44,6 +47,9 @@ Director::Director()
 	, _fSecondsPerFrame(0.0f)
 	, _fDeltaTime(0.0f)
 	, _pLastUpdate(NULL)
+
+	, _pKeypadDispatcher(NULL)
+	, _pTouchDispatcher(NULL)
 {
 }
 
@@ -54,6 +60,8 @@ bool Director::init(void)
 	_pobOpenGLView = NULL;
 	_pLastUpdate = new struct cc_timeval();
 
+	_pKeypadDispatcher = new KeypadDispatcher();
+	_pTouchDispatcher = new TouchDispatcher();
 	
 	PoolManager::sharedPoolManager()->push();
 
@@ -62,6 +70,10 @@ bool Director::init(void)
 
 Director::~Director(void)
 {
+	CC_SAFE_RELEASE(_pKeypadDispatcher);
+	CC_SAFE_RELEASE(_pTouchDispatcher);
+
+
 	PoolManager::sharedPoolManager()->pop();
 	PoolManager::purgePoolManager();
 
@@ -72,6 +84,8 @@ Director::~Director(void)
 
 void Director::purgeDirector()
 {
+	_pTouchDispatcher->removeAllDelegates();
+
 	stopAnimation();
 
 	CHECK_GL_ERROR_DEBUG();
@@ -99,25 +113,28 @@ void Director::setOpenGLView(EGLView* pobOpenGLView)
 {
 	CCAssert(pobOpenGLView, "opengl view should not be null");
 
-	if (_pobOpenGLView != pobOpenGLView)
+	if (_pobOpenGLView == pobOpenGLView)
+		return;
+
+	Configuration* conf = Configuration::sharedConfiguration();
+	conf->gatherGPUInfo();
+	conf->dumpInfo();
+
+	// EAGLView is not a CCObject
+	CC_SAFE_DELETE(_pobOpenGLView);
+	_pobOpenGLView = pobOpenGLView;
+
+	_sizeWinInPoints = _pobOpenGLView->getDesignResolutionSize();
+
+	if (_pobOpenGLView)
 	{
-		Configuration* conf = Configuration::sharedConfiguration();
-		conf->gatherGPUInfo();
-		conf->dumpInfo();
-
-		// EAGLView is not a CCObject
-		CC_SAFE_DELETE(_pobOpenGLView);
-		_pobOpenGLView = pobOpenGLView;
-
-		_sizeWinInPoints = _pobOpenGLView->getDesignResolutionSize();
-
-		if (_pobOpenGLView)
-		{
-			setGLDefaultValues();
-		}
-
-		CHECK_GL_ERROR_DEBUG();
+		setGLDefaultValues();
 	}
+
+	CHECK_GL_ERROR_DEBUG();
+
+	_pobOpenGLView->setTouchDelegate(_pTouchDispatcher);
+	_pTouchDispatcher->setDispatchEvents(true);
 }
 
 
@@ -387,7 +404,35 @@ Point Director::convertToUI(const Point& glPoint)
 }
 
 
+//////////////////////////////////////
+// Keypad and Touch
+//
+void Director::setKeypadDispatcher(KeypadDispatcher* pKeypadDispatcher)
+{
+	CC_SAFE_RETAIN(pKeypadDispatcher);
+	CC_SAFE_RELEASE(_pKeypadDispatcher);
+	_pKeypadDispatcher = pKeypadDispatcher;
+}
 
+KeypadDispatcher* Director::getKeypadDispatcher()
+{
+	return _pKeypadDispatcher;
+}
+
+void Director::setTouchDispatcher(TouchDispatcher* pTouchDispatcher)
+{
+	if (_pTouchDispatcher != pTouchDispatcher)
+	{
+		CC_SAFE_RETAIN(pTouchDispatcher);
+		CC_SAFE_RELEASE(_pTouchDispatcher);
+		_pTouchDispatcher = pTouchDispatcher;
+	}
+}
+
+TouchDispatcher* Director::getTouchDispatcher()
+{
+	return _pTouchDispatcher;
+}
 
 
 
