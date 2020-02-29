@@ -115,6 +115,15 @@
     <ClCompile Include="..\shaders\GLProgram.cpp">
       <Filter>shaders</Filter>
     </ClCompile>
+    <ClCompile Include="..\nodes\Scene.cpp">
+      <Filter>nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\touch\TouchDispatcher.cpp">
+      <Filter>touch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\touch\Touch.cpp">
+      <Filter>touch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -258,6 +267,15 @@
     <ClInclude Include="..\shaders\GLProgram.h">
       <Filter>shaders</Filter>
     </ClInclude>
+    <ClInclude Include="..\nodes\Scene.h">
+      <Filter>nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\touch\TouchDispatcher.h">
+      <Filter>touch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\touch\Touch.h">
+      <Filter>touch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -292,6 +310,9 @@
     </Filter>
     <Filter Include="cocoa\extend">
       <UniqueIdentifier>{5896f4bb-a905-4b61-864a-7304824fc8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="touch">
+      <UniqueIdentifier>{9f204642-6862-4611-beba-4e051b3950f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

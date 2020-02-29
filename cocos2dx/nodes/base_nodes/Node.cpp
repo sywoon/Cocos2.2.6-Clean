@@ -6,6 +6,7 @@
 #include "kazmath/GL/matrix.h"
 #include "platform/PlatformBase.h"
 #include "shaders/GLProgram.h"
+#include "touch/Touch.h"
 
 
 
@@ -14,9 +15,9 @@ NS_CC_BEGIN
 static int s_globalOrderOfArrival = 1;
 
 
-CCNode* CCNode::create(void)
+Node* Node::create(void)
 {
-	CCNode* pRet = new CCNode();
+	Node* pRet = new Node();
 	if (pRet && pRet->init())
 	{
 		pRet->autorelease();
@@ -30,91 +31,91 @@ CCNode* CCNode::create(void)
 
 
 
-CCNode::CCNode(void)
-	: m_bRunning(false)
-	, m_bVisible(true)
-	, m_nTag(kCCNodeTagInvalid)
-	, m_nZOrder(0)
-	, m_uOrderOfArrival(0)
-	, m_fVertexZ(0.0f)
+Node::Node(void)
+	: _bRunning(false)
+	, _bVisible(true)
+	, _nTag(kCCNodeTagInvalid)
+	, _nZOrder(0)
+	, _uOrderOfArrival(0)
+	, _fVertexZ(0.0f)
 
-	, m_pChildren(NULL)
-	, m_pParent(NULL)
-	, m_bReorderChildDirty(false)
+	, _pChildren(NULL)
+	, _pParent(NULL)
+	, _bReorderChildDirty(false)
 	
-	, m_obPosition(PointZero)
-	, m_obContentSize(SizeZero)
+	, _obPosition(PointZero)
+	, _obContentSize(SizeZero)
 
-	, m_fScaleX(1.0f)
-	, m_fScaleY(1.0f)
-	, m_fRotationX(0.0f)
-	, m_fRotationY(0.0f)
-	, m_fSkewX(0.0f)
-	, m_fSkewY(0.0f)
+	, _fScaleX(1.0f)
+	, _fScaleY(1.0f)
+	, _fRotationX(0.0f)
+	, _fRotationY(0.0f)
+	, _fSkewX(0.0f)
+	, _fSkewY(0.0f)
 
-	, m_obAnchorPointInPoints(PointZero)
-	, m_obAnchorPoint(PointZero)
-	, m_bIgnoreAnchorPointForPosition(false)
+	, _obAnchorPointInPoints(PointZero)
+	, _obAnchorPoint(PointZero)
+	, _bIgnoreAnchorPointForPosition(false)
 
-	, m_bTransformDirty(false)
-	, m_bInverseDirty(false)
-	, m_bAdditionalTransformDirty(false)
+	, _bTransformDirty(false)
+	, _bInverseDirty(false)
+	, _bAdditionalTransformDirty(false)
 
-	, m_pShaderProgram(NULL)
+	, _pShaderProgram(NULL)
 {
 
 }
 
-CCNode::~CCNode(void)
+Node::~Node(void)
 {
-	CC_SAFE_RELEASE(m_pShaderProgram);
+	CC_SAFE_RELEASE(_pShaderProgram);
 
-	if (m_pChildren && m_pChildren->count() > 0)
+	if (_pChildren && _pChildren->count() > 0)
 	{
 		Object* child;
-		ARRAY_FOREACH(m_pChildren, child)
+		ARRAY_FOREACH(_pChildren, child)
 		{
-			CCNode* pChild = (CCNode*)child;
+			Node* pChild = (Node*)child;
 			if (pChild)
 			{
-				pChild->m_pParent = NULL;
+				pChild->_pParent = NULL;
 			}
 		}
 	}
-	CC_SAFE_RELEASE(m_pChildren);
+	CC_SAFE_RELEASE(_pChildren);
 
-	m_pParent = NULL;
+	_pParent = NULL;
 }
 
-bool CCNode::init()
+bool Node::init()
 {
 	return true;
 }
 
-const char* CCNode::description()
+const char* Node::description()
 {
-	return String::createWithFormat("<CCNode | Tag = %d>", m_nTag)->getCString();
+	return String::createWithFormat("<CCNode | Tag = %d>", _nTag)->getCString();
 }
 
-bool CCNode::isRunning()
+bool Node::isRunning()
 {
-	return m_bRunning;
+	return _bRunning;
 }
 
 
-void CCNode::onEnter()
+void Node::onEnter()
 {
 	//fix setTouchEnabled not take effect when called the function in onEnter in JSBinding.
-	m_bRunning = true;
+	_bRunning = true;
 
 	//Judge the running state for prevent called onEnter method more than once,it's possible that this function called by addChild  
-	if (m_pChildren && m_pChildren->count() > 0)
+	if (_pChildren && _pChildren->count() > 0)
 	{
 		Object* child;
-		CCNode* node;
-		ARRAY_FOREACH(m_pChildren, child)
+		Node* node;
+		ARRAY_FOREACH(_pChildren, child)
 		{
-			node = (CCNode*)child;
+			node = (Node*)child;
 			if (!node->isRunning())
 			{
 				node->onEnter();
@@ -123,62 +124,62 @@ void CCNode::onEnter()
 	}
 }
 
-void CCNode::onEnterTransitionDidFinish()
+void Node::onEnterTransitionDidFinish()
 {
-	arrayMakeObjectsPerformSelector(m_pChildren, onEnterTransitionDidFinish, CCNode*);
+	arrayMakeObjectsPerformSelector(_pChildren, onEnterTransitionDidFinish, Node*);
 }
 
-void CCNode::onExitTransitionDidStart()
+void Node::onExitTransitionDidStart()
 {
-	arrayMakeObjectsPerformSelector(m_pChildren, onExitTransitionDidStart, CCNode*);
+	arrayMakeObjectsPerformSelector(_pChildren, onExitTransitionDidStart, Node*);
 }
 
-void CCNode::onExit()
+void Node::onExit()
 {
-	m_bRunning = false;
+	_bRunning = false;
 
-	arrayMakeObjectsPerformSelector(m_pChildren, onExit, CCNode*);
+	arrayMakeObjectsPerformSelector(_pChildren, onExit, Node*);
 }
 
-void CCNode::cleanup()
+void Node::cleanup()
 {
-	arrayMakeObjectsPerformSelector(m_pChildren, cleanup, CCNode*);
+	arrayMakeObjectsPerformSelector(_pChildren, cleanup, Node*);
 }
 
 
 
-bool CCNode::isVisible()
+bool Node::isVisible()
 {
-	return m_bVisible;
+	return _bVisible;
 }
 
-void CCNode::setVisible(bool var)
+void Node::setVisible(bool var)
 {
-	m_bVisible = var;
+	_bVisible = var;
 }
 
-void CCNode::setZOrder(int z)
+void Node::setZOrder(int z)
 {
-	m_nZOrder = z;
-	if (m_pParent)
+	_nZOrder = z;
+	if (_pParent)
 	{
-		m_pParent->reorderChild(this, z);
+		_pParent->reorderChild(this, z);
 	}
 }
 
-int CCNode::getZOrder()
+int Node::getZOrder()
 {
-	return m_nZOrder;
+	return _nZOrder;
 }
 
-int CCNode::getTag() const
+int Node::getTag() const
 {
-	return m_nTag;
+	return _nTag;
 }
 
-void CCNode::setTag(int var)
+void Node::setTag(int var)
 {
-	m_nTag = var;
+	_nTag = var;
 }
 
 
@@ -187,74 +188,74 @@ void CCNode::setTag(int var)
 // parent and children
 //
 
-CCNode* CCNode::getParent()
+Node* Node::getParent()
 {
-	return m_pParent;
+	return _pParent;
 }
 
-void CCNode::setParent(CCNode* var)
+void Node::setParent(Node* var)
 {
-	m_pParent = var;
+	_pParent = var;
 }
 
-Array* CCNode::getChildren()
+Array* Node::getChildren()
 {
-	return m_pChildren;
+	return _pChildren;
 }
 
-unsigned int CCNode::getChildrenCount(void) const
+unsigned int Node::getChildrenCount(void) const
 {
-	return m_pChildren ? m_pChildren->count() : 0;
+	return _pChildren ? _pChildren->count() : 0;
 }
 
-void CCNode::addChild(CCNode* child)
+void Node::addChild(Node* child)
 {
 	CCAssert(child != NULL, "Argument must be non-nil");
-	this->addChild(child, child->m_nZOrder, child->m_nTag);
+	this->addChild(child, child->_nZOrder, child->_nTag);
 }
 
-void CCNode::addChild(CCNode* child, int zOrder)
+void Node::addChild(Node* child, int zOrder)
 {
 	CCAssert(child != NULL, "Argument must be non-nil");
-	this->addChild(child, zOrder, child->m_nTag);
+	this->addChild(child, zOrder, child->_nTag);
 }
 
 
-void CCNode::addChild(CCNode* child, int zOrder, int tag)
+void Node::addChild(Node* child, int zOrder, int tag)
 {
 	CCAssert(child != NULL, "Argument must be non-nil");
-	CCAssert(child->m_pParent == NULL, "child already added. It can't be added again");
+	CCAssert(child->_pParent == NULL, "child already added. It can't be added again");
 
-	if (!m_pChildren)
+	if (!_pChildren)
 	{
 		this->childrenAlloc();
 	}
 
 	this->insertChild(child, zOrder);
 
-	child->m_nTag = tag;
+	child->_nTag = tag;
 
 	child->setParent(this);
 	child->setOrderOfArrival(s_globalOrderOfArrival++);
 
-	if (m_bRunning)
+	if (_bRunning)
 	{
 		child->onEnter();
 		child->onEnterTransitionDidFinish();
 	}
 }
 
-CCNode* CCNode::getChildByTag(int aTag)
+Node* Node::getChildByTag(int aTag)
 {
 	CCAssert(aTag != kCCNodeTagInvalid, "Invalid tag");
 
-	if (m_pChildren && m_pChildren->count() > 0)
+	if (_pChildren && _pChildren->count() > 0)
 	{
 		Object* child;
-		ARRAY_FOREACH(m_pChildren, child)
+		ARRAY_FOREACH(_pChildren, child)
 		{
-			CCNode* pNode = (CCNode*)child;
-			if (pNode && pNode->m_nTag == aTag)
+			Node* pNode = (Node*)child;
+			if (pNode && pNode->_nTag == aTag)
 				return pNode;
 		}
 	}
@@ -262,34 +263,34 @@ CCNode* CCNode::getChildByTag(int aTag)
 }
 
 
-void CCNode::removeChild(CCNode* child)
+void Node::removeChild(Node* child)
 {
 	this->removeChild(child, true);
 }
 
-void CCNode::removeChild(CCNode* child, bool cleanup)
+void Node::removeChild(Node* child, bool cleanup)
 {
-	if (m_pChildren == NULL)
+	if (_pChildren == NULL)
 	{
 		return;
 	}
 
-	if (m_pChildren->containsObject(child))
+	if (_pChildren->containsObject(child))
 	{
 		this->detachChild(child, cleanup);
 	}
 }
 
-void CCNode::removeChildByTag(int tag)
+void Node::removeChildByTag(int tag)
 {
 	this->removeChildByTag(tag, true);
 }
 
-void CCNode::removeChildByTag(int tag, bool cleanup)
+void Node::removeChildByTag(int tag, bool cleanup)
 {
 	CCAssert(tag != kCCNodeTagInvalid, "Invalid tag");
 
-	CCNode* child = this->getChildByTag(tag);
+	Node* child = this->getChildByTag(tag);
 
 	if (child == NULL)
 	{
@@ -301,39 +302,39 @@ void CCNode::removeChildByTag(int tag, bool cleanup)
 	}
 }
 
-void CCNode::removeFromParent()
+void Node::removeFromParent()
 {
 	this->removeFromParentAndCleanup(true);
 }
 
-void CCNode::removeFromParentAndCleanup(bool cleanup)
+void Node::removeFromParentAndCleanup(bool cleanup)
 {
-	if (m_pParent != NULL)
+	if (_pParent != NULL)
 	{
-		m_pParent->removeChild(this, cleanup);
+		_pParent->removeChild(this, cleanup);
 	}
 }
 
-void CCNode::removeAllChildren()
+void Node::removeAllChildren()
 {
 	this->removeAllChildrenWithCleanup(true);
 }
 
-void CCNode::removeAllChildrenWithCleanup(bool cleanup)
+void Node::removeAllChildrenWithCleanup(bool cleanup)
 {
 	// not using detachChild improves speed here
-	if (m_pChildren && m_pChildren->count() > 0)
+	if (_pChildren && _pChildren->count() > 0)
 	{
 		Object* child;
-		ARRAY_FOREACH(m_pChildren, child)
+		ARRAY_FOREACH(_pChildren, child)
 		{
-			CCNode* pNode = (CCNode*)child;
+			Node* pNode = (Node*)child;
 			if (pNode)
 			{
 				// IMPORTANT:
 				//  -1st do onExit
 				//  -2nd cleanup
-				if (m_bRunning)
+				if (_bRunning)
 				{
 					pNode->onExitTransitionDidStart();
 					pNode->onExit();
@@ -348,19 +349,19 @@ void CCNode::removeAllChildrenWithCleanup(bool cleanup)
 			}
 		}
 
-		m_pChildren->removeAllObjects();
+		_pChildren->removeAllObjects();
 	}
 
 }
 
 
-void CCNode::sortAllChildren()
+void Node::sortAllChildren()
 {
-	if (m_bReorderChildDirty)
+	if (_bReorderChildDirty)
 	{
-		int i, j, length = m_pChildren->data->num;
-		CCNode** x = (CCNode**)m_pChildren->data->arr;
-		CCNode* tempItem;
+		int i, j, length = _pChildren->data->num;
+		Node** x = (Node**)_pChildren->data->arr;
+		Node* tempItem;
 
 		// insertion sort
 		for (i = 1; i < length; i++)
@@ -369,7 +370,7 @@ void CCNode::sortAllChildren()
 			j = i - 1;
 
 			//continue moving element downwards while zOrder is smaller or when zOrder is the same but mutatedIndex is smaller
-			while (j >= 0 && (tempItem->m_nZOrder < x[j]->m_nZOrder || (tempItem->m_nZOrder == x[j]->m_nZOrder && tempItem->m_uOrderOfArrival < x[j]->m_uOrderOfArrival)))
+			while (j >= 0 && (tempItem->_nZOrder < x[j]->_nZOrder || (tempItem->_nZOrder == x[j]->_nZOrder && tempItem->_uOrderOfArrival < x[j]->_uOrderOfArrival)))
 			{
 				x[j + 1] = x[j];
 				j = j - 1;
@@ -379,47 +380,47 @@ void CCNode::sortAllChildren()
 
 		//don't need to check children recursively, that's done in visit of each child
 
-		m_bReorderChildDirty = false;
+		_bReorderChildDirty = false;
 	}
 }
 
-unsigned int CCNode::getOrderOfArrival()
+unsigned int Node::getOrderOfArrival()
 {
-	return m_uOrderOfArrival;
+	return _uOrderOfArrival;
 }
 
-void CCNode::setOrderOfArrival(unsigned int uOrderOfArrival)
+void Node::setOrderOfArrival(unsigned int uOrderOfArrival)
 {
-	m_uOrderOfArrival = uOrderOfArrival;
+	_uOrderOfArrival = uOrderOfArrival;
 }
 
-void CCNode::reorderChild(CCNode* child, int zOrder)
+void Node::reorderChild(Node* child, int zOrder)
 {
 	CCAssert(child != NULL, "Child must be non-nil");
-	m_bReorderChildDirty = true;
+	_bReorderChildDirty = true;
 	child->setOrderOfArrival(s_globalOrderOfArrival++);
 	child->setZOrder(zOrder);
 }
 
-void CCNode::childrenAlloc(void)
+void Node::childrenAlloc(void)
 {
-	m_pChildren = Array::createWithCapacity(4);
-	m_pChildren->retain();
+	_pChildren = Array::createWithCapacity(4);
+	_pChildren->retain();
 }
 
-void CCNode::insertChild(CCNode* child, int z)
+void Node::insertChild(Node* child, int z)
 {
-	m_bReorderChildDirty = true;
-	ccArrayAppendObjectWithResize(m_pChildren->data, child);
+	_bReorderChildDirty = true;
+	ccArrayAppendObjectWithResize(_pChildren->data, child);
 	child->setZOrder(z);
 }
 
-void CCNode::detachChild(CCNode* child, bool doCleanup)
+void Node::detachChild(Node* child, bool doCleanup)
 {
 	// IMPORTANT:
 	//  -1st do onExit
 	//  -2nd cleanup
-	if (m_bRunning)
+	if (_bRunning)
 	{
 		child->onExitTransitionDidStart();
 		child->onExit();
@@ -434,7 +435,7 @@ void CCNode::detachChild(CCNode* child, bool doCleanup)
 
 	child->setParent(NULL);
 
-	m_pChildren->removeObject(child);
+	_pChildren->removeObject(child);
 }
 //
 //////////////////////////////
@@ -445,45 +446,45 @@ void CCNode::detachChild(CCNode* child, bool doCleanup)
 ////////////////////////////////
 // scale
 //
-float CCNode::getScale(void)
+float Node::getScale(void)
 {
-	CCAssert(m_fScaleX == m_fScaleY, "CCNode#scale. ScaleX != ScaleY. Don't know which one to return");
-	return m_fScaleX;
+	CCAssert(_fScaleX == _fScaleY, "CCNode#scale. ScaleX != ScaleY. Don't know which one to return");
+	return _fScaleX;
 }
 
-void CCNode::setScale(float scale)
+void Node::setScale(float scale)
 {
-	m_fScaleX = m_fScaleY = scale;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fScaleX = _fScaleY = scale;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
-void CCNode::setScale(float fScaleX, float fScaleY)
+void Node::setScale(float fScaleX, float fScaleY)
 {
-	m_fScaleX = fScaleX;
-	m_fScaleY = fScaleY;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fScaleX = fScaleX;
+	_fScaleY = fScaleY;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
-float CCNode::getScaleX()
+float Node::getScaleX()
 {
-	return m_fScaleX;
+	return _fScaleX;
 }
 
-void CCNode::setScaleX(float newScaleX)
+void Node::setScaleX(float newScaleX)
 {
-	m_fScaleX = newScaleX;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fScaleX = newScaleX;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
-float CCNode::getScaleY()
+float Node::getScaleY()
 {
-	return m_fScaleY;
+	return _fScaleY;
 }
 
-void CCNode::setScaleY(float newScaleY)
+void Node::setScaleY(float newScaleY)
 {
-	m_fScaleY = newScaleY;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fScaleY = newScaleY;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
 
@@ -491,38 +492,38 @@ void CCNode::setScaleY(float newScaleY)
 // rotation
 //
 
-float CCNode::getRotation()
+float Node::getRotation()
 {
-	CCAssert(m_fRotationX == m_fRotationY, "CCNode#rotation. RotationX != RotationY. Don't know which one to return");
-	return m_fRotationX;
+	CCAssert(_fRotationX == _fRotationY, "CCNode#rotation. RotationX != RotationY. Don't know which one to return");
+	return _fRotationX;
 }
 
-void CCNode::setRotation(float newRotation)
+void Node::setRotation(float newRotation)
 {
-	m_fRotationX = m_fRotationY = newRotation;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fRotationX = _fRotationY = newRotation;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
-float CCNode::getRotationX()
+float Node::getRotationX()
 {
-	return m_fRotationX;
+	return _fRotationX;
 }
 
-void CCNode::setRotationX(float fRotationX)
+void Node::setRotationX(float fRotationX)
 {
-	m_fRotationX = fRotationX;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fRotationX = fRotationX;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
-float CCNode::getRotationY()
+float Node::getRotationY()
 {
-	return m_fRotationY;
+	return _fRotationY;
 }
 
-void CCNode::setRotationY(float fRotationY)
+void Node::setRotationY(float fRotationY)
 {
-	m_fRotationY = fRotationY;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fRotationY = fRotationY;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
 
@@ -531,27 +532,27 @@ void CCNode::setRotationY(float fRotationY)
 //
 
 
-float CCNode::getSkewX()
+float Node::getSkewX()
 {
-	return m_fSkewX;
+	return _fSkewX;
 }
 
-void CCNode::setSkewX(float newSkewX)
+void Node::setSkewX(float newSkewX)
 {
-	m_fSkewX = newSkewX;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_fSkewX = newSkewX;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
-float CCNode::getSkewY()
+float Node::getSkewY()
 {
-	return m_fSkewY;
+	return _fSkewY;
 }
 
-void CCNode::setSkewY(float newSkewY)
+void Node::setSkewY(float newSkewY)
 {
-	m_fSkewY = newSkewY;
+	_fSkewY = newSkewY;
 
-	m_bTransformDirty = m_bInverseDirty = true;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
 
@@ -561,65 +562,65 @@ void CCNode::setSkewY(float newSkewY)
 // position
 //
 
-const Point& CCNode::getPosition()
+const Point& Node::getPosition()
 {
-	return m_obPosition;
+	return _obPosition;
 }
 
-void CCNode::setPosition(const Point& newPosition)
+void Node::setPosition(const Point& newPosition)
 {
-	m_obPosition = newPosition;
-	m_bTransformDirty = m_bInverseDirty = true;
+	_obPosition = newPosition;
+	_bTransformDirty = _bInverseDirty = true;
 }
 
-void CCNode::getPosition(float* x, float* y)
+void Node::getPosition(float* x, float* y)
 {
-	*x = m_obPosition.x;
-	*y = m_obPosition.y;
+	*x = _obPosition.x;
+	*y = _obPosition.y;
 }
 
-void CCNode::setPosition(float x, float y)
+void Node::setPosition(float x, float y)
 {
 	setPosition(ccp(x, y));
 }
 
-float CCNode::getPositionX(void)
+float Node::getPositionX(void)
 {
-	return m_obPosition.x;
+	return _obPosition.x;
 }
 
-float CCNode::getPositionY(void)
+float Node::getPositionY(void)
 {
-	return  m_obPosition.y;
+	return  _obPosition.y;
 }
 
-void CCNode::setPositionX(float x)
+void Node::setPositionX(float x)
 {
-	setPosition(ccp(x, m_obPosition.y));
+	setPosition(ccp(x, _obPosition.y));
 }
 
-void CCNode::setPositionY(float y)
+void Node::setPositionY(float y)
 {
-	setPosition(ccp(m_obPosition.x, y));
+	setPosition(ccp(_obPosition.x, y));
 }
 
 
 ////////////////////////////////
 // content
 //
-const Size& CCNode::getContentSize() const
+const Size& Node::getContentSize() const
 {
-	return m_obContentSize;
+	return _obContentSize;
 }
 
-void CCNode::setContentSize(const Size& size)
+void Node::setContentSize(const Size& size)
 {
-	if (!size.equals(m_obContentSize))
+	if (!size.equals(_obContentSize))
 	{
-		m_obContentSize = size;
+		_obContentSize = size;
 
-		m_obAnchorPointInPoints = ccp(m_obContentSize.width * m_obAnchorPoint.x, m_obContentSize.height * m_obAnchorPoint.y);
-		m_bTransformDirty = m_bInverseDirty = true;
+		_obAnchorPointInPoints = ccp(_obContentSize.width * _obAnchorPoint.x, _obContentSize.height * _obAnchorPoint.y);
+		_bTransformDirty = _bInverseDirty = true;
 	}
 }
 
@@ -627,37 +628,37 @@ void CCNode::setContentSize(const Size& size)
 ////////////////////////////////
 // anchor point  [0,0] - [1,1]
 //
-void CCNode::setAnchorPoint(const Point& point)
+void Node::setAnchorPoint(const Point& point)
 {
-	if (!point.equals(m_obAnchorPoint))
+	if (!point.equals(_obAnchorPoint))
 	{
-		m_obAnchorPoint = point;
-		m_obAnchorPointInPoints = ccp(m_obContentSize.width * m_obAnchorPoint.x, m_obContentSize.height * m_obAnchorPoint.y);
-		m_bTransformDirty = m_bInverseDirty = true;
+		_obAnchorPoint = point;
+		_obAnchorPointInPoints = ccp(_obContentSize.width * _obAnchorPoint.x, _obContentSize.height * _obAnchorPoint.y);
+		_bTransformDirty = _bInverseDirty = true;
 	}
 }
 
-const Point& CCNode::getAnchorPointInPoints()
+const Point& Node::getAnchorPointInPoints()
 {
-	return m_obAnchorPointInPoints;
+	return _obAnchorPointInPoints;
 }
 
-const Point& CCNode::getAnchorPoint()
+const Point& Node::getAnchorPoint()
 {
-	return m_obAnchorPoint;
+	return _obAnchorPoint;
 }
 
-bool CCNode::isIgnoreAnchorPointForPosition()
+bool Node::isIgnoreAnchorPointForPosition()
 {
-	return m_bIgnoreAnchorPointForPosition;
+	return _bIgnoreAnchorPointForPosition;
 }
 /// isRelativeAnchorPoint setter
-void CCNode::ignoreAnchorPointForPosition(bool newValue)
+void Node::ignoreAnchorPointForPosition(bool newValue)
 {
-	if (newValue != m_bIgnoreAnchorPointForPosition)
+	if (newValue != _bIgnoreAnchorPointForPosition)
 	{
-		m_bIgnoreAnchorPointForPosition = newValue;
-		m_bTransformDirty = m_bInverseDirty = true;
+		_bIgnoreAnchorPointForPosition = newValue;
+		_bTransformDirty = _bInverseDirty = true;
 	}
 }
 
@@ -666,50 +667,50 @@ void CCNode::ignoreAnchorPointForPosition(bool newValue)
 // render
 //
 
-float CCNode::getVertexZ()
+float Node::getVertexZ()
 {
-	return m_fVertexZ;
+	return _fVertexZ;
 }
 
-void CCNode::setVertexZ(float var)
+void Node::setVertexZ(float var)
 {
-	m_fVertexZ = var;
+	_fVertexZ = var;
 }
 
-GLProgram* CCNode::getShaderProgram()
+GLProgram* Node::getShaderProgram()
 {
-	return m_pShaderProgram;
+	return _pShaderProgram;
 }
 
-void CCNode::setShaderProgram(GLProgram* pShaderProgram)
+void Node::setShaderProgram(GLProgram* pShaderProgram)
 {
 	CC_SAFE_RETAIN(pShaderProgram);
-	CC_SAFE_RELEASE(m_pShaderProgram);
-	m_pShaderProgram = pShaderProgram;
+	CC_SAFE_RELEASE(_pShaderProgram);
+	_pShaderProgram = pShaderProgram;
 }
 
-void CCNode::visit()
+void Node::visit()
 {
-	if (!m_bVisible)
+	if (!_bVisible)
 		return;
 
 	kmGLPushMatrix();
 
 	this->transform();
 
-	CCNode* pNode = NULL;
+	Node* pNode = NULL;
 	unsigned int i = 0;
 
-	if (m_pChildren && m_pChildren->count() > 0)
+	if (_pChildren && _pChildren->count() > 0)
 	{
 		sortAllChildren();
 		// draw children zOrder < 0
-		ccArray* arrayData = m_pChildren->data;
+		ccArray* arrayData = _pChildren->data;
 		for (; i < arrayData->num; i++)
 		{
-			pNode = (CCNode*)arrayData->arr[i];
+			pNode = (Node*)arrayData->arr[i];
 
-			if (pNode && pNode->m_nZOrder < 0)
+			if (pNode && pNode->_nZOrder < 0)
 			{
 				pNode->visit();
 			}
@@ -724,7 +725,7 @@ void CCNode::visit()
 
 		for (; i < arrayData->num; i++)
 		{
-			pNode = (CCNode*)arrayData->arr[i];
+			pNode = (Node*)arrayData->arr[i];
 			if (pNode)
 			{
 				pNode->visit();
@@ -739,12 +740,12 @@ void CCNode::visit()
 	// 个人理解：已经添加进入队列且排过序的 该值已经无用
 	// 插入排序是稳定排序  可以加快排序速度？ 
 	// 理应放入sortAllChildren 调用子节点重置为0 为了简化放入了每个节点的visit中
-	m_uOrderOfArrival = 0;
+	_uOrderOfArrival = 0;
 
 	kmGLPopMatrix();
 }
 
-void CCNode::draw()
+void Node::draw()
 {
 	//CCAssert(0, "sub class use");
 	// Only use- this function to draw your stuff.
@@ -752,7 +753,7 @@ void CCNode::draw()
 }
 
 
-void CCNode::transform()
+void Node::transform()
 {
 	kmMat4 transfrom4x4;
 
@@ -761,137 +762,176 @@ void CCNode::transform()
 	CGAffineToGL(&tmpAffine, transfrom4x4.mat);
 
 	// Update Z vertex manually
-	transfrom4x4.mat[14] = m_fVertexZ;
+	transfrom4x4.mat[14] = _fVertexZ;
 
 	kmGLMultMatrix(&transfrom4x4);
 }
 
-void CCNode::transformAncestors()
+void Node::transformAncestors()
 {
-	if (m_pParent != NULL)
+	if (_pParent != NULL)
 	{
-		m_pParent->transformAncestors();
-		m_pParent->transform();
+		_pParent->transformAncestors();
+		_pParent->transform();
 	}
 }
 
 // 提供给子类来实现
-void CCNode::updateTransform()
+void Node::updateTransform()
 {
 	// Recursively iterate over children
-	arrayMakeObjectsPerformSelector(m_pChildren, updateTransform, CCNode*);
+	arrayMakeObjectsPerformSelector(_pChildren, updateTransform, Node*);
 }
 
 
-AffineTransform CCNode::nodeToParentTransform(void)
+AffineTransform Node::nodeToParentTransform(void)
 {
-	if (!m_bTransformDirty)
+	if (!_bTransformDirty)
 	{
-		return m_sTransform;
+		return _sTransform;
 	}
 
 	// Translate values
-	float x = m_obPosition.x;
-	float y = m_obPosition.y;
+	float x = _obPosition.x;
+	float y = _obPosition.y;
 
-	if (m_bIgnoreAnchorPointForPosition)
+	if (_bIgnoreAnchorPointForPosition)
 	{
-		x += m_obAnchorPointInPoints.x;
-		y += m_obAnchorPointInPoints.y;
+		x += _obAnchorPointInPoints.x;
+		y += _obAnchorPointInPoints.y;
 	}
 
 	// Rotation values
 	// Change rotation code to handle X and Y
 	// If we skew with the exact same value for both x and y then we're simply just rotating
 	float cx = 1, sx = 0, cy = 1, sy = 0;
-	if (m_fRotationX || m_fRotationY)
+	if (_fRotationX || _fRotationY)
 	{
-		float radiansX = -CC_DEGREES_TO_RADIANS(m_fRotationX);
-		float radiansY = -CC_DEGREES_TO_RADIANS(m_fRotationY);
+		float radiansX = -CC_DEGREES_TO_RADIANS(_fRotationX);
+		float radiansY = -CC_DEGREES_TO_RADIANS(_fRotationY);
 		cx = cosf(radiansX);
 		sx = sinf(radiansX);
 		cy = cosf(radiansY);
 		sy = sinf(radiansY);
 	}
 
-	bool needsSkewMatrix = (m_fSkewX || m_fSkewY);
+	bool needsSkewMatrix = (_fSkewX || _fSkewY);
 
 
 	// optimization:
 	// inline anchor point calculation if skew is not needed
 	// Adjusted transform calculation for rotational skew
-	if (!needsSkewMatrix && !m_obAnchorPointInPoints.equals(PointZero))
+	if (!needsSkewMatrix && !_obAnchorPointInPoints.equals(PointZero))
 	{
-		x += cy * -m_obAnchorPointInPoints.x * m_fScaleX + -sx * -m_obAnchorPointInPoints.y * m_fScaleY;
-		y += sy * -m_obAnchorPointInPoints.x * m_fScaleX + cx * -m_obAnchorPointInPoints.y * m_fScaleY;
+		x += cy * -_obAnchorPointInPoints.x * _fScaleX + -sx * -_obAnchorPointInPoints.y * _fScaleY;
+		y += sy * -_obAnchorPointInPoints.x * _fScaleX + cx * -_obAnchorPointInPoints.y * _fScaleY;
 	}
 
 
 	// Build Transform Matrix
 	// Adjusted transform calculation for rotational skew
-	m_sTransform = AffineTransformMake(cy * m_fScaleX, sy * m_fScaleX,
-		-sx * m_fScaleY, cx * m_fScaleY,
+	_sTransform = AffineTransformMake(cy * _fScaleX, sy * _fScaleX,
+		-sx * _fScaleY, cx * _fScaleY,
 		x, y);
 
 	// If skew is needed, apply skew and then anchor point
 	if (needsSkewMatrix)
 	{
-		AffineTransform skewMatrix = AffineTransformMake(1.0f, tanf(CC_DEGREES_TO_RADIANS(m_fSkewY)),
-			tanf(CC_DEGREES_TO_RADIANS(m_fSkewX)), 1.0f,
+		AffineTransform skewMatrix = AffineTransformMake(1.0f, tanf(CC_DEGREES_TO_RADIANS(_fSkewY)),
+			tanf(CC_DEGREES_TO_RADIANS(_fSkewX)), 1.0f,
 			0.0f, 0.0f);
-		m_sTransform = AffineTransformConcat(skewMatrix, m_sTransform);
+		_sTransform = AffineTransformConcat(skewMatrix, _sTransform);
 
 		// adjust anchor point
-		if (!m_obAnchorPointInPoints.equals(PointZero))
+		if (!_obAnchorPointInPoints.equals(PointZero))
 		{
-			m_sTransform = AffineTransformTranslate(m_sTransform, -m_obAnchorPointInPoints.x, -m_obAnchorPointInPoints.y);
+			_sTransform = AffineTransformTranslate(_sTransform, -_obAnchorPointInPoints.x, -_obAnchorPointInPoints.y);
 		}
 	}
 
-	if (m_bAdditionalTransformDirty)
+	if (_bAdditionalTransformDirty)
 	{
-		m_sTransform = AffineTransformConcat(m_sTransform, m_sAdditionalTransform);
-		m_bAdditionalTransformDirty = false;
+		_sTransform = AffineTransformConcat(_sTransform, _sAdditionalTransform);
+		_bAdditionalTransformDirty = false;
 	}
 
-	m_bTransformDirty = false;
+	_bTransformDirty = false;
 
-	return m_sTransform;
+	return _sTransform;
 }
 
-AffineTransform CCNode::parentToNodeTransform(void)
+AffineTransform Node::parentToNodeTransform(void)
 {
-	if (m_bInverseDirty) {
-		m_sInverse = AffineTransformInvert(this->nodeToParentTransform());
-		m_bInverseDirty = false;
+	if (_bInverseDirty) {
+		_sInverse = AffineTransformInvert(this->nodeToParentTransform());
+		_bInverseDirty = false;
 	}
 
-	return m_sInverse;
+	return _sInverse;
 }
 
-AffineTransform CCNode::nodeToWorldTransform()
+AffineTransform Node::nodeToWorldTransform()
 {
 	AffineTransform t = this->nodeToParentTransform();
 
-	for (CCNode* p = m_pParent; p != NULL; p = p->getParent())
+	for (Node* p = _pParent; p != NULL; p = p->getParent())
 		t = AffineTransformConcat(t, p->nodeToParentTransform());
 
 	return t;
 }
 
-AffineTransform CCNode::worldToNodeTransform(void)
+AffineTransform Node::worldToNodeTransform(void)
 {
 	return AffineTransformInvert(this->nodeToWorldTransform());
 }
 
 
 
-void CCNode::setAdditionalTransform(const AffineTransform& additionalTransform)
+void Node::setAdditionalTransform(const AffineTransform& additionalTransform)
 {
-	m_sAdditionalTransform = additionalTransform;
-	m_bTransformDirty = true;
-	m_bAdditionalTransformDirty = true;
+	_sAdditionalTransform = additionalTransform;
+	_bTransformDirty = true;
+	_bAdditionalTransformDirty = true;
 }
+
+
+
+Point Node::convertToNodeSpace(const Point& worldPoint)
+{
+	Point ret = PointApplyAffineTransform(worldPoint, worldToNodeTransform());
+	return ret;
+}
+
+Point Node::convertToWorldSpace(const Point& nodePoint)
+{
+	Point ret = PointApplyAffineTransform(nodePoint, nodeToWorldTransform());
+	return ret;
+}
+
+Point Node::convertToNodeSpaceAR(const Point& worldPoint)
+{
+	Point nodePoint = convertToNodeSpace(worldPoint);
+	return ccpSub(nodePoint, _obAnchorPointInPoints);
+}
+
+Point Node::convertToWorldSpaceAR(const Point& nodePoint)
+{
+	Point pt = ccpAdd(nodePoint, _obAnchorPointInPoints);
+	return convertToWorldSpace(pt);
+}
+
+// convenience methods which take a CCTouch instead of Point
+Point Node::convertTouchToNodeSpace(Touch* touch)
+{
+	Point point = touch->getLocation();
+	return this->convertToNodeSpace(point);
+}
+Point Node::convertTouchToNodeSpaceAR(Touch* touch)
+{
+	Point point = touch->getLocation();
+	return this->convertToNodeSpaceAR(point);
+}
+
 
 
 

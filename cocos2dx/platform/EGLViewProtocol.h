@@ -17,6 +17,7 @@ enum ResolutionPolicy
 NS_CC_BEGIN
 
 
+class EGLTouchDelegate;
 class CC_DLL EGLViewProtocol
 {
 public:
@@ -54,6 +55,18 @@ public:
 	float				getScaleX() const;
 	float				getScaleY() const;
 
+public:
+	virtual void		setTouchDelegate(EGLTouchDelegate* pDelegate);
+
+	virtual void		handleTouchesBegin(int num, int ids[], float xs[], float ys[]);
+	virtual void		handleTouchesMove(int num, int ids[], float xs[], float ys[]);
+	virtual void		handleTouchesEnd(int num, int ids[], float xs[], float ys[]);
+	virtual void		handleTouchesCancel(int num, int ids[], float xs[], float ys[]);
+
+private:
+	void				getSetOfTouchesEndOrCancel(Set& set, int num, int ids[], float xs[], float ys[]);
+
+
 
 protected:
 	// real screen size
@@ -68,6 +81,8 @@ protected:
 	float		_fScaleX;
 	float		_fScaleY;
 	ResolutionPolicy _eResolutionPolicy;
+
+	EGLTouchDelegate* _pTouchDelegate;
 };
 
 

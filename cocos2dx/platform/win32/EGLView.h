@@ -58,6 +58,9 @@ protected:
 	HGLRC			_hRC;
 
 	float			_fFrameZoomFactor;
+
+	bool			m_bSupportTouch;
+	bool			m_bCaptured;
 };
 
 

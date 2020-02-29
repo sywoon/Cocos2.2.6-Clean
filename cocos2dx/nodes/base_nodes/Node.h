@@ -15,13 +15,14 @@ enum {
 
 
 class GLProgram;
-class CC_DLL CCNode : public Object
+class Touch;
+class CC_DLL Node : public Object
 {
 public:
-    CCNode(void);
-    virtual ~CCNode(void);
+    Node(void);
+    virtual ~Node(void);
 
-    static CCNode*      create(void);
+    static Node*      create(void);
 
 public:
     const char*         description(void);
@@ -49,20 +50,20 @@ public:
 	virtual void        setTag(int nTag);
 
 public:
-    virtual void        setParent(CCNode* parent);
-    virtual CCNode*     getParent();
+    virtual void        setParent(Node* parent);
+    virtual Node*       getParent();
 
     virtual Array*      getChildren();
     virtual unsigned int getChildrenCount(void) const;
 
-    virtual void        addChild(CCNode* child);
-    virtual void        addChild(CCNode* child, int zOrder);
-    virtual void        addChild(CCNode* child, int zOrder, int tag);
+    virtual void        addChild(Node* child);
+    virtual void        addChild(Node* child, int zOrder);
+    virtual void        addChild(Node* child, int zOrder, int tag);
 
-    virtual CCNode*     getChildByTag(int tag);
+    virtual Node*       getChildByTag(int tag);
 
-    virtual void        removeChild(CCNode* child);
-    virtual void        removeChild(CCNode* child, bool cleanup);
+    virtual void        removeChild(Node* child);
+    virtual void        removeChild(Node* child, bool cleanup);
     virtual void        removeChildByTag(int tag);
     virtual void        removeChildByTag(int tag, bool cleanup);
 
@@ -77,13 +78,13 @@ public:
     virtual void        setOrderOfArrival(unsigned int uOrderOfArrival);
     virtual unsigned int getOrderOfArrival();
 
-    virtual void        reorderChild(CCNode* child, int zOrder);
+    virtual void        reorderChild(Node* child, int zOrder);
 
 
 private:
     void                childrenAlloc(void);
-    void                insertChild(CCNode* child, int z);
-    void                detachChild(CCNode* child, bool doCleanup);
+    void                insertChild(Node* child, int z);
+    void                detachChild(Node* child, bool doCleanup);
 
 public:
     virtual void        setScaleX(float fScaleX);
@@ -164,46 +165,53 @@ public:
     void                setAdditionalTransform(const AffineTransform& additionalTransform);
 
 
+    Point   convertToNodeSpace(const Point& worldPoint);
+    Point   convertToWorldSpace(const Point& nodePoint);
+    Point   convertToNodeSpaceAR(const Point& worldPoint);  //忽略锚点 以坐下为中心
+    Point   convertToWorldSpaceAR(const Point& nodePoint);
+    Point   convertTouchToNodeSpace(Touch* touch);
+    Point   convertTouchToNodeSpaceAR(Touch* touch);
+
 
 protected:
     virtual bool        init();
 
 
 protected:
-    bool            m_bRunning;  //onEnter后才算运行
-    bool            m_bVisible;
-    int             m_nTag;
-    int             m_nZOrder;
-    unsigned int    m_uOrderOfArrival;  //当zorder相同时 按这个排序 一般为添加的顺序
-    float           m_fVertexZ;     //OpenGL real Z vertex
+    bool            _bRunning;  //onEnter后才算运行
+    bool            _bVisible;
+    int             _nTag;
+    int             _nZOrder;
+    unsigned int    _uOrderOfArrival;  //当zorder相同时 按这个排序 一般为添加的顺序
+    float           _fVertexZ;     //OpenGL real Z vertex
 
-	Array*          m_pChildren;
-	CCNode*         m_pParent;
-    bool            m_bReorderChildDirty;
+	Array*          _pChildren;
+	Node*           _pParent;
+    bool            _bReorderChildDirty;
 
-    Point           m_obPosition;
-    Size            m_obContentSize;
+    Point           _obPosition;
+    Size            _obContentSize;
 
-	float           m_fScaleX;
-	float           m_fScaleY;
-	float           m_fRotationX; 
-	float           m_fRotationY;
-	float           m_fSkewX;
-	float           m_fSkewY;
+	float           _fScaleX;
+	float           _fScaleY;
+	float           _fRotationX; 
+	float           _fRotationY;
+	float           _fSkewX;
+	float           _fSkewY;
     
-	Point           m_obAnchorPointInPoints;    //(100,100) 换算成实际的位置
-	Point           m_obAnchorPoint;            //(0.5, 0.5)
-    bool            m_bIgnoreAnchorPointForPosition;
+	Point           _obAnchorPointInPoints;    //(100,100) 换算成实际的位置
+	Point           _obAnchorPoint;            //(0.5, 0.5)
+    bool            _bIgnoreAnchorPointForPosition;
 
-	bool            m_bTransformDirty;  //node to parent
-	bool            m_bInverseDirty;    //parent to node
-    bool            m_bAdditionalTransformDirty;
+	bool            _bTransformDirty;  //node to parent
+	bool            _bInverseDirty;    //parent to node
+    bool            _bAdditionalTransformDirty;
 
-    AffineTransform m_sTransform;
-	AffineTransform m_sAdditionalTransform;
-	AffineTransform m_sInverse;
+    AffineTransform _sTransform;
+	AffineTransform _sAdditionalTransform;
+	AffineTransform _sInverse;
 
-    GLProgram*      m_pShaderProgram;      //< OpenGL shader
+    GLProgram*      _pShaderProgram;      //< OpenGL shader
 };
 
 

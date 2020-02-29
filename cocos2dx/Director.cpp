@@ -1,6 +1,7 @@
 #include "Director.h"
 #include "Configuration.h"
 #include "cocoa/AutoReleasePool.h"
+#include "cocoa/extend/PointExtend.h"
 #include "platform/PlatformBase.h"
 #include "EGLView.h"
 #include "shaders/GLStateCache.h"
@@ -328,6 +329,64 @@ void Director::setAnimationInterval(double dValue)
 		startAnimation();
 	}
 }
+
+
+Size Director::getWinSize(void)
+{
+	return _sizeWinInPoints;
+}
+
+
+
+static void GLToClipTransform(kmMat4* transformOut)
+{
+	kmMat4 projection;
+	kmGLGetMatrix(KM_GL_PROJECTION, &projection);
+
+	kmMat4 modelview;
+	kmGLGetMatrix(KM_GL_MODELVIEW, &modelview);
+
+	kmMat4Multiply(transformOut, &projection, &modelview);
+}
+
+// 屏幕下的触摸坐标 转为 设计坐标下的 opengl世界坐标(Model为单位矩阵)/当前模型下的坐标
+Point Director::convertToGL(const Point& uiPoint)
+{
+	kmMat4 transform;
+	GLToClipTransform(&transform);  // mvp矩阵
+
+	kmMat4 transformInv;
+	kmMat4Inverse(&transformInv, &transform);
+
+	// Calculate z=0 using -> transform*[0, 0, 0, 1]/w
+	kmScalar zClip = transform.mat[14] / transform.mat[15];
+
+	Size glSize = _pobOpenGLView->getDesignResolutionSize();
+	// 屏幕坐标 转到[-1,1]
+	kmVec3 clipCoord = { 2.0f * uiPoint.x / glSize.width - 1.0f, 1.0f - 2.0f * uiPoint.y / glSize.height, zClip };
+
+	kmVec3 glCoord;
+	kmVec3TransformCoord(&glCoord, &clipCoord, &transformInv);
+
+	return ccp(glCoord.x, glCoord.y);
+}
+
+// 世界坐标下的点(Model为单位矩阵)/模型下的点 转 ui坐标
+Point Director::convertToUI(const Point& glPoint)
+{
+	kmMat4 transform;
+	GLToClipTransform(&transform);
+
+	kmVec3 clipCoord;
+	// Need to calculate the zero depth from the transform.
+	kmVec3 glCoord = { glPoint.x, glPoint.y, 0.0 };
+	kmVec3TransformCoord(&clipCoord, &glCoord, &transform);
+
+	Size glSize = _pobOpenGLView->getDesignResolutionSize();
+	return ccp(glSize.width * (clipCoord.x * 0.5 + 0.5), glSize.height * (-clipCoord.y * 0.5 + 0.5));
+}
+
+
 
 
 

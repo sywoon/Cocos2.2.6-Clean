@@ -48,6 +48,11 @@ public:
 	inline double		getAnimationInterval(void) { return _dAnimationInterval; }
 	virtual void		setAnimationInterval(double dValue);
 
+	Size				getWinSize(void);
+
+	Point				convertToGL(const Point& obPoint);
+	Point				convertToUI(const Point& obPoint);
+
 protected:
 	void				purgeDirector();
 
