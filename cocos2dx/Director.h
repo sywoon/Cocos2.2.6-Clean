@@ -25,6 +25,7 @@ typedef enum {
 class EGLView;
 class KeypadDispatcher;
 class TouchDispatcher;
+class Accelerometer;
 class CC_DLL Director : public Object, public TypeInfo
 {
 public:
@@ -78,6 +79,7 @@ protected:
 public:
 	CC_PROPERTY(KeypadDispatcher*, _pKeypadDispatcher, KeypadDispatcher);
 	CC_PROPERTY(TouchDispatcher*, _pTouchDispatcher, TouchDispatcher);
+	CC_PROPERTY(Accelerometer*, _pAccelerometer, Accelerometer);
 
 
 protected:

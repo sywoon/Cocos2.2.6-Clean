@@ -9,6 +9,7 @@
 
 #include "keypad/KeypadDispatcher.h"
 #include "touch/TouchDispatcher.h"
+#include "Accelerometer.h"
 
 
 NS_CC_BEGIN
@@ -50,6 +51,7 @@ Director::Director()
 
 	, _pKeypadDispatcher(NULL)
 	, _pTouchDispatcher(NULL)
+	, _pAccelerometer(NULL)
 {
 }
 
@@ -62,6 +64,7 @@ bool Director::init(void)
 
 	_pKeypadDispatcher = new KeypadDispatcher();
 	_pTouchDispatcher = new TouchDispatcher();
+	_pAccelerometer = new Accelerometer();
 	
 	PoolManager::sharedPoolManager()->push();
 
@@ -72,6 +75,7 @@ Director::~Director(void)
 {
 	CC_SAFE_RELEASE(_pKeypadDispatcher);
 	CC_SAFE_RELEASE(_pTouchDispatcher);
+	CC_SAFE_DELETE(_pAccelerometer);
 
 
 	PoolManager::sharedPoolManager()->pop();
@@ -405,7 +409,7 @@ Point Director::convertToUI(const Point& glPoint)
 
 
 //////////////////////////////////////
-// Keypad and Touch
+// Keypad Touch Accelerometer
 //
 void Director::setKeypadDispatcher(KeypadDispatcher* pKeypadDispatcher)
 {
@@ -432,6 +436,20 @@ void Director::setTouchDispatcher(TouchDispatcher* pTouchDispatcher)
 TouchDispatcher* Director::getTouchDispatcher()
 {
 	return _pTouchDispatcher;
+}
+
+void Director::setAccelerometer(Accelerometer* pAccelerometer)
+{
+	if (_pAccelerometer != pAccelerometer)
+	{
+		CC_SAFE_DELETE(_pAccelerometer);
+		_pAccelerometer = pAccelerometer;
+	}
+}
+
+Accelerometer* Director::getAccelerometer()
+{
+	return _pAccelerometer;
 }
 
 

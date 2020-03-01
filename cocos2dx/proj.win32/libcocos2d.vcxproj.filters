@@ -130,11 +130,11 @@
     <ClCompile Include="..\touch\TouchHandler.cpp">
       <Filter>touch</Filter>
     </ClCompile>
-    <ClCompile Include="..\touch\TouchDelegate.cpp">
-      <Filter>touch</Filter>
-    </ClCompile>
     <ClCompile Include="..\keypad\KeypadHandler.cpp">
       <Filter>keypad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\win32\Accelerometer.cpp">
+      <Filter>platform\win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +303,12 @@
     <ClInclude Include="..\keypad\KeypadHandler.h">
       <Filter>keypad</Filter>
     </ClInclude>
+    <ClInclude Include="..\platform\win32\Accelerometer.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\accelerometer\AccelerometerDelegate.h">
+      <Filter>accelerometer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -343,6 +349,9 @@
     </Filter>
     <Filter Include="keypad">
       <UniqueIdentifier>{f44015ee-f447-4429-9f90-b884d7854b8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="accelerometer">
+      <UniqueIdentifier>{67b6b0c0-2fb0-4ca5-ac43-bce54cc07b7f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

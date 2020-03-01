@@ -178,6 +178,7 @@ EGLView::EGLView()
 	, _fFrameZoomFactor(1.0f)
 	, m_bSupportTouch(false)
 	, m_bCaptured(false)
+	, m_lpfnAccelerometerKeyHook(NULL)
 {
 	strcpy(_szViewName, "Cocos2dxWin32");
 }
@@ -457,6 +458,10 @@ void EGLView::centerWindow()
 	SetWindowPos(_hWnd, 0, offsetX, offsetY, 0, 0, SWP_NOCOPYBITS | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 }
 
+void EGLView::setAccelerometerKeyHook(LPFN_ACCELEROMETER_KEYHOOK lpfnAccelerometerKeyHook)
+{
+	m_lpfnAccelerometerKeyHook = lpfnAccelerometerKeyHook;
+}
 
 LRESULT EGLView::windowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -589,10 +594,23 @@ LRESULT EGLView::windowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			Director::sharedDirector()->getKeypadDispatcher()->dispatchKeypadMSG(kTypeBackClicked);
 		}
+
+		if (m_lpfnAccelerometerKeyHook != NULL)
+		{
+			(*m_lpfnAccelerometerKeyHook)(message, wParam, lParam);
+		}
 		break;
 	case WM_KEYUP:
+		if (m_lpfnAccelerometerKeyHook != NULL)
+		{
+			(*m_lpfnAccelerometerKeyHook)(message, wParam, lParam);
+		}
 		break;
 	case WM_CHAR:
+		if (m_lpfnAccelerometerKeyHook != NULL)
+		{
+			(*m_lpfnAccelerometerKeyHook)(message, wParam, lParam);
+		}
 		break;
 	case WM_PAINT:
 		PAINTSTRUCT ps;

@@ -33,6 +33,10 @@ public:
 
 	virtual LRESULT windowProc(UINT message, WPARAM wParam, LPARAM lParam);
 
+	// 加速器的键盘钩子
+	typedef void (*LPFN_ACCELEROMETER_KEYHOOK)(UINT message, WPARAM wParam, LPARAM lParam);
+	void setAccelerometerKeyHook(LPFN_ACCELEROMETER_KEYHOOK lpfnAccelerometerKeyHook);
+
 public:
 	HWND			getHWnd();
 
@@ -61,6 +65,8 @@ protected:
 
 	bool			m_bSupportTouch;
 	bool			m_bCaptured;
+
+	LPFN_ACCELEROMETER_KEYHOOK m_lpfnAccelerometerKeyHook;
 };
 
 
