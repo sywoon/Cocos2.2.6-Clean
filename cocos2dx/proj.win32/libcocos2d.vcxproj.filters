@@ -115,9 +115,6 @@
     <ClCompile Include="..\shaders\GLProgram.cpp">
       <Filter>shaders</Filter>
     </ClCompile>
-    <ClCompile Include="..\nodes\Scene.cpp">
-      <Filter>nodes</Filter>
-    </ClCompile>
     <ClCompile Include="..\touch\TouchDispatcher.cpp">
       <Filter>touch</Filter>
     </ClCompile>
@@ -135,6 +132,33 @@
     </ClCompile>
     <ClCompile Include="..\platform\win32\Accelerometer.cpp">
       <Filter>platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\scene\Scene.cpp">
+      <Filter>nodes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\layer\Layer.cpp">
+      <Filter>nodes\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\layer\LayerRBGA.cpp">
+      <Filter>nodes\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\layer\LayerColor.cpp">
+      <Filter>nodes\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\layer\LayerGradient.cpp">
+      <Filter>nodes\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\layer\LayerMultiplex.cpp">
+      <Filter>nodes\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\base_nodes\GLBufferedNode.cpp">
+      <Filter>nodes\base_nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shaders\ShaderCache.cpp">
+      <Filter>shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shaders\ShaderFiles.cpp">
+      <Filter>shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +225,6 @@
     </ClInclude>
     <ClInclude Include="..\cocoa\GeometryAssit.h">
       <Filter>cocoa</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\ccTypeInfo.h">
-      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\Director.h" />
     <ClInclude Include="..\include\ccClassMacros.h">
@@ -279,9 +300,6 @@
     <ClInclude Include="..\shaders\GLProgram.h">
       <Filter>shaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\nodes\Scene.h">
-      <Filter>nodes</Filter>
-    </ClInclude>
     <ClInclude Include="..\touch\TouchDispatcher.h">
       <Filter>touch</Filter>
     </ClInclude>
@@ -308,6 +326,90 @@
     </ClInclude>
     <ClInclude Include="..\accelerometer\AccelerometerDelegate.h">
       <Filter>accelerometer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\scene\Scene.h">
+      <Filter>nodes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\layer\Layer.h">
+      <Filter>nodes\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ccProtocol.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ccType.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ccClassInfo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\layer\LayerMultiplex.h">
+      <Filter>nodes\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\layer\LayerRBGA.h">
+      <Filter>nodes\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\layer\LayerColor.h">
+      <Filter>nodes\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\layer\LayerGradient.h">
+      <Filter>nodes\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\base_nodes\GLBufferedNode.h">
+      <Filter>nodes\base_nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\ShaderCache.h">
+      <Filter>shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\ShaderFiles.h">
+      <Filter>shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTextureColor_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTextureColor_vert.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTextureColorAlphaTest_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_vert.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionColor_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionColor_vert.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionColorLengthTexture_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionColorLengthTexture_vert.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTexture_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTexture_uColor_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTexture_uColor_vert.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTexture_vert.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTextureA8Color_frag.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShader_PositionTextureA8Color_vert.h">
+      <Filter>shaders\shader_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\shader_files\ccShaderEx_SwitchMask_frag.h">
+      <Filter>shaders\shader_files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +454,15 @@
     </Filter>
     <Filter Include="accelerometer">
       <UniqueIdentifier>{67b6b0c0-2fb0-4ca5-ac43-bce54cc07b7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nodes\scene">
+      <UniqueIdentifier>{8358f120-cef4-4d6d-aae6-43f57a2431b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nodes\layer">
+      <UniqueIdentifier>{a3683d7b-ac4b-43f3-840b-a30d945dd35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\shader_files">
+      <UniqueIdentifier>{9d6c9592-93fa-4e49-af2b-1dc2bfa3671c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

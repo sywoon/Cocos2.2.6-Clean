@@ -9,13 +9,12 @@ NS_CC_BEGIN
 class CC_DLL Scene : public Node
 {
 public:
+    Scene();
     virtual ~Scene();
-    bool init();
-
     static Scene* create(void);
 
 protected:
-    Scene();
+    bool    init();
 };
 
 

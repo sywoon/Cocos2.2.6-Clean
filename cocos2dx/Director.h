@@ -2,7 +2,7 @@
 
 #include "ccMacros.h"
 #include "cocoa/Object.h"
-#include "ccTypeInfo.h"
+#include "ccClassInfo.h"
 #include "ccClassMacros.h"
 #include "cocoa/Geometry.h"
 
@@ -26,7 +26,7 @@ class EGLView;
 class KeypadDispatcher;
 class TouchDispatcher;
 class Accelerometer;
-class CC_DLL Director : public Object, public TypeInfo
+class CC_DLL Director : public Object, public ClassInfo
 {
 public:
 	Director();

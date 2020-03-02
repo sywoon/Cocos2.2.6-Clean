@@ -60,7 +60,7 @@ kmPlane* const kmPlaneFromPointNormal(kmPlane* pOut, const kmVec3* pPoint, const
     Planea = Nx
     Planeb = Ny
     Planec = Nz
-    Planed = −N⋅P
+    Planed = ?N?P
     */
 
 
@@ -79,12 +79,12 @@ kmPlane* const kmPlaneFromPointNormal(kmPlane* pOut, const kmVec3* pPoint, const
 kmPlane* const kmPlaneFromPoints(kmPlane* pOut, const kmVec3* p1, const kmVec3* p2, const kmVec3* p3)
 {
     /*
-    v = (B − A) × (C − A)
-    n = 1⁄|v| v
+    v = (B ? A) �� (C ? A)
+    n = 1?|v| v
     Outa = nx
     Outb = ny
     Outc = nz
-    Outd = −n⋅A
+    Outd = ?n?A
     */
 
     kmVec3 n, v1, v2;
@@ -106,8 +106,8 @@ kmVec3* const kmPlaneIntersectLine(kmVec3* pOut, const kmPlane* pP, const kmVec3
 {
     /*
         n = (Planea, Planeb, Planec)
-        d = V − U
-        Out = U − d⋅(Pd + n⋅U)⁄(d⋅n) [iff d⋅n ≠ 0]
+        d = V ? U
+        Out = U ? d?(Pd + n?U)?(d?n) [iff d?n �� 0]
     */
     kmVec3 d;
     assert(0 && "Not implemented");

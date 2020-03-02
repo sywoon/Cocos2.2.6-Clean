@@ -11,7 +11,7 @@
 NS_CC_BEGIN
 
 
-class TypeInfo
+class ClassInfo
 {
 public:
 	virtual long getClassTypeId() = 0;

@@ -12,6 +12,9 @@
 #include "Accelerometer.h"
 
 
+unsigned int g_uNumberOfDraws = 0;
+
+
 NS_CC_BEGIN
 
 

@@ -106,7 +106,3 @@
     #error  "Cannot recognize the target platform; are you targeting an unsupported platform?"
 #endif 
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	#pragma warning (disable:4127)  
-#endif
-

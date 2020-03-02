@@ -53,8 +53,6 @@ protected:
 
 protected:
 	static EGLView*	s_pEglView;
-
-	bool			_bCaptured;
 	LPCSTR			_menu;
 
 	HWND			_hWnd;
@@ -63,8 +61,8 @@ protected:
 
 	float			_fFrameZoomFactor;
 
-	bool			m_bSupportTouch;
-	bool			m_bCaptured;
+	bool			_bSupportTouch;
+	bool			_bCaptured;
 
 	LPFN_ACCELEROMETER_KEYHOOK m_lpfnAccelerometerKeyHook;
 };

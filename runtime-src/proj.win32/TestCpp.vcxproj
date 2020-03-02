@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/../Classes;$(ProjectDir)/../../cocos2dx;$(ProjectDir)/../../cocos2dx/include;$(ProjectDir)/../../cocos2dx/platform;$(ProjectDir)/../../cocos2dx/platform/win32</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/../Classes;$(ProjectDir)/../../cocos2dx;$(ProjectDir)/../../cocos2dx/include;$(ProjectDir)/../../cocos2dx/platform;$(ProjectDir)/../../cocos2dx/platform/win32;$(ProjectDir)/../../cocos2dx/platform/third_party/win32/glew</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;</DisableSpecificWarnings>
     </ClCompile>

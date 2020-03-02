@@ -28,7 +28,7 @@ private:
 
 
 protected:
-	KeypadDelegate* _pDelegate;
+	KeypadDelegate*		_pDelegate;
 };
 
 

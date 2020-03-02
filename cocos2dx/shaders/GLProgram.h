@@ -7,8 +7,20 @@
 
 NS_CC_BEGIN
 
-typedef void (*GLInfoFunction)(GLuint program, GLenum pname, GLint* params);
-typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length, GLchar* infolog);
+
+
+enum {
+	kCCVertexAttrib_Position,
+	kCCVertexAttrib_Color,
+	kCCVertexAttrib_TexCoords,
+
+	kCCVertexAttrib_MAX,
+};
+
+// Attribute names
+#define    kCCAttributeNamePosition        "a_position"
+#define    kCCAttributeNameColor           "a_color"
+#define    kCCAttributeNameTexCoord        "a_texCoord"
 
 
 enum {
@@ -37,6 +49,9 @@ enum {
 #define kCCUniformSampler_s				"CC_Texture0"
 #define kCCUniformAlphaTestValue		"CC_alpha_value"
 
+
+typedef void (*GLInfoFunction)(GLuint program, GLenum pname, GLint* params);
+typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length, GLchar* infolog);
 
 
 

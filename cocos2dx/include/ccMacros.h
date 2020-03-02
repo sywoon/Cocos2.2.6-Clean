@@ -143,3 +143,20 @@
 //
 #define CC_BLEND_SRC GL_ONE
 #define CC_BLEND_DST GL_ONE_MINUS_SRC_ALPHA
+
+#define CC_NODE_DRAW_SETUP() \
+do { \
+    CCAssert(getShaderProgram(), "No shader program set for this node"); \
+    { \
+        getShaderProgram()->use(); \
+        getShaderProgram()->setUniformsForBuiltins(); \
+    } \
+} while(0)
+
+extern unsigned int CC_DLL g_uNumberOfDraws;
+#define CC_INCREMENT_GL_DRAWS(__n__) g_uNumberOfDraws += __n__
+
+
+
+
+
