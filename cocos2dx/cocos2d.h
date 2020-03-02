@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ccMacros.h"
+#include "ccType.h"
+
 
 
 /////////////////////////

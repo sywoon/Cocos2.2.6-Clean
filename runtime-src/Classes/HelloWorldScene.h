@@ -2,10 +2,11 @@
 
 #include "cocos2d.h"
 
-class HelloWorld : public cocos2d::Layer
+
+class HelloWorld : public cocos2d::LayerGradient
 {
 public:
-	CREATE_FUNC(HelloWorld);
+	static HelloWorld* create(const cocos2d::ccColor4B& start, const cocos2d::ccColor4B& end);
 	static cocos2d::Scene* scene();
 
 

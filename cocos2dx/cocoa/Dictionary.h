@@ -72,6 +72,7 @@ public:
 class String;
 class CC_DLL Dictionary : public Object
 {
+public:
 	ACCEPT_VISITOR;
 
 	//第一次调用setObject  将确定本字典key的形式

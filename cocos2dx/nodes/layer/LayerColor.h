@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ccMacros.h"
 #include "ccProtocol.h"
 #include "ccClassMacros.h"

@@ -35,9 +35,12 @@ ccArray* ccArrayNew(unsigned int capacity)
 		capacity = 1;
 	
 	ccArray *arr = (ccArray*)malloc( sizeof(ccArray) );
-	arr->num = 0;
-	arr->arr =  (Object**)calloc(capacity, sizeof(Object*));
-	arr->max = capacity;
+	if (arr)
+	{
+		arr->num = 0;
+		arr->arr = (Object**)calloc(capacity, sizeof(Object*));
+		arr->max = capacity;
+	}
 	
 	return arr;
 }
@@ -285,9 +288,12 @@ ccCArray* ccCArrayNew(unsigned int capacity)
     }
 
 	ccCArray *arr = (ccCArray*)malloc( sizeof(ccCArray) );
-	arr->num = 0;
-	arr->arr = (void**)malloc( capacity * sizeof(void*) );
-	arr->max = capacity;
+	if (arr)
+	{
+		arr->num = 0;
+		arr->arr = (void**)malloc(capacity * sizeof(void*));
+		arr->max = capacity;
+	}
 	
 	return arr;
 }
