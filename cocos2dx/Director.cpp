@@ -11,6 +11,9 @@
 #include "touch/TouchDispatcher.h"
 #include "Accelerometer.h"
 
+#include "nodes/scene/Scene.h"
+
+
 
 unsigned int g_uNumberOfDraws = 0;
 
@@ -55,6 +58,8 @@ Director::Director()
 	, _pKeypadDispatcher(NULL)
 	, _pTouchDispatcher(NULL)
 	, _pAccelerometer(NULL)
+
+	, _pRunningScene(NULL)
 {
 }
 
@@ -62,7 +67,6 @@ bool Director::init(void)
 {
 	setDefaultValues();
 
-	_pobOpenGLView = NULL;
 	_pLastUpdate = new struct cc_timeval();
 
 	_pKeypadDispatcher = new KeypadDispatcher();
@@ -79,6 +83,8 @@ Director::~Director(void)
 	CC_SAFE_RELEASE(_pKeypadDispatcher);
 	CC_SAFE_RELEASE(_pTouchDispatcher);
 	CC_SAFE_DELETE(_pAccelerometer);
+
+	CC_SAFE_RELEASE(_pRunningScene);
 
 
 	PoolManager::sharedPoolManager()->pop();
@@ -108,12 +114,12 @@ void Director::purgeDirector()
 
 void Director::stopAnimation(void)
 {
-	_bDrawScene = true;
+	_bDrawScene = false;
 }
 
 void Director::startAnimation(void)
 {
-	_bDrawScene = false;
+	_bDrawScene = true;
 }
 
 void Director::setOpenGLView(EGLView* pobOpenGLView)
@@ -287,7 +293,7 @@ void Director::mainLoop(void)
 		_bPurgeDirecotorInNextLoop = false;
 		purgeDirector();
 	}
-	else if (!_bDrawScene)
+	else if (_bDrawScene)
 	{
 		drawScene();
 
@@ -303,10 +309,10 @@ void Director::drawScene(void)
 
 	kmGLPushMatrix();
 
-	//if (m_pRunningScene)
-	//{
-	//	m_pRunningScene->visit();
-	//}
+	if (_pRunningScene)
+	{
+		_pRunningScene->visit();
+	}
 
 	kmGLPopMatrix();
 
@@ -359,6 +365,33 @@ Size Director::getWinSize(void)
 {
 	return _sizeWinInPoints;
 }
+
+Size Director::getVisibleSize(void)
+{
+	if (_pobOpenGLView)
+	{
+		return _pobOpenGLView->getVisibleSize();
+	}
+	else
+	{
+		return SizeZero;
+	}
+}
+
+Point Director::getVisibleOrigin(void)
+{
+	if (_pobOpenGLView)
+	{
+		return _pobOpenGLView->getVisibleOrigin();
+	}
+	else
+	{
+		return PointZero;
+	}
+}
+
+
+
 
 
 
@@ -455,6 +488,36 @@ Accelerometer* Director::getAccelerometer()
 	return _pAccelerometer;
 }
 
+
+void Director::runWithScene(Scene* pScene)
+{
+	CCAssert(pScene != NULL, "This command can only be used to start the CCDirector. There is already a scene present.");
+	CCAssert(_pRunningScene == NULL, "_pRunningScene should be null");
+
+	pScene->retain();
+	_pRunningScene = pScene;
+	
+	startAnimation();
+}
+
+void Director::replaceScene(Scene* pScene)
+{
+	CCAssert(_pRunningScene, "Use runWithScene: instead to start the director");
+	CCAssert(pScene != NULL, "the scene should not be null");
+
+
+	if (_pRunningScene)
+	{
+		_pRunningScene->onExitTransitionDidStart();
+		_pRunningScene->onExit();
+
+		_pRunningScene->cleanup();
+		_pRunningScene->release();
+	}
+
+	pScene->retain();
+	_pRunningScene = pScene;
+}
 
 
 NS_CC_END

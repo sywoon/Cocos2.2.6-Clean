@@ -46,6 +46,28 @@
 
 
 
+/////////////////////////
+// layer
+//
+#include "nodes/layer/Layer.h"
+#include "nodes/layer/LayerRBGA.h"
+#include "nodes/layer/LayerColor.h"
+#include "nodes/layer/LayerGradient.h"
+#include "nodes/layer/LayerMultiplex.h"
+
+/////////////////////////
+// scene
+//
+#include "nodes/scene/Scene.h"
+
+
+/////////////////////////
+// root
+//
+#include "Director.h"
+
+
+
 
 
 NS_CC_BEGIN

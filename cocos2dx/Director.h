@@ -26,6 +26,7 @@ class EGLView;
 class KeypadDispatcher;
 class TouchDispatcher;
 class Accelerometer;
+class Scene;
 class CC_DLL Director : public Object, public ClassInfo
 {
 public:
@@ -53,9 +54,17 @@ public:
 	virtual void		setAnimationInterval(double dValue);
 
 	Size				getWinSize(void);
+	Size				getVisibleSize(void);
+	Point				getVisibleOrigin(void);
 
 	Point				convertToGL(const Point& obPoint);
 	Point				convertToUI(const Point& obPoint);
+
+	
+public:
+	void				runWithScene(Scene* pScene);
+	void				replaceScene(Scene* pScene);
+
 
 protected:
 	void				purgeDirector();
@@ -101,6 +110,8 @@ protected:
 
 	float				_fDeltaTime;
 	struct cc_timeval*	_pLastUpdate;
+
+	Scene*				_pRunningScene;
 
 
 	// CCEGLViewProtocol will recreate stats labels to fit visible rect
