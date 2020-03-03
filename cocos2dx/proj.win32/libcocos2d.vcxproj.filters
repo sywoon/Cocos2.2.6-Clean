@@ -160,6 +160,30 @@
     <ClCompile Include="..\shaders\ShaderFiles.cpp">
       <Filter>shaders</Filter>
     </ClCompile>
+    <ClCompile Include="..\platform\FileUtils.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\win32\FileUtilsWin32.cpp">
+      <Filter>platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utils\zip\unzip.cpp">
+      <Filter>utils\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utils\zip\ioapi.cpp">
+      <Filter>utils\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\file_xml\SaxParser.cpp">
+      <Filter>platform\file_xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\file_xml\DictMaker.cpp">
+      <Filter>platform\file_xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\file_xml\tinyxml2.cpp">
+      <Filter>platform\file_xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\file_xml\SaxHander.cpp">
+      <Filter>platform\file_xml</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -411,6 +435,30 @@
     <ClInclude Include="..\shaders\shader_files\ccShaderEx_SwitchMask_frag.h">
       <Filter>shaders\shader_files</Filter>
     </ClInclude>
+    <ClInclude Include="..\platform\FileUtils.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\FileUtilsWin32.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\zip\unzip.h">
+      <Filter>utils\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\zip\ioapi.h">
+      <Filter>utils\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\file_xml\SaxParser.h">
+      <Filter>platform\file_xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\file_xml\DictMaker.h">
+      <Filter>platform\file_xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\file_xml\tinyxml2.h">
+      <Filter>platform\file_xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\file_xml\SaxHander.h">
+      <Filter>platform\file_xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -463,6 +511,15 @@
     </Filter>
     <Filter Include="shaders\shader_files">
       <UniqueIdentifier>{9d6c9592-93fa-4e49-af2b-1dc2bfa3671c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{02199727-14ab-4740-b8f1-defda83e17db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\zip">
+      <UniqueIdentifier>{ee9bf252-9f67-4320-9209-5b640ea008bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\file_xml">
+      <UniqueIdentifier>{099f7e8d-bc08-497d-8563-a0b9939b2943}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

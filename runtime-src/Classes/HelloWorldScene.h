@@ -6,7 +6,8 @@
 class HelloWorld : public cocos2d::LayerGradient
 {
 public:
-	static HelloWorld* create(const cocos2d::ccColor4B& start, const cocos2d::ccColor4B& end);
+	CREATE_FUNC(HelloWorld);
+
 	static cocos2d::Scene* scene();
 
 

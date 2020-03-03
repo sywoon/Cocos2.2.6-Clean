@@ -9,6 +9,7 @@
 // platform
 //
 #include "platform/ApplicationProtocol.h"
+#include "platform/FileUtils.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "platform/win32/Application.h"

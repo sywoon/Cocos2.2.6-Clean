@@ -6,26 +6,20 @@
 USING_NS_CC;
 
 
-HelloWorld* HelloWorld::create(const cocos2d::ccColor4B& start, const cocos2d::ccColor4B& end)
-{
-	HelloWorld* pRet = new HelloWorld();
-	if (pRet && pRet->initWithColor(start, end, ccp(0, 1)))
-	{
-		pRet->autorelease();
-	}
-	else
-	{
-		CC_SAFE_DELETE(pRet);
-	}
-	return pRet;
-}
-
 Scene* HelloWorld::scene()
 {
 	Scene* scene = Scene::create();
 
-	HelloWorld* layer = HelloWorld::create(ccc4(100, 100, 0, 255), ccc4(0, 100, 255, 255));
+	HelloWorld* layer = HelloWorld::create();
 	scene->addChild(layer);
+
+	Size size = Director::sharedDirector()->getVisibleSize();
+	Point origin = Director::sharedDirector()->getVisibleOrigin();
+
+	std::string writePath = FileUtils::sharedFileUtils()->getWritablePath();
+
+	CCLog("visible origin:[%.2f,%.2f] size:[%.2f,%.2f] \npath:%s", origin.x, origin.y, size.width, size.height,
+					writePath.c_str());
 
 	return scene;
 }
@@ -36,10 +30,5 @@ bool HelloWorld::init()
 	if (!LayerGradient::init())
 		return false;
 
-	Size size = Director::sharedDirector()->getVisibleSize();
-	Point origin = Director::sharedDirector()->getVisibleOrigin();
-
-	CCLog("visible origin:[%f,%f] size:[%f,%f]", origin.x, origin.y, size.width, size.height);
-
-	return true;
+	return this->initWithColor(ccc4(100, 100, 0, 255), ccc4(0, 100, 255, 255), ccp(0, 1));
 }
