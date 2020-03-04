@@ -2,6 +2,25 @@
 #include <stdio.h>
 
 
+
+/*
+ * vs2015及以后版本 链接了早期vs编译的libpng libjpeg库引起的报错
+ * error LNK2001: 无法解析的外部符号 ___iob_func
+ */
+#if (_MSC_VER >= 1900)
+	#include "stdio.h" 
+	_ACRTIMP_ALT FILE* __cdecl __acrt_iob_func(unsigned);
+	#ifdef __cplusplus 
+	extern "C"
+	#endif 
+	FILE * __cdecl __iob_func(unsigned i) {
+		return __acrt_iob_func(i);
+	}
+#endif
+
+
+
+
 NS_CC_BEGIN
 
 #define MAX_LEN         (cocos2d::kMaxLogLen + 1)

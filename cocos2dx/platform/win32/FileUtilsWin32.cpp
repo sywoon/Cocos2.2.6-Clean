@@ -1,6 +1,6 @@
-#include "FileUtilsWin32.h"
 #include <Shlobj.h>
-
+#include "FileUtilsWin32.h"
+#include "CommonWin32.h"
 
 
 
@@ -136,28 +136,6 @@ std::string FileUtilsWin32::getPathForFilename(const std::string& filename, cons
 	return FileUtils::getPathForFilename(filenameAscii, rearchPathAscii);
 }
 
-
-std::string FileUtilsWin32::utf8Togbk(const char* src)
-{
-	int len = MultiByteToWideChar(CP_UTF8, 0, src, -1, NULL, 0);
-	unsigned short* wszGBK = new unsigned short[len + 1];
-	memset(wszGBK, 0, len * 2 + 2);
-	MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)src, -1, (LPWSTR)wszGBK, len);
-
-	len = WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)wszGBK, -1, NULL, 0, NULL, NULL);
-	char* szGBK = new char[len + 1];
-	memset(szGBK, 0, len + 1);
-	WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)wszGBK, -1, szGBK, len, NULL, NULL);
-
-	std::string strTemp(szGBK);
-	if (strTemp.find('?') != std::string::npos)
-	{
-		strTemp.assign(src);
-	}
-	delete[]szGBK;
-	delete[]wszGBK;
-	return strTemp;
-}
 
 
 

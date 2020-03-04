@@ -184,6 +184,15 @@
     <ClCompile Include="..\platform\file_xml\SaxHander.cpp">
       <Filter>platform\file_xml</Filter>
     </ClCompile>
+    <ClCompile Include="..\platform\Image.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\win32\ImageWin32.cpp">
+      <Filter>platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\win32\CommonWin32.cpp">
+      <Filter>platform\win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -458,6 +467,15 @@
     </ClInclude>
     <ClInclude Include="..\platform\file_xml\SaxHander.h">
       <Filter>platform\file_xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\Image.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\ImageWin32.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\CommonWin32.h">
+      <Filter>platform\win32</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

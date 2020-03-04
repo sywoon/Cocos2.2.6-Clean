@@ -21,7 +21,6 @@ public:
 
 protected:
 	virtual std::string		getPathForFilename(const std::string& filename, const std::string& searchPath);
-	std::string				utf8Togbk(const char* src);
 
 protected:
 	friend class FileUtils;
