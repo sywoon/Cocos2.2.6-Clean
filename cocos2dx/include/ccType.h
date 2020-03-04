@@ -79,6 +79,13 @@ typedef struct _ccColor4F {
 	GLfloat a;
 } ccColor4F;
 
+static inline _ccColor4F
+ccc4f(const GLfloat r, const GLfloat g, const GLfloat b, const GLfloat o)
+{
+	ccColor4F c = { r, g, b, o };
+	return c;
+}
+
 static inline bool ccc4FEqual(ccColor4F a, ccColor4F b)
 {
 	return a.r == b.r && a.g == b.g && a.b == b.b && a.a == b.a;

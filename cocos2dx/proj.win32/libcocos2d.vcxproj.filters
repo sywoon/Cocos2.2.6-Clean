@@ -193,6 +193,12 @@
     <ClCompile Include="..\platform\win32\CommonWin32.cpp">
       <Filter>platform\win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\nodes\draw_nodes\DrawNodePrimitives.cpp">
+      <Filter>nodes\draw_nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\draw_nodes\DrawNode.cpp">
+      <Filter>nodes\draw_nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -477,6 +483,12 @@
     <ClInclude Include="..\platform\win32\CommonWin32.h">
       <Filter>platform\win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\nodes\draw_nodes\DrawNode.h">
+      <Filter>nodes\draw_nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\draw_nodes\DrawNodePrimitives.h">
+      <Filter>nodes\draw_nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -538,6 +550,9 @@
     </Filter>
     <Filter Include="platform\file_xml">
       <UniqueIdentifier>{099f7e8d-bc08-497d-8563-a0b9939b2943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nodes\draw_nodes">
+      <UniqueIdentifier>{930775e3-7f00-45a0-a23e-78217a75cf99}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -16,8 +16,13 @@
 #endif
 
 #ifndef DBL_EPSILON
-#define DBL_EPSILON      2.2204460492503131e-016
+#define DBL_EPSILON     2.2204460492503131e-016
 #endif
+
+#ifndef M_PI
+#define M_PI            3.14159265358979323846
+#endif
+
 
 
 #ifdef _USRDLL
@@ -163,6 +168,6 @@ extern unsigned int CC_DLL g_uNumberOfDraws;
 #define CC_INCREMENT_GL_DRAWS(__n__) g_uNumberOfDraws += __n__
 
 
-
+#define CC_CONTENT_SCALE_FACTOR() Director::sharedDirector()->getContentScaleFactor()
 
 

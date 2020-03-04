@@ -48,6 +48,13 @@
 #include "kazmath/kazmath.h"
 
 
+/////////////////////////
+// Node
+//
+#include "nodes/base_nodes/Node.h"
+#include "nodes/draw_nodes/DrawNode.h"
+#include "nodes/draw_nodes/DrawNodePrimitives.h"
+
 
 /////////////////////////
 // layer

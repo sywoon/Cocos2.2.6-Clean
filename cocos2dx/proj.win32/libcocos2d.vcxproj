@@ -98,6 +98,8 @@
     <ClCompile Include="..\keypad\KeypadHandler.cpp" />
     <ClCompile Include="..\nodes\base_nodes\GLBufferedNode.cpp" />
     <ClCompile Include="..\nodes\base_nodes\Node.cpp" />
+    <ClCompile Include="..\nodes\draw_nodes\DrawNode.cpp" />
+    <ClCompile Include="..\nodes\draw_nodes\DrawNodePrimitives.cpp" />
     <ClCompile Include="..\nodes\layer\Layer.cpp" />
     <ClCompile Include="..\nodes\layer\LayerColor.cpp" />
     <ClCompile Include="..\nodes\layer\LayerGradient.cpp" />
@@ -177,6 +179,8 @@
     <ClInclude Include="..\keypad\KeypadHandler.h" />
     <ClInclude Include="..\nodes\base_nodes\GLBufferedNode.h" />
     <ClInclude Include="..\nodes\base_nodes\Node.h" />
+    <ClInclude Include="..\nodes\draw_nodes\DrawNode.h" />
+    <ClInclude Include="..\nodes\draw_nodes\DrawNodePrimitives.h" />
     <ClInclude Include="..\nodes\layer\Layer.h" />
     <ClInclude Include="..\nodes\layer\LayerColor.h" />
     <ClInclude Include="..\nodes\layer\LayerGradient.h" />
