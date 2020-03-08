@@ -53,7 +53,7 @@ static void removeUsedIndexBit(int index)
 EGLViewProtocol::EGLViewProtocol()
 	: _fScaleX(1.0f)
 	, _fScaleY(1.0f)
-	, _eResolutionPolicy(kResolutionUnKnown)
+	, _eResolutionPolicy(kResolutionShowAll)
 	, _pTouchDelegate(NULL)
 {
 }

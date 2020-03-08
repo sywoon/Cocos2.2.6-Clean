@@ -30,11 +30,30 @@ bool HelloWorld::init()
 	if (!LayerGradient::init())
 		return false;
 
-	DrawNode* node = DrawNode::create();
-	this->addChild(node, 100);
-	//node->drawDot(ccp(100, 100), 10, ccc4f(1.0, 1.0, 0.0, 1.0));
-	node->drawSegment(ccp(0, 0), ccp(100, 100), 3.0f, ccc4f(1.0, 1.0, 0.0, 1.0));
+	Size design = Director::sharedDirector()->getVisibleSize();
+	Size size = this->getContentSize();
+	CCLog("design:%f,%f size:%f,%f", design.width, design.height, size.width, size.height);
 
-	return true;
-	//return this->initWithColor(ccc4(100, 100, 0, 255), ccc4(0, 100, 255, 255), ccp(0, 1));
+	DrawNode* node = DrawNode::create();
+	node->setPosition(size.width/2, size.height/2);
+	this->addChild(node);
+	node->drawDot(ccp(0, 0), 10, ccc4f(1.0, 1.0, 0.0, 1.0));
+	node->drawDot(ccp(size.width / 4, 0), 10, ccc4f(1.0, 0.0, 0.0, 1.0));
+	node->drawDot(ccp(0, size.height / 4), 10, ccc4f(1.0, 0.0, 0.0, 1.0));
+	node->drawSegment(ccp(0, 0), ccp(size.width / 4, size.height / 4), 3.0f, ccc4f(1.0, 1.0, 0.0, 1.0));
+
+	const int count = 5;
+	const int offx = -400;
+	Point verts[5] = {
+		{-200+offx, -200},
+		{-200 + offx, 100},
+		{0 + offx, 200},
+		{200 + offx, 100},
+		{200 + offx, -200},
+	};
+	ccColor4F fillColor = { 0.3, 0.0, 0.0, 1.0 };
+	ccColor4F borderColor = { 0.3, 0.5, 0.0, 1.0 };
+	node->drawPolygon(verts, count, fillColor, 10, borderColor);
+
+	return this->initWithColor(ccc4(100, 100, 0, 255), ccc4(0, 100, 255, 255), ccp(0, 1));
 }

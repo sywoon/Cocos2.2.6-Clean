@@ -197,8 +197,9 @@ void DrawNode::render()
 	if (_bDirty)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, _uVbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(ccV2F_C4B_T2F) * _uBufferCapacity, _pBuffer, GL_STREAM_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(ccV2F_C4B_T2F) * _nBufferCount, _pBuffer, GL_STREAM_DRAW);
 		_bDirty = false;
+		CHECK_GL_ERROR_DEBUG();
 	}
 
 #if CC_TEXTURE_ATLAS_USE_VAO     
@@ -215,6 +216,8 @@ void DrawNode::render()
 	// texcood
 	glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, sizeof(ccV2F_C4B_T2F), (GLvoid*)offsetof(ccV2F_C4B_T2F, texCoords));
 #endif
+
+	CHECK_GL_ERROR_DEBUG();
 
 	glDrawArrays(GL_TRIANGLES, 0, _nBufferCount);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

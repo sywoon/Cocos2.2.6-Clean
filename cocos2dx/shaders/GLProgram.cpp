@@ -54,7 +54,6 @@ bool GLProgram::initWithVertexShaderByteArray(const GLchar* vShaderByteArray, co
 		}
 	}
 
-	// Create and compile fragment shader
 	if (fShaderByteArray)
 	{
 		if (!compileShader(&_uFragShader, GL_FRAGMENT_SHADER, fShaderByteArray))
