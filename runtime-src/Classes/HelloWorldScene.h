@@ -10,6 +10,8 @@ public:
 
 	static cocos2d::Scene* scene();
 
+public:
+	virtual void draw(void);
 
 protected:
 	virtual bool init();

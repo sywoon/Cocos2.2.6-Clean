@@ -14,6 +14,7 @@ void CC_DLL ccDrawFree();
 void CC_DLL ccDrawColor4B(GLubyte r, GLubyte g, GLubyte b, GLubyte a);
 void CC_DLL ccDrawColor4F(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
 void CC_DLL ccPointSize(GLfloat pointSize);
+void CC_DLL ccLineWidth(GLfloat width);
 
 
 void CC_DLL ccDrawPoint(const Point& point);

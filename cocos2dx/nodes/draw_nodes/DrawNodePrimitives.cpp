@@ -65,10 +65,15 @@ void ccDrawColor4F(GLfloat r, GLfloat g, GLfloat b, GLfloat a)
 	s_tColor.a = a;
 }
 
-void PointSize(GLfloat pointSize)
+void ccPointSize(GLfloat pointSize)
 {
 	s_fPointSize = pointSize;
 	//TODO :glPointSize( pointSize );  ?
+}
+
+void ccLineWidth(GLfloat width)
+{
+	glLineWidth(width);
 }
 
 

@@ -11,7 +11,7 @@ NS_CC_BEGIN
 
 
 
-class CC_DLL CCImage : public Object
+class CC_DLL Image : public Object
 {
 public:
 	typedef enum
@@ -41,14 +41,14 @@ public:
 
 
 public:
-    CCImage();
-    ~CCImage();
+    Image();
+    ~Image();
 
 
 private:
 	// noncopyable
-	CCImage(const CCImage& rImg);
-	CCImage& operator=(const CCImage& rImg);
+	Image(const Image& rImg);
+	Image& operator=(const Image& rImg);
 
 public:
 	bool initWithImageFile(const char* strPath, EImageFormat imageType = kFmtPng);

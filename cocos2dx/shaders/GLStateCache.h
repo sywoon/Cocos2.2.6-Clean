@@ -27,11 +27,11 @@ void CC_DLL ccGLDeleteProgram(GLuint program);
 
 void CC_DLL ccGLEnableVertexAttribs(unsigned int flags);
 
-
-
 void CC_DLL ccGLBindVAO(GLuint vaoId);
 
-
-
+void CC_DLL ccGLBindTexture2D(GLuint textureId);
+void CC_DLL ccGLBindTexture2DN(GLuint textureUnit, GLuint textureId);
+void CC_DLL ccGLDeleteTexture(GLuint textureId);
+void CC_DLL ccGLDeleteTextureN(GLuint textureUnit, GLuint textureId);
 
 NS_CC_END

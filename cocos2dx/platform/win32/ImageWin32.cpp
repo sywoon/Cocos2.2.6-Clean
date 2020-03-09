@@ -219,7 +219,7 @@ SIZE BitmapDC::sizeWithText(const char* pszText, int nLen, DWORD dwFmt, LONG nWi
 }
 
 
-int BitmapDC::drawText(const char* pszText, SIZE& tSize, CCImage::ETextAlign eAlign)
+int BitmapDC::drawText(const char* pszText, SIZE& tSize, Image::ETextAlign eAlign)
 {
 	int nRet = 0;
 	wchar_t* pwszBuffer = 0;
@@ -328,7 +328,7 @@ int BitmapDC::drawText(const char* pszText, SIZE& tSize, CCImage::ETextAlign eAl
 //////////////////////////////////
 // Image接口的平台实现
 //
-bool CCImage::initWithString(
+bool Image::initWithString(
 	const char* pText,
 	int             nWidth/* = 0*/,
 	int             nHeight/* = 0*/,

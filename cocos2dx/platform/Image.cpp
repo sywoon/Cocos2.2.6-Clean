@@ -17,7 +17,7 @@ NS_CC_BEGIN
     ((unsigned)(unsigned char)(va) << 24))
 
 
-CCImage::CCImage()
+Image::Image()
 	: m_nWidth(0)
 	, m_nHeight(0)
 	, m_nBitsPerComponent(0)
@@ -27,13 +27,13 @@ CCImage::CCImage()
 {
 }
 
-CCImage::~CCImage()
+Image::~Image()
 {
 	CC_SAFE_DELETE_ARRAY(m_pData);
 }
 
 
-CCImage::CCImage(const CCImage& rImg)
+Image::Image(const Image& rImg)
 {
 	memcpy(m_pData, rImg.m_pData, sizeof(rImg.m_pData)/sizeof(unsigned char));
 	m_nWidth = rImg.m_nWidth;
@@ -43,7 +43,7 @@ CCImage::CCImage(const CCImage& rImg)
 	m_bPreMulti = rImg.m_bPreMulti;
 }
 
-CCImage& CCImage::operator=(const CCImage& rImg)
+Image& Image::operator=(const Image& rImg)
 {
 	memcpy(m_pData, rImg.m_pData, sizeof(rImg.m_pData) / sizeof(unsigned char));
 	m_nWidth = rImg.m_nWidth;
@@ -54,7 +54,7 @@ CCImage& CCImage::operator=(const CCImage& rImg)
 	return *this;
 }
 
-bool CCImage::initWithImageFile(const char* strPath, EImageFormat eImgFmt/* = eFmtPng*/)
+bool Image::initWithImageFile(const char* strPath, EImageFormat eImgFmt/* = eFmtPng*/)
 {
 	bool bRet = false;
 	unsigned long nSize = 0;
@@ -70,7 +70,7 @@ bool CCImage::initWithImageFile(const char* strPath, EImageFormat eImgFmt/* = eF
 	return bRet;
 }
 
-bool CCImage::initWithImageFileThreadSafe(const char* fullpath, EImageFormat imageType)
+bool Image::initWithImageFileThreadSafe(const char* fullpath, EImageFormat imageType)
 {
 	bool bRet = false;
 	unsigned long nSize = 0;
@@ -90,7 +90,7 @@ bool CCImage::initWithImageFileThreadSafe(const char* fullpath, EImageFormat ima
 }
 
 
-bool CCImage::initWithImageData(void* pData,
+bool Image::initWithImageData(void* pData,
 								int nDataLen,
 								EImageFormat eFmt/* = eSrcFmtPng*/,
 								int nWidth/* = 0*/,
@@ -229,7 +229,7 @@ static void pngReadCallback(png_structp png_ptr, png_bytep data, png_size_t leng
 }
 
 
-bool CCImage::_initWithPngData(void* pData, int nDatalen)
+bool Image::_initWithPngData(void* pData, int nDatalen)
 {
 	// length of bytes to check if it is a valid png file
 #define PNGSIGSIZE  8
@@ -385,7 +385,7 @@ my_error_exit(j_common_ptr cinfo)
 	longjmp(myerr->setjmp_buffer, 1);
 }
 
-bool CCImage::_initWithJpgData(void* data, int nSize)
+bool Image::_initWithJpgData(void* data, int nSize)
 {
 	/* these are standard libjpeg structures for reading(decompression) */
 	struct jpeg_decompress_struct cinfo;
@@ -594,7 +594,7 @@ static void _tiffUnmapProc(thandle_t fd, void* base, toff_t size)
 	CC_UNUSED_PARAM(size);
 }
 
-bool CCImage::_initWithTiffData(void* pData, int nDataLen)
+bool Image::_initWithTiffData(void* pData, int nDataLen)
 {
 	bool bRet = false;
 	do
@@ -670,7 +670,7 @@ bool CCImage::_initWithTiffData(void* pData, int nDataLen)
 //
 
 
-bool CCImage::_initWithWebpData(void* pData, int nDataLen)
+bool Image::_initWithWebpData(void* pData, int nDataLen)
 {
 	bool bRet = false;
 	do
@@ -711,7 +711,7 @@ bool CCImage::_initWithWebpData(void* pData, int nDataLen)
 // raw data
 //
 
-bool CCImage::_initWithRawData(void* pData, int nDatalen, int nWidth, int nHeight, int nBitsPerComponent, bool bPreMulti)
+bool Image::_initWithRawData(void* pData, int nDatalen, int nWidth, int nHeight, int nBitsPerComponent, bool bPreMulti)
 {
 	bool bRet = false;
 	do
@@ -741,7 +741,7 @@ bool CCImage::_initWithRawData(void* pData, int nDatalen, int nWidth, int nHeigh
 // save file
 //
 
-bool CCImage::saveToFile(const char* pszFilePath, bool bIsToRGB)
+bool Image::saveToFile(const char* pszFilePath, bool bIsToRGB)
 {
 	bool bRet = false;
 
@@ -778,7 +778,7 @@ bool CCImage::saveToFile(const char* pszFilePath, bool bIsToRGB)
 }
 
 
-bool CCImage::_saveImageToPNG(const char* pszFilePath, bool bIsToRGB)
+bool Image::_saveImageToPNG(const char* pszFilePath, bool bIsToRGB)
 {
 	bool bRet = false;
 	do
@@ -919,7 +919,7 @@ bool CCImage::_saveImageToPNG(const char* pszFilePath, bool bIsToRGB)
 	return bRet;
 }
 
-bool CCImage::_saveImageToJPG(const char* pszFilePath)
+bool Image::_saveImageToJPG(const char* pszFilePath)
 {
 	bool bRet = false;
 	do

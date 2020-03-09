@@ -124,11 +124,16 @@
     <ClCompile Include="..\shaders\GLStateCache.cpp" />
     <ClCompile Include="..\shaders\ShaderCache.cpp" />
     <ClCompile Include="..\shaders\ShaderFiles.cpp" />
+    <ClCompile Include="..\textures\Texture2D.cpp" />
+    <ClCompile Include="..\textures\TextureEtc.cpp" />
+    <ClCompile Include="..\textures\TexturePvr.cpp" />
     <ClCompile Include="..\touch\Touch.cpp" />
     <ClCompile Include="..\touch\TouchDispatcher.cpp" />
     <ClCompile Include="..\touch\TouchHandler.cpp" />
+    <ClCompile Include="..\utils\Utils.cpp" />
     <ClCompile Include="..\utils\zip\ioapi.cpp" />
     <ClCompile Include="..\utils\zip\unzip.cpp" />
+    <ClCompile Include="..\utils\zip\ZipUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\accelerometer\AccelerometerDelegate.h" />
@@ -223,12 +228,17 @@
     <ClInclude Include="..\shaders\shader_files\ccShader_PositionTexture_vert.h" />
     <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_frag.h" />
     <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_vert.h" />
+    <ClInclude Include="..\textures\Texture2D.h" />
+    <ClInclude Include="..\textures\TextureEtc.h" />
+    <ClInclude Include="..\textures\TexturePvr.h" />
     <ClInclude Include="..\touch\Touch.h" />
     <ClInclude Include="..\touch\TouchDelegate.h" />
     <ClInclude Include="..\touch\TouchDispatcher.h" />
     <ClInclude Include="..\touch\TouchHandler.h" />
+    <ClInclude Include="..\utils\Utils.h" />
     <ClInclude Include="..\utils\zip\ioapi.h" />
     <ClInclude Include="..\utils\zip\unzip.h" />
+    <ClInclude Include="..\utils\zip\ZipUtil.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

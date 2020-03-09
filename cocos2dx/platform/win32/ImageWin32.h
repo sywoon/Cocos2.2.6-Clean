@@ -16,7 +16,7 @@ NS_CC_BEGIN
 //
 class BitmapDC
 {
-	friend class CCImage;
+	friend class Image;
 
 public:
 	BitmapDC(HWND hWnd = NULL);
@@ -28,7 +28,7 @@ public:
 	bool prepareBitmap(int nWidth, int nHeight);
 	bool setFont(const char* pFontName = NULL, int nSize = 0);
 	SIZE sizeWithText(const char* pszText, int nLen, DWORD dwFmt, LONG nWidthLimit);
-	int drawText(const char* pszText, SIZE& tSize, CCImage::ETextAlign eAlign);
+	int drawText(const char* pszText, SIZE& tSize, Image::ETextAlign eAlign);
 
 private:
 	CC_SYNTHESIZE_READONLY(HDC, m_hDC, DC);

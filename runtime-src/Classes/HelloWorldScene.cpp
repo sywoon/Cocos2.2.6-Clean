@@ -51,9 +51,43 @@ bool HelloWorld::init()
 		{200 + offx, 100},
 		{200 + offx, -200},
 	};
-	ccColor4F fillColor = { 0.3, 0.0, 0.0, 1.0 };
-	ccColor4F borderColor = { 0.3, 0.5, 0.0, 1.0 };
+	ccColor4F fillColor = { 0.3f, 0.0f, 0.0f, 1.0f };
+	ccColor4F borderColor = { 0.3f, 0.5f, 0.0f, 1.0f };
 	node->drawPolygon(verts, count, fillColor, 10, borderColor);
 
 	return this->initWithColor(ccc4(100, 100, 0, 255), ccc4(0, 100, 255, 255), ccp(0, 1));
 }
+
+void HelloWorld::draw(void)
+{
+	LayerGradient::draw();
+
+	ccPointSize(30);
+	ccDrawColor4F(0.3f, 0.0f, 0.0f, 1.0f);
+
+	Size design = Director::sharedDirector()->getVisibleSize();
+	Point pos(design.width/4, design.height/4);
+	ccDrawPoint(pos);
+
+	ccDrawLine(Point(0, 0), Point(300, 300));
+
+	ccDrawCircle(Point(500, 500), 100, 0, 10, false);
+	Point vertices[] = { ccp(0,0), ccp(50,50), ccp(100,50), ccp(100,100), ccp(50,100) };
+	ccDrawPoly(vertices, 5, false);
+
+	ccLineWidth(1);
+	Point filledVertices[] = { ccp(0,120), ccp(50,120), ccp(50,170), ccp(25,200), ccp(0,170) };
+	ccDrawSolidPoly(filledVertices, 5, ccc4f(0.5f, 0.5f, 1, 1));
+
+	ccDrawQuadBezier(Point(0, 400), Point(400, 400), Point(400, 700), 50);
+
+	ccDrawCubicBezier(Point(400, 400), ccp(400 + 30, 400 + 50), ccp(400 + 60, 400 - 50), ccp(500, 300), 100);
+
+
+	CHECK_GL_ERROR_DEBUG();
+
+	
+}
+
+
+

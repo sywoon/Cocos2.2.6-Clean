@@ -21,6 +21,9 @@ static GLuint    s_uCurrentShaderProgram = -1;
 static GLuint    s_uVAO = 0;
 #endif
 
+#define kCCMaxActiveTexture 16
+static GLuint    s_uCurrentBoundTexture[kCCMaxActiveTexture] = { (GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, (GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, (GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, (GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, };
+
 #endif
 
 
@@ -135,6 +138,45 @@ void ccGLBindVAO(GLuint vaoId)
 #endif
 
 #endif
+}
+
+
+void ccGLBindTexture2D(GLuint textureId)
+{
+	ccGLBindTexture2DN(0, textureId);
+}
+
+void ccGLBindTexture2DN(GLuint textureUnit, GLuint textureId)
+{
+#if CC_ENABLE_GL_STATE_CACHE
+	CCAssert(textureUnit < kCCMaxActiveTexture, "textureUnit is too big");
+	if (s_uCurrentBoundTexture[textureUnit] != textureId)
+	{
+		s_uCurrentBoundTexture[textureUnit] = textureId;
+		glActiveTexture(GL_TEXTURE0 + textureUnit);
+		glBindTexture(GL_TEXTURE_2D, textureId);
+	}
+#else
+	glActiveTexture(GL_TEXTURE0 + textureUnit);
+	glBindTexture(GL_TEXTURE_2D, textureId);
+#endif
+}
+
+void ccGLDeleteTexture(GLuint textureId)
+{
+	ccGLDeleteTextureN(0, textureId);
+}
+
+void ccGLDeleteTextureN(GLuint textureUnit, GLuint textureId)
+{
+#if CC_ENABLE_GL_STATE_CACHE
+	if (s_uCurrentBoundTexture[textureUnit] == textureId)
+	{
+		s_uCurrentBoundTexture[textureUnit] = -1;
+	}
+#endif
+
+	glDeleteTextures(1, &textureId);
 }
 
 

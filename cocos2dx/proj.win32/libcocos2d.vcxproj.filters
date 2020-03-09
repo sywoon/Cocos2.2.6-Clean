@@ -199,6 +199,21 @@
     <ClCompile Include="..\nodes\draw_nodes\DrawNode.cpp">
       <Filter>nodes\draw_nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\textures\Texture2D.cpp">
+      <Filter>textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\textures\TextureEtc.cpp">
+      <Filter>textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\textures\TexturePvr.cpp">
+      <Filter>textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utils\zip\ZipUtil.cpp">
+      <Filter>utils\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utils\Utils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -489,6 +504,21 @@
     <ClInclude Include="..\nodes\draw_nodes\DrawNodePrimitives.h">
       <Filter>nodes\draw_nodes</Filter>
     </ClInclude>
+    <ClInclude Include="..\textures\Texture2D.h">
+      <Filter>textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\textures\TexturePvr.h">
+      <Filter>textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\textures\TextureEtc.h">
+      <Filter>textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\zip\ZipUtil.h">
+      <Filter>utils\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\Utils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -553,6 +583,9 @@
     </Filter>
     <Filter Include="nodes\draw_nodes">
       <UniqueIdentifier>{930775e3-7f00-45a0-a23e-78217a75cf99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="textures">
+      <UniqueIdentifier>{e4ce24c5-90a2-47ad-828f-8b672099932d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
