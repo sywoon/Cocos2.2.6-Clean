@@ -26,7 +26,9 @@ class EGLView;
 class KeypadDispatcher;
 class TouchDispatcher;
 class Accelerometer;
+class CCScheduler;
 class Scene;
+
 class CC_DLL Director : public Object, public ClassInfo
 {
 public:
@@ -86,9 +88,15 @@ protected:
 
 
 public:
+	void				pause(void);
+	void				resume(void);
+
+
+protected:
 	CC_PROPERTY(KeypadDispatcher*, _pKeypadDispatcher, KeypadDispatcher);
 	CC_PROPERTY(TouchDispatcher*, _pTouchDispatcher, TouchDispatcher);
 	CC_PROPERTY(Accelerometer*, _pAccelerometer, Accelerometer);
+	CC_PROPERTY(CCScheduler*, _pScheduler, Scheduler);
 
 
 protected:
@@ -113,6 +121,7 @@ protected:
 
 	Scene*				_pRunningScene;
 
+	bool				_bPaused;
 
 	// CCEGLViewProtocol will recreate stats labels to fit visible rect
 	friend class CCEGLViewProtocol;

@@ -120,11 +120,13 @@
     <ClCompile Include="..\platform\win32\FileUtilsWin32.cpp" />
     <ClCompile Include="..\platform\win32\ImageWin32.cpp" />
     <ClCompile Include="..\platform\win32\PlatformBase.cpp" />
+    <ClCompile Include="..\Scheduler.cpp" />
     <ClCompile Include="..\shaders\GLProgram.cpp" />
     <ClCompile Include="..\shaders\GLStateCache.cpp" />
     <ClCompile Include="..\shaders\ShaderCache.cpp" />
     <ClCompile Include="..\shaders\ShaderFiles.cpp" />
     <ClCompile Include="..\textures\Texture2D.cpp" />
+    <ClCompile Include="..\textures\TextureCache.cpp" />
     <ClCompile Include="..\textures\TextureEtc.cpp" />
     <ClCompile Include="..\textures\TexturePvr.cpp" />
     <ClCompile Include="..\touch\Touch.cpp" />
@@ -208,6 +210,7 @@
     <ClInclude Include="..\platform\win32\EGLView.h" />
     <ClInclude Include="..\platform\win32\FileUtilsWin32.h" />
     <ClInclude Include="..\platform\win32\ImageWin32.h" />
+    <ClInclude Include="..\Scheduler.h" />
     <ClInclude Include="..\shaders\GLProgram.h" />
     <ClInclude Include="..\shaders\GLStateCache.h" />
     <ClInclude Include="..\shaders\ShaderCache.h" />
@@ -229,6 +232,7 @@
     <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_frag.h" />
     <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_vert.h" />
     <ClInclude Include="..\textures\Texture2D.h" />
+    <ClInclude Include="..\textures\TextureCache.h" />
     <ClInclude Include="..\textures\TextureEtc.h" />
     <ClInclude Include="..\textures\TexturePvr.h" />
     <ClInclude Include="..\touch\Touch.h" />
@@ -313,7 +317,7 @@
       <PreprocessorDefinitions>COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;LIBCOCOS2D_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>cocos2d.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;$(ProjectDir)/../utils;$(ProjectDir)/../platform;$(ProjectDir)/../platform/win32;$(ProjectDir)../platform/third_party/win32/glew;$(ProjectDir)../platform/third_party/win32/zlib;$(ProjectDir)../platform/third_party/win32/libpng;$(ProjectDir)../platform/third_party/win32/libjpeg;$(ProjectDir)../platform/third_party/win32/libtiff;$(ProjectDir)../platform/third_party/win32/libwebp</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/..;$(ProjectDir)/../include;$(ProjectDir)/../utils;$(ProjectDir)/../platform;$(ProjectDir)/../platform/win32;$(ProjectDir)../platform/third_party/win32/glew;$(ProjectDir)../platform/third_party/win32/zlib;$(ProjectDir)../platform/third_party/win32/libpng;$(ProjectDir)../platform/third_party/win32/libjpeg;$(ProjectDir)../platform/third_party/win32/libtiff;$(ProjectDir)../platform/third_party/win32/libwebp;$(ProjectDir)../platform/third_party/win32/pthread</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>cocos2d.h</ForcedIncludeFiles>
       <DisableSpecificWarnings>4251;4244;</DisableSpecificWarnings>
     </ClCompile>
@@ -321,7 +325,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>libzlib.lib;opengl32.lib;glew32.lib;libjpeg.lib;libpng.lib;libtiff.lib;libwebp.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzlib.lib;opengl32.lib;glew32.lib;libjpeg.lib;libpng.lib;libtiff.lib;libwebp.lib;pthreadVCE2.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>

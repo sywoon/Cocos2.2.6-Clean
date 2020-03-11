@@ -214,6 +214,10 @@
     <ClCompile Include="..\utils\Utils.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\textures\TextureCache.cpp">
+      <Filter>textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Scheduler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -519,6 +523,10 @@
     <ClInclude Include="..\utils\Utils.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\textures\TextureCache.h">
+      <Filter>textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Scheduler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

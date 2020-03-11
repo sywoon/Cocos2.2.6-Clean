@@ -17,6 +17,32 @@ NS_CC_BEGIN
     ((unsigned)(unsigned char)(va) << 24))
 
 
+// 有点粗暴 通过后缀的方式
+Image::EImageFormat Image::computeImageFormatType(std::string& filename)
+{
+	Image::EImageFormat ret = Image::kFmtUnKnown;
+
+	if ((std::string::npos != filename.find(".jpg")) || (std::string::npos != filename.find(".jpeg")))
+	{
+		ret = Image::kFmtJpg;
+	}
+	else if ((std::string::npos != filename.find(".png")) || (std::string::npos != filename.find(".PNG")))
+	{
+		ret = Image::kFmtPng;
+	}
+	else if ((std::string::npos != filename.find(".tiff")) || (std::string::npos != filename.find(".TIFF")))
+	{
+		ret = Image::kFmtTiff;
+	}
+	else if ((std::string::npos != filename.find(".webp")) || (std::string::npos != filename.find(".WEBP")))
+	{
+		ret = Image::kFmtWebp;
+	}
+
+	return ret;
+}
+
+
 Image::Image()
 	: m_nWidth(0)
 	, m_nHeight(0)
@@ -78,6 +104,7 @@ bool Image::initWithImageFileThreadSafe(const char* fullpath, EImageFormat image
 	FileUtilsAndroid* fileUtils = (FileUtilsAndroid*)FileUtils::sharedFileUtils();
 	unsigned char* pBuffer = fileUtils->getFileDataForAsync(fullpath, "rb", &nSize);
 #else
+	// 内部的fullPathForFilename 非线程安全 传入时 必须时全路径
 	unsigned char* pBuffer = FileUtils::sharedFileUtils()->getFileData(fullpath, "rb", &nSize);
 #endif
 

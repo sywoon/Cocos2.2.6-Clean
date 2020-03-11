@@ -10,6 +10,7 @@
 #include "keypad/KeypadDispatcher.h"
 #include "touch/TouchDispatcher.h"
 #include "Accelerometer.h"
+#include "Scheduler.h"
 
 #include "nodes/scene/Scene.h"
 
@@ -60,6 +61,7 @@ Director::Director()
 	, _pAccelerometer(NULL)
 
 	, _pRunningScene(NULL)
+	, _bPaused(false)
 {
 }
 
@@ -72,6 +74,8 @@ bool Director::init(void)
 	_pKeypadDispatcher = new KeypadDispatcher();
 	_pTouchDispatcher = new TouchDispatcher();
 	_pAccelerometer = new Accelerometer();
+
+	_pScheduler = new CCScheduler();
 	
 	PoolManager::sharedPoolManager()->push();
 
@@ -83,6 +87,7 @@ Director::~Director(void)
 	CC_SAFE_RELEASE(_pKeypadDispatcher);
 	CC_SAFE_RELEASE(_pTouchDispatcher);
 	CC_SAFE_DELETE(_pAccelerometer);
+	CC_SAFE_RELEASE(_pScheduler);
 
 	CC_SAFE_RELEASE(_pRunningScene);
 
@@ -285,7 +290,6 @@ void Director::end()
 	_bPurgeDirecotorInNextLoop = true;
 }
 
-
 void Director::mainLoop(void)
 {
 	if (_bPurgeDirecotorInNextLoop)
@@ -304,6 +308,11 @@ void Director::mainLoop(void)
 void Director::drawScene(void)
 {
 	calculateDeltaTime();
+
+	if (!_bPaused)
+	{
+		_pScheduler->update(_fDeltaTime);
+	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -488,6 +497,21 @@ Accelerometer* Director::getAccelerometer()
 	return _pAccelerometer;
 }
 
+void Director::setScheduler(CCScheduler* pScheduler)
+{
+	if (_pScheduler != pScheduler)
+	{
+		CC_SAFE_RETAIN(pScheduler);
+		CC_SAFE_RELEASE(_pScheduler);
+		_pScheduler = pScheduler;
+	}
+}
+
+CCScheduler* Director::getScheduler()
+{
+	return _pScheduler;
+}
+
 
 void Director::runWithScene(Scene* pScene)
 {
@@ -518,6 +542,42 @@ void Director::replaceScene(Scene* pScene)
 	pScene->retain();
 	_pRunningScene = pScene;
 }
+
+
+
+void Director::pause(void)
+{
+	if (_bPaused)
+	{
+		return;
+	}
+
+	_dOldAnimationInterval = _dAnimationInterval;
+
+	// when paused, don't consume CPU
+	setAnimationInterval(1 / 4.0);
+	_bPaused = true;
+}
+
+void Director::resume(void)
+{
+	if (!_bPaused)
+	{
+		return;
+	}
+
+	setAnimationInterval(_dOldAnimationInterval);
+
+	if (CCTime::gettimeofdayCocos2d(_pLastUpdate, NULL) != 0)
+	{
+		CCLOG("cocos2d: Director: Error in gettimeofday");
+	}
+
+	_bPaused = false;
+	_fDeltaTime = 0;
+}
+
+
 
 
 NS_CC_END

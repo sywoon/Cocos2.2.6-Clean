@@ -43,45 +43,45 @@ typedef enum {
 	kTexture2DPixelFormat_RGB5A1 = kCCTexture2DPixelFormat_RGB5A1,
 	kTexture2DPixelFormat_Default = kCCTexture2DPixelFormat_Default
 
-} CCTexture2DPixelFormat;
+} Texture2DPixelFormat;
 
 
 
 class GLProgram;
 class Image;
-class CC_DLL CCTexture2D : public Object
+class CC_DLL Texture2D : public Object
 {
 public:
-    CCTexture2D();
-    virtual ~CCTexture2D();
+    Texture2D();
+    virtual ~Texture2D();
 
 public:
-	static void setDefaultAlphaPixelFormat(CCTexture2DPixelFormat format);
-	static CCTexture2DPixelFormat defaultAlphaPixelFormat();
+	static void setDefaultAlphaPixelFormat(Texture2DPixelFormat format);
+	static Texture2DPixelFormat defaultAlphaPixelFormat();
 
 public:
     const char* description(void);
 
-	bool initWithImage(Image* uiImage);
-	bool initWithString(const char* text, const char* fontName, float fontSize, 
-				const Size& dimensions, CCTextAlignment hAlignment, 
-				CCVerticalTextAlignment vAlignment);
-	bool initWithString(const char* text, const char* fontName, float fontSize);
-	bool initWithString(const char* text, ccFontDefinition* textDefinition);
+	bool		initWithImage(Image* uiImage);
+	bool		initWithString(const char* text, const char* fontName, float fontSize, 
+					const Size& dimensions, CCTextAlignment hAlignment, 
+					CCVerticalTextAlignment vAlignment);
+	bool		initWithString(const char* text, const char* fontName, float fontSize);
+	bool		initWithString(const char* text, ccFontDefinition* textDefinition);
 
-	bool initWithData(const void* data, CCTexture2DPixelFormat pixelFormat, 
-				unsigned int pixelsWide, unsigned int pixelsHigh, const Size& contentSize);
+	bool		initWithData(const void* data, Texture2DPixelFormat pixelFormat, 
+					unsigned int pixelsWide, unsigned int pixelsHigh, const Size& contentSize);
 
-
-	bool initWithPVRFile(const char* file);
-	bool initWithETCFile(const char* file);
-
-private:
-	bool initPremultipliedATextureWithImage(Image* image, unsigned int pixelsWide, unsigned int pixelsHigh);
+	bool		initWithPVRFile(const char* file);
+	bool		initWithETCFile(const char* file);
 
 private:
+	bool		initPremultipliedATextureWithImage(Image* image, unsigned int pixelsWide, unsigned int pixelsHigh);
+
+
+public:
 	unsigned int bitsPerPixelForFormat();
-	unsigned int bitsPerPixelForFormat(CCTexture2DPixelFormat format);
+	unsigned int bitsPerPixelForFormat(Texture2DPixelFormat format);
 
 
 public:
@@ -89,28 +89,28 @@ public:
 
 
 public:
-	void drawAtPoint(const Point& point);
-	void drawInRect(const Rect& rect);
+	void		drawAtPoint(const Point& point);
+	void		drawInRect(const Rect& rect);
 
 
 private:
-    CC_PROPERTY_READONLY(GLuint, m_uName, Name)
-	CC_PROPERTY_READONLY(CCTexture2DPixelFormat, m_ePixelFormat, PixelFormat)
+    CC_PROPERTY_READONLY(GLuint, _uName, Name)
+	CC_PROPERTY_READONLY(Texture2DPixelFormat, _ePixelFormat, PixelFormat)
 
-	CC_PROPERTY_READONLY(unsigned int, m_uPixelsWide, PixelsWide)
-	CC_PROPERTY_READONLY(unsigned int, m_uPixelsHigh, PixelsHigh)
+	CC_PROPERTY_READONLY(unsigned int, _uPixelsWide, PixelsWide)
+	CC_PROPERTY_READONLY(unsigned int, _uPixelsHigh, PixelsHigh)
 
-	CC_PROPERTY(GLfloat, m_fMaxS, MaxS)
-	CC_PROPERTY(GLfloat, m_fMaxT, MaxT)
+	CC_PROPERTY(GLfloat, _fMaxS, MaxS)
+	CC_PROPERTY(GLfloat, _fMaxT, MaxT)
 
-	CC_PROPERTY_READONLY(Size, m_tContentSize, ContentSize)
-	CC_PROPERTY(GLProgram*, m_pShaderProgram, ShaderProgram);
+	CC_PROPERTY_READONLY(Size, _tContentSize, ContentSize)
+	CC_PROPERTY(GLProgram*, _pShaderProgram, ShaderProgram);
 
 
 private:
-	bool	m_bHasPremultipliedAlpha;
-	bool	m_bPVRHaveAlphaPremultiplied;
-	bool	m_bHasMipmaps;
+	bool	_bHasPremultipliedAlpha;
+	bool	_bPVRHaveAlphaPremultiplied;
+	bool	_bHasMipmaps;
 };
 
 

@@ -51,6 +51,8 @@ private:
 	Image& operator=(const Image& rImg);
 
 public:
+	static EImageFormat computeImageFormatType(std::string& filename);
+
 	bool initWithImageFile(const char* strPath, EImageFormat imageType = kFmtPng);
 	bool initWithImageFileThreadSafe(const char* fullpath, EImageFormat imageType = kFmtPng);
 	bool initWithImageData(void* pData, int nDataLen, EImageFormat eFmt = kFmtUnKnown,

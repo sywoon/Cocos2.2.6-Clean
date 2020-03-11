@@ -23,11 +23,11 @@ typedef struct _ccPVRTexturePixelFormatInfo {
 	bool compressed;
 	bool alpha;
 
-	CCTexture2DPixelFormat ccPixelFormat;
+	Texture2DPixelFormat ccPixelFormat;
 } ccPVRTexturePixelFormatInfo;
 
 
-class TexturePVR : public Object
+class CC_DLL TexturePVR : public Object
 {
 public:
 	TexturePVR();
@@ -46,7 +46,7 @@ public:
 	inline bool			hasPremultipliedAlpha() { return m_bHasPremultipliedAlpha; }
 	inline bool			isForcePremultipliedAlpha() { return m_bForcePremultipliedAlpha; }
 	inline unsigned int getNumberOfMipmaps() { return m_uNumberOfMipmaps; }
-	inline CCTexture2DPixelFormat getFormat() { return m_eFormat; }
+	inline Texture2DPixelFormat getFormat() { return m_eFormat; }
 	inline bool			isRetainName() { return m_bRetainName; }
 	inline void			setRetainName(bool retainName) { m_bRetainName = retainName; }
 
@@ -68,7 +68,7 @@ protected:
 	bool			m_bForcePremultipliedAlpha;
 
 	bool			m_bRetainName;
-	CCTexture2DPixelFormat m_eFormat;
+	Texture2DPixelFormat m_eFormat;
 
 	const ccPVRTexturePixelFormatInfo* m_pPixelFormatInfo;
 };

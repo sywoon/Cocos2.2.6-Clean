@@ -161,6 +161,10 @@
 
 
 
+#define kCCRepeatForever (UINT_MAX -1)
+
+
+
 //=========================================
 // opengl
 //
