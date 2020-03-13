@@ -83,10 +83,7 @@ void HelloWorld::draw(void)
 
 	ccDrawCubicBezier(Point(400, 400), ccp(400 + 30, 400 + 50), ccp(400 + 60, 400 - 50), ccp(500, 300), 100);
 
-
-	CHECK_GL_ERROR_DEBUG();
-
-	
+	//CHECK_GL_ERROR_DEBUG();
 }
 
 

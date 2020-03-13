@@ -26,7 +26,7 @@ class EGLView;
 class KeypadDispatcher;
 class TouchDispatcher;
 class Accelerometer;
-class CCScheduler;
+class Scheduler;
 class Scene;
 
 class CC_DLL Director : public Object, public ClassInfo
@@ -96,7 +96,7 @@ protected:
 	CC_PROPERTY(KeypadDispatcher*, _pKeypadDispatcher, KeypadDispatcher);
 	CC_PROPERTY(TouchDispatcher*, _pTouchDispatcher, TouchDispatcher);
 	CC_PROPERTY(Accelerometer*, _pAccelerometer, Accelerometer);
-	CC_PROPERTY(CCScheduler*, _pScheduler, Scheduler);
+	CC_PROPERTY(Scheduler*, _pScheduler, Scheduler);
 
 
 protected:

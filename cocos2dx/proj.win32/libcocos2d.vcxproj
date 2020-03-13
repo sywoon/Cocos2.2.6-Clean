@@ -96,8 +96,10 @@
     </ClCompile>
     <ClCompile Include="..\keypad\KeypadDispatcher.cpp" />
     <ClCompile Include="..\keypad\KeypadHandler.cpp" />
+    <ClCompile Include="..\nodes\base_nodes\AtlasNode.cpp" />
     <ClCompile Include="..\nodes\base_nodes\GLBufferedNode.cpp" />
     <ClCompile Include="..\nodes\base_nodes\Node.cpp" />
+    <ClCompile Include="..\nodes\base_nodes\NodeRGBA.cpp" />
     <ClCompile Include="..\nodes\draw_nodes\DrawNode.cpp" />
     <ClCompile Include="..\nodes\draw_nodes\DrawNodePrimitives.cpp" />
     <ClCompile Include="..\nodes\layer\Layer.cpp" />
@@ -126,6 +128,7 @@
     <ClCompile Include="..\shaders\ShaderCache.cpp" />
     <ClCompile Include="..\shaders\ShaderFiles.cpp" />
     <ClCompile Include="..\textures\Texture2D.cpp" />
+    <ClCompile Include="..\textures\TextureAtlas.cpp" />
     <ClCompile Include="..\textures\TextureCache.cpp" />
     <ClCompile Include="..\textures\TextureEtc.cpp" />
     <ClCompile Include="..\textures\TexturePvr.cpp" />
@@ -184,8 +187,10 @@
     <ClInclude Include="..\keypad\KeypadDelegate.h" />
     <ClInclude Include="..\keypad\KeypadDispatcher.h" />
     <ClInclude Include="..\keypad\KeypadHandler.h" />
+    <ClInclude Include="..\nodes\base_nodes\AtlasNode.h" />
     <ClInclude Include="..\nodes\base_nodes\GLBufferedNode.h" />
     <ClInclude Include="..\nodes\base_nodes\Node.h" />
+    <ClInclude Include="..\nodes\base_nodes\NodeRGBA.h" />
     <ClInclude Include="..\nodes\draw_nodes\DrawNode.h" />
     <ClInclude Include="..\nodes\draw_nodes\DrawNodePrimitives.h" />
     <ClInclude Include="..\nodes\layer\Layer.h" />
@@ -232,6 +237,7 @@
     <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_frag.h" />
     <ClInclude Include="..\shaders\shader_files\ccShader_Position_uColor_vert.h" />
     <ClInclude Include="..\textures\Texture2D.h" />
+    <ClInclude Include="..\textures\TextureAtlas.h" />
     <ClInclude Include="..\textures\TextureCache.h" />
     <ClInclude Include="..\textures\TextureEtc.h" />
     <ClInclude Include="..\textures\TexturePvr.h" />

@@ -615,6 +615,20 @@ unsigned int Texture2D::bitsPerPixelForFormat()
 	return this->bitsPerPixelForFormat(_ePixelFormat);
 }
 
+bool Texture2D::hasPremultipliedAlpha()
+{
+	return _bHasPremultipliedAlpha;
+}
+
+bool Texture2D::hasMipmaps()
+{
+	return _bHasMipmaps;
+}
+
+const Size& Texture2D::getContentSizeInPixels()
+{
+	return _tContentSize;
+}
 
 
 

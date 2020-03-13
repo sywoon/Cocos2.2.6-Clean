@@ -47,11 +47,11 @@ protected:
 
 
 
-class CC_DLL CCScheduler : public Object
+class CC_DLL Scheduler : public Object
 {
 public:
-    CCScheduler();
-    ~CCScheduler(void);
+    Scheduler();
+    ~Scheduler(void);
 
 public:
     void         update(float dt);

@@ -218,6 +218,15 @@
       <Filter>textures</Filter>
     </ClCompile>
     <ClCompile Include="..\Scheduler.cpp" />
+    <ClCompile Include="..\textures\TextureAtlas.cpp">
+      <Filter>textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\base_nodes\AtlasNode.cpp">
+      <Filter>nodes\base_nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\nodes\base_nodes\NodeRGBA.cpp">
+      <Filter>nodes\base_nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -527,6 +536,15 @@
       <Filter>textures</Filter>
     </ClInclude>
     <ClInclude Include="..\Scheduler.h" />
+    <ClInclude Include="..\textures\TextureAtlas.h">
+      <Filter>textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\base_nodes\AtlasNode.h">
+      <Filter>nodes\base_nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nodes\base_nodes\NodeRGBA.h">
+      <Filter>nodes\base_nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

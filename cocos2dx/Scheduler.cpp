@@ -177,7 +177,7 @@ typedef struct _hashSelectorEntry
 
 
 
-CCScheduler::CCScheduler(void)
+Scheduler::Scheduler(void)
 	: m_fTimeScale(1.0f)
 
 	, m_pUpdatesNegList(NULL)
@@ -193,13 +193,13 @@ CCScheduler::CCScheduler(void)
 
 }
 
-CCScheduler::~CCScheduler(void)
+Scheduler::~Scheduler(void)
 {
 	unscheduleAll();
 }
 
 
-void CCScheduler::update(float dt)
+void Scheduler::update(float dt)
 {
 	m_bUpdateHashLocked = true;
 
@@ -310,7 +310,7 @@ void CCScheduler::update(float dt)
 }
 
 
-void CCScheduler::scheduleUpdateForTarget(Object* pTarget, int nPriority, bool bPaused)
+void Scheduler::scheduleUpdateForTarget(Object* pTarget, int nPriority, bool bPaused)
 {
 
 	tHashUpdateEntry* pHashElement = NULL;
@@ -342,13 +342,13 @@ void CCScheduler::scheduleUpdateForTarget(Object* pTarget, int nPriority, bool b
 	}
 }
 
-void CCScheduler::scheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget, float fInterval, bool bPaused)
+void Scheduler::scheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget, float fInterval, bool bPaused)
 {
 	this->scheduleSelector(pfnSelector, pTarget, fInterval, kCCRepeatForever, 0.0f, bPaused);
 }
 
 
-void CCScheduler::scheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget, float fInterval, unsigned int repeat, float delay, bool bPaused)
+void Scheduler::scheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget, float fInterval, unsigned int repeat, float delay, bool bPaused)
 {
 	CCAssert(pfnSelector, "Argument selector must be non-NULL");
 	CCAssert(pTarget, "Argument target must be non-NULL");
@@ -404,7 +404,7 @@ void CCScheduler::scheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget, fl
 
 
 
-void CCScheduler::appendIn(_listEntry** ppList, Object* pTarget, bool bPaused)
+void Scheduler::appendIn(_listEntry** ppList, Object* pTarget, bool bPaused)
 {
 	tListEntry* pListElement = (tListEntry*)malloc(sizeof(*pListElement));
 
@@ -424,7 +424,7 @@ void CCScheduler::appendIn(_listEntry** ppList, Object* pTarget, bool bPaused)
 }
 
 
-void CCScheduler::priorityIn(tListEntry** ppList, Object* pTarget, int nPriority, bool bPaused)
+void Scheduler::priorityIn(tListEntry** ppList, Object* pTarget, int nPriority, bool bPaused)
 {
 	tListEntry* pListElement = (tListEntry*)malloc(sizeof(*pListElement));
 
@@ -481,7 +481,7 @@ void CCScheduler::priorityIn(tListEntry** ppList, Object* pTarget, int nPriority
 	HASH_ADD_INT(m_pHashForUpdates, target, pHashElement);
 }
 
-void CCScheduler::unscheduleUpdateForTarget(const Object* pTarget)
+void Scheduler::unscheduleUpdateForTarget(const Object* pTarget)
 {
 	if (pTarget == NULL)
 	{
@@ -504,7 +504,7 @@ void CCScheduler::unscheduleUpdateForTarget(const Object* pTarget)
 }
 
 
-void CCScheduler::removeHashElement(_hashSelectorEntry* pElement)
+void Scheduler::removeHashElement(_hashSelectorEntry* pElement)
 {
 	Object* target = pElement->target;
 
@@ -520,7 +520,7 @@ void CCScheduler::removeHashElement(_hashSelectorEntry* pElement)
 }
 
 
-void CCScheduler::removeUpdateFromHash(struct _listEntry* entry)
+void Scheduler::removeUpdateFromHash(struct _listEntry* entry)
 {
 	tHashUpdateEntry* element = NULL;
 
@@ -543,7 +543,7 @@ void CCScheduler::removeUpdateFromHash(struct _listEntry* entry)
 }
 
 
-void CCScheduler::unscheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget)
+void Scheduler::unscheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget)
 {
 	// explicity handle nil arguments when removing an object
 	if (pTarget == 0 || pfnSelector == 0)
@@ -598,7 +598,7 @@ void CCScheduler::unscheduleSelector(SEL_SCHEDULE pfnSelector, Object* pTarget)
 }
 
 
-void CCScheduler::unscheduleAllWithMinPriority(int nMinPriority)
+void Scheduler::unscheduleAllWithMinPriority(int nMinPriority)
 {
 	// Custom Selectors
 	tHashTimerEntry* pElement = NULL;
@@ -643,7 +643,7 @@ void CCScheduler::unscheduleAllWithMinPriority(int nMinPriority)
 }
 
 
-void CCScheduler::unscheduleAllForTarget(Object* pTarget)
+void Scheduler::unscheduleAllForTarget(Object* pTarget)
 {
 	if (pTarget == NULL)
 	{
@@ -676,7 +676,7 @@ void CCScheduler::unscheduleAllForTarget(Object* pTarget)
 	unscheduleUpdateForTarget(pTarget);
 }
 
-void CCScheduler::unscheduleAll(void)
+void Scheduler::unscheduleAll(void)
 {
 	unscheduleAllWithMinPriority(kCCPrioritySystem);
 }
@@ -684,7 +684,7 @@ void CCScheduler::unscheduleAll(void)
 
 
 
-void CCScheduler::resumeTarget(Object *pTarget)
+void Scheduler::resumeTarget(Object *pTarget)
 {
     CCAssert(pTarget != NULL, "");
 
@@ -706,7 +706,7 @@ void CCScheduler::resumeTarget(Object *pTarget)
     }
 }
 
-void CCScheduler::pauseTarget(Object *pTarget)
+void Scheduler::pauseTarget(Object *pTarget)
 {
     CCAssert(pTarget != NULL, "");
 
@@ -728,7 +728,7 @@ void CCScheduler::pauseTarget(Object *pTarget)
     }
 }
 
-bool CCScheduler::isTargetPaused(Object *pTarget)
+bool Scheduler::isTargetPaused(Object *pTarget)
 {
     CCAssert( pTarget != NULL, "target must be non nil" );
 
@@ -751,12 +751,12 @@ bool CCScheduler::isTargetPaused(Object *pTarget)
     return false;  // should never get here
 }
 
-Set* CCScheduler::pauseAllTargets()
+Set* Scheduler::pauseAllTargets()
 {
     return pauseAllTargetsWithMinPriority(kCCPrioritySystem);
 }
 
-Set* CCScheduler::pauseAllTargetsWithMinPriority(int nMinPriority)
+Set* Scheduler::pauseAllTargetsWithMinPriority(int nMinPriority)
 {
 	Set* idsWithSelectors = new Set();// setWithCapacity:50];
     idsWithSelectors->autorelease();
@@ -804,7 +804,7 @@ Set* CCScheduler::pauseAllTargetsWithMinPriority(int nMinPriority)
     return idsWithSelectors;
 }
 
-void CCScheduler::resumeTargets(Set* pTargetsToResume)
+void Scheduler::resumeTargets(Set* pTargetsToResume)
 {
     SetIterator iter;
     for (iter = pTargetsToResume->begin(); iter != pTargetsToResume->end(); ++iter)

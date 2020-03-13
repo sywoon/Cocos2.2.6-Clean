@@ -77,6 +77,11 @@
 #include "Director.h"
 
 
+/////////////////////////
+// opengl
+//
+#include "shaders/ShaderCache.h"
+
 
 
 

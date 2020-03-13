@@ -75,7 +75,7 @@ bool Director::init(void)
 	_pTouchDispatcher = new TouchDispatcher();
 	_pAccelerometer = new Accelerometer();
 
-	_pScheduler = new CCScheduler();
+	_pScheduler = new Scheduler();
 	
 	PoolManager::sharedPoolManager()->push();
 
@@ -497,7 +497,7 @@ Accelerometer* Director::getAccelerometer()
 	return _pAccelerometer;
 }
 
-void Director::setScheduler(CCScheduler* pScheduler)
+void Director::setScheduler(Scheduler* pScheduler)
 {
 	if (_pScheduler != pScheduler)
 	{
@@ -507,7 +507,7 @@ void Director::setScheduler(CCScheduler* pScheduler)
 	}
 }
 
-CCScheduler* Director::getScheduler()
+Scheduler* Director::getScheduler()
 {
 	return _pScheduler;
 }

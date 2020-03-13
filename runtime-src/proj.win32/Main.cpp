@@ -9,6 +9,7 @@
 USING_NS_CC;
 
 
+
 int APIENTRY WinMain(
 	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -19,6 +20,8 @@ int APIENTRY WinMain(
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
+	
+
 #ifdef USE_WIN32_CONSOLE
 	AllocConsole();
 	freopen("CONIN$", "r", stdin);
@@ -26,6 +29,7 @@ int APIENTRY WinMain(
 	freopen("CONOUT$", "w", stderr);
 #endif
 
+	
 	AppDelegate app;
 
 	EGLView* eglView = EGLView::sharedOpenGLView();
@@ -38,3 +42,4 @@ int APIENTRY WinMain(
 	std::cout << "hello" << std::endl;
 	return app.run();
 }
+

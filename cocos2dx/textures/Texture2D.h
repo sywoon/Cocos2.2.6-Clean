@@ -83,6 +83,10 @@ public:
 	unsigned int bitsPerPixelForFormat();
 	unsigned int bitsPerPixelForFormat(Texture2DPixelFormat format);
 
+	bool		hasPremultipliedAlpha();
+	bool		hasMipmaps();
+
+	const Size& getContentSizeInPixels();
 
 public:
 	static void PVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied);
