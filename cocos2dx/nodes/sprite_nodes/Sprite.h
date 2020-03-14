@@ -72,6 +72,7 @@ public:
 
 public:
 	virtual void setPosition(const Point& pos);
+	virtual void setPosition(float x, float y);
 
 	virtual void setScale(float fScale);
 	virtual void setScaleX(float fScaleX);
