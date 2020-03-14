@@ -55,6 +55,11 @@ bool HelloWorld::init()
 	ccColor4F borderColor = { 0.3f, 0.5f, 0.0f, 1.0f };
 	node->drawPolygon(verts, count, fillColor, 10, borderColor);
 
+
+	Sprite* sprite = Sprite::create("HelloWorld.png");
+	node->setPosition(size.width / 2, size.height / 2);
+	this->addChild(sprite);
+
 	return this->initWithColor(ccc4(100, 100, 0, 255), ccc4(0, 100, 255, 255), ccp(0, 1));
 }
 

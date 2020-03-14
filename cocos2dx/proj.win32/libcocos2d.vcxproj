@@ -108,6 +108,7 @@
     <ClCompile Include="..\nodes\layer\LayerMultiplex.cpp" />
     <ClCompile Include="..\nodes\layer\LayerRBGA.cpp" />
     <ClCompile Include="..\nodes\scene\Scene.cpp" />
+    <ClCompile Include="..\nodes\sprite_nodes\Sprite.cpp" />
     <ClCompile Include="..\platform\EGLViewProtocol.cpp" />
     <ClCompile Include="..\platform\FileUtils.cpp" />
     <ClCompile Include="..\platform\file_xml\DictMaker.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="..\nodes\layer\LayerMultiplex.h" />
     <ClInclude Include="..\nodes\layer\LayerRBGA.h" />
     <ClInclude Include="..\nodes\scene\Scene.h" />
+    <ClInclude Include="..\nodes\sprite_nodes\Sprite.h" />
     <ClInclude Include="..\platform\ApplicationProtocol.h" />
     <ClInclude Include="..\platform\FileUtils.h" />
     <ClInclude Include="..\platform\file_xml\DictMaker.h" />

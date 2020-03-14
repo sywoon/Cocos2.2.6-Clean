@@ -66,6 +66,12 @@
 #include "nodes/layer/LayerMultiplex.h"
 
 /////////////////////////
+// sprite
+//
+#include "nodes/sprite_nodes/Sprite.h"
+
+
+/////////////////////////
 // scene
 //
 #include "nodes/scene/Scene.h"

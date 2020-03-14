@@ -227,6 +227,9 @@
     <ClCompile Include="..\nodes\base_nodes\NodeRGBA.cpp">
       <Filter>nodes\base_nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\nodes\sprite_nodes\Sprite.cpp">
+      <Filter>nodes\sprite_nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d.h" />
@@ -545,6 +548,9 @@
     <ClInclude Include="..\nodes\base_nodes\NodeRGBA.h">
       <Filter>nodes\base_nodes</Filter>
     </ClInclude>
+    <ClInclude Include="..\nodes\sprite_nodes\Sprite.h">
+      <Filter>nodes\sprite_nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -612,6 +618,9 @@
     </Filter>
     <Filter Include="textures">
       <UniqueIdentifier>{e4ce24c5-90a2-47ad-828f-8b672099932d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nodes\sprite_nodes">
+      <UniqueIdentifier>{1daa9395-28a7-41d3-abd9-dbcc796b68bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
