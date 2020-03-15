@@ -7,6 +7,7 @@ NS_CC_BEGIN
 
 static const int kMaxLogLen = 16 * 1024;
 
+void CC_DLL CCConsoleTextAttribute(int flag);
 
 void CC_DLL CCLog(const char* pszFormat, ...) CC_FORMAT_PRINTF(1, 2);
 

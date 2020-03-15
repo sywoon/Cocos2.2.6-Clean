@@ -39,6 +39,11 @@ int APIENTRY WinMain(
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 #endif
+
+	CCLOG("abc");
+	CCLOGERROR("abc");
+	CCLOGINFO("abc");
+	CCLOGWARN("abc");
 	
 	AppDelegate app;
 

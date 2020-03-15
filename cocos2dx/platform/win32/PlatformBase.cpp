@@ -25,6 +25,17 @@ NS_CC_BEGIN
 
 #define MAX_LEN         (cocos2d::kMaxLogLen + 1)
 
+
+// FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED
+void CCConsoleTextAttribute(int flag)
+{
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hOut)
+	{
+		SetConsoleTextAttribute(hOut, flag);
+	}
+}
+
 void CCLog(const char* pszFormat, ...)
 {
 	char szBuf[MAX_LEN];

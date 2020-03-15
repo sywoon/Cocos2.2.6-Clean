@@ -64,7 +64,7 @@
 #endif  // CCAssert
 
 #define __CCLOGWITHFUNCTION(s, ...) \
-    CCLog("%s : %s",__FUNCTION__, String::createWithFormat(s, ##__VA_ARGS__)->getCString())
+    CCLog("[%s:%s:%d] %s",__FILE__, __FUNCTION__, __LINE__, String::createWithFormat(s, ##__VA_ARGS__)->getCString())
 
 // cocos2d debug
 #if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0
@@ -74,10 +74,14 @@
 #define CCLOGWARN(...)   do {} while (0)
 
 #elif COCOS2D_DEBUG == 1
-#define CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)
-#define CCLOGERROR(format,...)  cocos2d::CCLog(format, ##__VA_ARGS__)
-#define CCLOGINFO(format,...)   do {} while (0)
-#define CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
+#define CCLOG(format, ...)      cocos2d::CCConsoleTextAttribute(FOREGROUND_BLUE|FOREGROUND_GREEN|FOREGROUND_RED); \
+                                cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGERROR(format,...)  cocos2d::CCConsoleTextAttribute(FOREGROUND_INTENSITY|FOREGROUND_RED); \
+                                cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGINFO(format,...)   cocos2d::CCConsoleTextAttribute(FOREGROUND_BLUE|FOREGROUND_GREEN); \
+                                cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGWARN(...)          cocos2d::CCConsoleTextAttribute(FOREGROUND_RED|FOREGROUND_GREEN); \
+                                __CCLOGWITHFUNCTION(__VA_ARGS__)
 
 #elif COCOS2D_DEBUG > 1
 #define CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)
