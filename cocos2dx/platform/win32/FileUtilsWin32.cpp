@@ -32,6 +32,11 @@ bool FileUtilsWin32::init()
 	GetCurrentDirectory(sizeof(s_pszResourcePath), s_pszResourcePath);
 	_strDefaultResRootPath = s_pszResourcePath;
 
+	if (_strDefaultResRootPath[_strDefaultResRootPath.length() - 1] != '\\')
+	{
+		_strDefaultResRootPath.push_back('\\');
+	}
+
 	return FileUtils::init();
 }
 

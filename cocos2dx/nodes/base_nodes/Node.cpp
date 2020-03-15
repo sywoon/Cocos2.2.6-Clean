@@ -762,6 +762,7 @@ void Node::transform()
 	CGAffineToGL(&tmpAffine, transfrom4x4.mat);
 
 	// Update Z vertex manually
+	// 第四行第三个 对应[dx dy dz 1]
 	transfrom4x4.mat[14] = _fVertexZ;
 
 	kmGLMultMatrix(&transfrom4x4);

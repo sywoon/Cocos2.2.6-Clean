@@ -36,6 +36,8 @@ bool HelloWorld::init()
 
 	Sprite* sprite = Sprite::create("HelloWorld.png");
 	sprite->setPosition(size.width / 2, size.height / 2);
+	//sprite->setContentSize(SizeMake(300, 300));  改变位置 大小不变
+	sprite->setScale(1.5);
 	this->addChild(sprite);
 
 	DrawNode* node = DrawNode::create();

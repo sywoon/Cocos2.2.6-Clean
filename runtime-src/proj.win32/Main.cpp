@@ -19,16 +19,26 @@ int APIENTRY WinMain(
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
-
 	
 
 #ifdef USE_WIN32_CONSOLE
-	AllocConsole();
+	if (!AttachConsole(ATTACH_PARENT_PROCESS))
+	{
+		AllocConsole();
+
+		SetConsoleCtrlHandler(NULL, true);
+		HWND hwnd = ::GetConsoleWindow();
+		if (hwnd != NULL)
+		{
+			HMENU hMenu = ::GetSystemMenu(hwnd, FALSE);
+			if (hMenu != NULL) DeleteMenu(hMenu, SC_CLOSE, MF_BYCOMMAND);
+		}
+	}
+	
 	freopen("CONIN$", "r", stdin);
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 #endif
-
 	
 	AppDelegate app;
 
@@ -39,7 +49,16 @@ int APIENTRY WinMain(
 	// So we need to invoke 'setFrameZoomFactor'(only valid on desktop(win32, mac, linux)) to make the window smaller.
 	eglView->setFrameZoomFactor(0.4f);
 
-	std::cout << "hello" << std::endl;
-	return app.run();
+	int rtn = app.run();
+
+#ifdef USE_WIN32_CONSOLE
+	fclose(stdin);
+	fclose(stdout);
+	fclose(stderr);
+
+	FreeConsole();
+#endif
+
+	return rtn;
 }
 
