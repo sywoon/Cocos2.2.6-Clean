@@ -23,6 +23,8 @@ Application::Application()
 
 	CC_ASSERT(!s_pSharedApplication);
 	s_pSharedApplication = this;
+
+	setAnimationInterval(1.0f/60);
 }
 
 Application::~Application()
@@ -124,14 +126,16 @@ int Application::run()
 		{
 			QueryPerformanceCounter(&nNow);
 
-			if (nNow.QuadPart - nLast.QuadPart > _nAnimationInterval.QuadPart)
+			LONGLONG diff = (nNow.QuadPart - nLast.QuadPart) - _nAnimationInterval.QuadPart;
+			if (diff > 0)
 			{
 				nLast.QuadPart = nNow.QuadPart;
 				Director::sharedDirector()->mainLoop();
 			}
 			else
 			{
-				Sleep(0);
+				float wait = -1000.0f * diff / nFreq.QuadPart;
+				Sleep(wait);
 			}
 			continue;
 		}

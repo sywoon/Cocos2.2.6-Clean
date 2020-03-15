@@ -2,6 +2,8 @@
 #include "cocos2d.h"
 
 
+
+
 class AppDelegate : public cocos2d::Application
 {
 public:

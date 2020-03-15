@@ -3,10 +3,14 @@
 #include "AppDelegate.h"
 #include "EGLView.h"
 
+
 #define WIN32_LEAN_AND_MEAN
 #define USE_WIN32_CONSOLE
 
+
+
 USING_NS_CC;
+
 
 
 
@@ -20,6 +24,7 @@ int APIENTRY WinMain(
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	
+
 
 #ifdef USE_WIN32_CONSOLE
 	if (!AttachConsole(ATTACH_PARENT_PROCESS))
@@ -44,6 +49,7 @@ int APIENTRY WinMain(
 	CCLOGERROR("abc");
 	CCLOGINFO("abc");
 	CCLOGWARN("abc");
+
 	
 	AppDelegate app;
 
