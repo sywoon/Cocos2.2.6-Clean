@@ -45,10 +45,10 @@ int APIENTRY WinMain(
 	freopen("CONOUT$", "w", stderr);
 #endif
 
-	CCLOG("abc");
-	CCLOGERROR("abc");
-	CCLOGINFO("abc");
-	CCLOGWARN("abc");
+	CCLOG("你好");
+	CCLOGERROR("你好");
+	CCLOGINFO("你好");
+	CCLOGWARN("你好");
 
 	
 	AppDelegate app;

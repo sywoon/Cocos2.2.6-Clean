@@ -38,23 +38,13 @@ void AutoreleasePool::clear()
 {
 	if (_pManagedObjectArray->count() > 0)
 	{
-		//AutoreleasePool* pReleasePool;
-#ifdef _DEBUG
-		int nIndex = _pManagedObjectArray->count() - 1;
-#endif
-
 		Object* pObj = NULL;
 		ARRAY_FOREACH_REVERSE(_pManagedObjectArray, pObj)
 		{
 			if (!pObj)
 				break;
 
-			--(pObj->_uAutoReleaseCount);
-			//(*it)->release();
-			//delete (*it);
-#ifdef _DEBUG
-			nIndex--;
-#endif
+			pObj->_uAutoReleaseCount = 0;
 		}
 
 		_pManagedObjectArray->removeAllObjects();

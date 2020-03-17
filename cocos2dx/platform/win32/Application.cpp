@@ -134,8 +134,8 @@ int Application::run()
 			}
 			else
 			{
-				float wait = -1000.0f * diff / nFreq.QuadPart;
-				Sleep(wait);
+				//float wait = -1000.0f * diff / nFreq.QuadPart;
+				Sleep(0);
 			}
 			continue;
 		}
