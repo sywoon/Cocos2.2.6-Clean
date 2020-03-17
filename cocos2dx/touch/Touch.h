@@ -20,7 +20,7 @@ class CC_DLL Touch : public Object
 public:
 	Touch();
 
-	// ´°¿Ú´«ÈëµÄÆÁÄ»×ø±ê
+	// çª—å£ä¼ å…¥çš„å±å¹•åæ ‡
 	void	setTouchInfo(int id, float x, float y);
 	int		getID() const;
 
@@ -28,9 +28,9 @@ public:
 	Point	getPreviousLocation() const;
 	Point	getStartLocation() const;
 
-	Point	getDelta() const;   //µÃµ½Éè¼Æ×ø±êÏµÏÂµÄ¾àÀë
+	Point	getDelta() const;   //å¾—åˆ°è®¾è®¡åæ ‡ç³»ä¸‹çš„è·ç¦»
 
-	// ÆÁÄ»×ø±êÏµÏÂµÄÔ­Éú×ø±ê
+	// å±å¹•åæ ‡ç³»ä¸‹çš„åŸç”Ÿåæ ‡
 	Point	getLocationInView() const;
 	Point	getPreviousLocationInView() const;
 	Point	getStartLocationInView() const;
@@ -39,9 +39,9 @@ public:
 private:
 	int		_nId;
 	bool	_startPointCaptured;	
-	Point	_startPoint;			// µÚÒ»´Îtouch
-	Point	_point;				// µ±Ç°
-	Point	_prevPoint;			// ÉÏÒ»¸ö
+	Point	_startPoint;			// ç¬¬ä¸€æ¬¡touch
+	Point	_point;				// å½“å‰
+	Point	_prevPoint;			// ä¸Šä¸€ä¸ª
 };
 
 

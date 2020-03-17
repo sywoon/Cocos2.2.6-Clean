@@ -281,7 +281,7 @@ void TextureAtlas::insertQuad(ccV3F_C4B_T2F_Quad* quad, unsigned int index)
 	// index can be > totalQuads
 	unsigned int remaining = (m_uTotalQuads - 1) - index;
 
-	// last object doesn't need to be moved  ?为什么最后一个元素不要了
+	// last object doesn't need to be moved  ?涓轰粈涔堟渶鍚庝竴涓厓绱犱笉瑕佷簡
 	if (remaining > 0)
 	{
 		// texture coordinates

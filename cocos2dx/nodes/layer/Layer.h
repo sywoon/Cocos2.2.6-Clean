@@ -50,7 +50,7 @@ public:
 
 	virtual void	registerWithTouchDispatcher(void);
 
-	// ¶¼Ã»ÊµÏÖ  ¸ø¼Ì³ÐÀà×¼±¸µÄ
+	// éƒ½æ²¡å®žçŽ°  ç»™ç»§æ‰¿ç±»å‡†å¤‡çš„
 	virtual bool	touchBegan(Touch* pTouch, TouchEvent* pEvent);
 	virtual void	touchMoved(Touch* pTouch, TouchEvent* pEvent);
 	virtual void	touchEnded(Touch* pTouch, TouchEvent* pEvent);

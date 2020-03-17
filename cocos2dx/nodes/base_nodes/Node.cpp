@@ -528,7 +528,7 @@ void Node::setRotationY(float fRotationY)
 
 
 ////////////////////////////////
-// skew ÇĞ±ä(Å¤Çú)
+// skew åˆ‡å˜(æ‰­æ›²)
 //
 
 
@@ -737,9 +737,9 @@ void Node::visit()
 		this->draw();
 	}
 
-	// ¸öÈËÀí½â£ºÒÑ¾­Ìí¼Ó½øÈë¶ÓÁĞÇÒÅÅ¹ıĞòµÄ ¸ÃÖµÒÑ¾­ÎŞÓÃ
-	// ²åÈëÅÅĞòÊÇÎÈ¶¨ÅÅĞò  ¿ÉÒÔ¼Ó¿ìÅÅĞòËÙ¶È£¿ 
-	// ÀíÓ¦·ÅÈësortAllChildren µ÷ÓÃ×Ó½ÚµãÖØÖÃÎª0 ÎªÁË¼ò»¯·ÅÈëÁËÃ¿¸ö½ÚµãµÄvisitÖĞ
+	// ä¸ªäººç†è§£ï¼šå·²ç»æ·»åŠ è¿›å…¥é˜Ÿåˆ—ä¸”æ’è¿‡åºçš„ è¯¥å€¼å·²ç»æ— ç”¨
+	// æ’å…¥æ’åºæ˜¯ç¨³å®šæ’åº  å¯ä»¥åŠ å¿«æ’åºé€Ÿåº¦ï¼Ÿ 
+	// ç†åº”æ”¾å…¥sortAllChildren è°ƒç”¨å­èŠ‚ç‚¹é‡ç½®ä¸º0 ä¸ºäº†ç®€åŒ–æ”¾å…¥äº†æ¯ä¸ªèŠ‚ç‚¹çš„visitä¸­
 	_uOrderOfArrival = 0;
 
 	kmGLPopMatrix();
@@ -762,7 +762,7 @@ void Node::transform()
 	CGAffineToGL(&tmpAffine, transfrom4x4.mat);
 
 	// Update Z vertex manually
-	// µÚËÄĞĞµÚÈı¸ö ¶ÔÓ¦[dx dy dz 1]
+	// ç¬¬å››è¡Œç¬¬ä¸‰ä¸ª å¯¹åº”[dx dy dz 1]
 	transfrom4x4.mat[14] = _fVertexZ;
 
 	kmGLMultMatrix(&transfrom4x4);
@@ -777,7 +777,7 @@ void Node::transformAncestors()
 	}
 }
 
-// Ìá¹©¸ø×ÓÀàÀ´ÊµÏÖ
+// æä¾›ç»™å­ç±»æ¥å®ç°
 void Node::updateTransform()
 {
 	// Recursively iterate over children

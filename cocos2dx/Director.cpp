@@ -348,7 +348,7 @@ void Director::calculateDeltaTime(void)
 	_fDeltaTime = (now.tv_sec - _pLastUpdate->tv_sec) + (now.tv_usec - _pLastUpdate->tv_usec) / 1000000.0f;
 	_fDeltaTime = MAX(0, _fDeltaTime);
 
-#ifdef DEBUG   //vsµ÷ÊÔÊ±Îªtrue
+#ifdef DEBUG   //vsè°ƒè¯•æ—¶ä¸ºtrue
 	// If we are debugging our code, prevent big delta time
 	if (_fDeltaTime > 0.2f)
 	{
@@ -415,11 +415,11 @@ static void GLToClipTransform(kmMat4* transformOut)
 	kmMat4Multiply(transformOut, &projection, &modelview);
 }
 
-// ÆÁÄ»ÏÂµÄ´¥Ãş×ø±ê ×ªÎª Éè¼Æ×ø±êÏÂµÄ openglÊÀ½ç×ø±ê(ModelÎªµ¥Î»¾ØÕó)/µ±Ç°Ä£ĞÍÏÂµÄ×ø±ê
+// å±å¹•ä¸‹çš„è§¦æ‘¸åæ ‡ è½¬ä¸º è®¾è®¡åæ ‡ä¸‹çš„ openglä¸–ç•Œåæ ‡(Modelä¸ºå•ä½çŸ©é˜µ)/å½“å‰æ¨¡å‹ä¸‹çš„åæ ‡
 Point Director::convertToGL(const Point& uiPoint)
 {
 	kmMat4 transform;
-	GLToClipTransform(&transform);  // mvp¾ØÕó
+	GLToClipTransform(&transform);  // mvpçŸ©é˜µ
 
 	kmMat4 transformInv;
 	kmMat4Inverse(&transformInv, &transform);
@@ -428,7 +428,7 @@ Point Director::convertToGL(const Point& uiPoint)
 	kmScalar zClip = transform.mat[14] / transform.mat[15];
 
 	Size glSize = _pobOpenGLView->getDesignResolutionSize();
-	// ÆÁÄ»×ø±ê ×ªµ½[-1,1]
+	// å±å¹•åæ ‡ è½¬åˆ°[-1,1]
 	kmVec3 clipCoord = { 2.0f * uiPoint.x / glSize.width - 1.0f, 1.0f - 2.0f * uiPoint.y / glSize.height, zClip };
 
 	kmVec3 glCoord;
@@ -437,7 +437,7 @@ Point Director::convertToGL(const Point& uiPoint)
 	return ccp(glCoord.x, glCoord.y);
 }
 
-// ÊÀ½ç×ø±êÏÂµÄµã(ModelÎªµ¥Î»¾ØÕó)/Ä£ĞÍÏÂµÄµã ×ª ui×ø±ê
+// ä¸–ç•Œåæ ‡ä¸‹çš„ç‚¹(Modelä¸ºå•ä½çŸ©é˜µ)/æ¨¡å‹ä¸‹çš„ç‚¹ è½¬ uiåæ ‡
 Point Director::convertToUI(const Point& glPoint)
 {
 	kmMat4 transform;

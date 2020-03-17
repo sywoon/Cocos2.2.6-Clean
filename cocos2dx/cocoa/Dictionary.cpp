@@ -165,7 +165,7 @@ void Dictionary::removeObjectForElememt(DictElement* pElement)
 
 void Dictionary::removeAllObjects()
 {
-	// 方式1
+	// 鏂瑰紡1
 	//DictElement* pElement, * tmp;
 	//HASH_ITER(hh, _pElements, pElement, tmp)
 	//{
@@ -174,7 +174,7 @@ void Dictionary::removeAllObjects()
 	//	CC_SAFE_DELETE(pElement);
 	//}
 
-	//方式2 简化版 功能相同
+	//鏂瑰紡2 绠�鍖栫増 鍔熻兘鐩稿悓
 	DictElement* pElement;
 	HASH_ITER_EX(_pElements, pElement)
 	{

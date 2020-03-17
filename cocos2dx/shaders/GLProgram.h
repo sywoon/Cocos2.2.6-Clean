@@ -38,7 +38,7 @@ enum {
 	kCCUniform_MAX,
 };
 
-// uniform names  shaderÖĞµÄÃû³Æ
+// uniform names  shaderä¸­çš„åç§°
 #define kCCUniformPMatrix_s				"CC_PMatrix"
 #define kCCUniformMVMatrix_s			"CC_MVMatrix"
 #define kCCUniformMVPMatrix_s			"CC_MVPMatrix"

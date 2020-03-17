@@ -31,7 +31,7 @@ protected:
 	// Whether or not the interpolation will be compressed in order to display all the colors 
 	// of the gradient both in canonical and non canonical vectors
 	// Default: YES
-	// Ñ¹Ëõ²åÖµ
+	// å‹ç¼©æ’å€¼
 	bool m_bCompressedInterpolation;
 
 protected:

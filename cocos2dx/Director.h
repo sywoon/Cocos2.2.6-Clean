@@ -43,7 +43,7 @@ public:
 	virtual void		mainLoop(void);
 	virtual void		end(void);
 
-	// ±£³ÖÖ÷Âß¼­ÔËĞĞ µ«²»ÔÙäÖÈ¾
+	// ä¿æŒä¸»é€»è¾‘è¿è¡Œ ä½†ä¸å†æ¸²æŸ“
 	virtual void		startAnimation(void);
 	virtual void		stopAnimation(void);
 	

@@ -15,7 +15,7 @@ class CC_DLL FileUtils : public ClassInfo
 {
 public:
 	virtual ~FileUtils();
-	static FileUtils*		sharedFileUtils();  //ÔÚ²»Í¬Æ½Ì¨µÄ×ÓÀàÖĞÊµÏÖ
+	static FileUtils*		sharedFileUtils();  //åœ¨ä¸åŒå¹³å°çš„å­ç±»ä¸­å®ç°
 	static void				purgeFileUtils();
 
 public:
@@ -45,9 +45,9 @@ public:
 	virtual std::string		fullPathForFilename(const char* pszFileName);
 	virtual void			purgeFullPathCached();
 
-	// ²»Í¬Æ½Ì¨»áÖØĞ´
+	// ä¸åŒå¹³å°ä¼šé‡å†™
 	virtual bool			isAbsolutePath(const std::string& strPath);
-	// ÓÃpszRelativeFileËùÔÚµÄÎÄ¼şÂ·¾¶ + pszFilename
+	// ç”¨pszRelativeFileæ‰€åœ¨çš„æ–‡ä»¶è·¯å¾„ + pszFilename
 	virtual const char*		fullPathFromRelativeFile(const char* pszFilename, const char* pszRelativeFile);
 
 

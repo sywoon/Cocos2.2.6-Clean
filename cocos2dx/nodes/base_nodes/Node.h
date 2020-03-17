@@ -36,7 +36,7 @@ public:
     virtual void        onExitTransitionDidStart();
     virtual void        onExit();
 
-    // ÊÍ·ÅactionºÍscheduler
+    // é‡Šæ”¾actionå’Œscheduler
     virtual void        cleanup(void);
 
 public:
@@ -125,15 +125,15 @@ public:
     virtual const Point& getAnchorPoint();
     virtual const Point& getAnchorPointInPoints();
 
-    // Ä¬ÈÏ½«ÃªµãËùÔÚÎ»ÖÃ×÷ÎªÍ¼Æ¬µÄÔ­µã ¹Òµ½¸¸½ÚµãÉÏ
-    // ÎªÁËCCLayer CCScene·½±ãÏÔÊ¾£¨ÕâÁ½¸öÄ¬ÈÏÎªtrue£© ºöÊÓÆäÃªµãÎ»ÖÃ ½«×óÏÂ½Ç×÷ÎªÔ­µã   
-    // Ö±½ÓÉèÖÃanchorpoint ²»ÊÇ¸üºÃ£¿
+    // é»˜è®¤å°†é”šç‚¹æ‰€åœ¨ä½ç½®ä½œä¸ºå›¾ç‰‡çš„åŸç‚¹ æŒ‚åˆ°çˆ¶èŠ‚ç‚¹ä¸Š
+    // ä¸ºäº†CCLayer CCSceneæ–¹ä¾¿æ˜¾ç¤ºï¼ˆè¿™ä¸¤ä¸ªé»˜è®¤ä¸ºtrueï¼‰ å¿½è§†å…¶é”šç‚¹ä½ç½® å°†å·¦ä¸‹è§’ä½œä¸ºåŸç‚¹   
+    // ç›´æ¥è®¾ç½®anchorpoint ä¸æ˜¯æ›´å¥½ï¼Ÿ
     virtual void        ignoreAnchorPointForPosition(bool ignore);
     virtual bool        isIgnoreAnchorPointForPosition();
 
 
 public:
-	// opengl z ·Åµ½äÖÈ¾Ïà¹ØÒ»Æğ
+	// opengl z æ”¾åˆ°æ¸²æŸ“ç›¸å…³ä¸€èµ·
 	virtual void        setVertexZ(float vertexZ);
 	virtual float       getVertexZ();
 
@@ -146,7 +146,7 @@ public:
     //Performs OpenGL view-matrix transformation based on position, scale, rotation and other attributes.
     void                transform(void);
 
-    /**  ×æÏÈÖØÖÃtransform
+    /**  ç¥–å…ˆé‡ç½®transform
      * Performs OpenGL view-matrix transformation of it's ancestors.
      * Generally the ancestors are already transformed, but in certain cases (eg: attaching a FBO)
      * It's necessary to transform the ancestors again.
@@ -159,7 +159,7 @@ public:
     virtual AffineTransform nodeToWorldTransform(void);
     virtual AffineTransform worldToNodeTransform(void);
 
-    // ¶îÍâÔÙ×îºó³ËÕâ¸ö¸½¼Ó¾ØÕó ÓÃÓÚÔÙ·Ç¸¸×Ó½á¹¹ÖĞ Ä£ÄâÕâÖÖĞ§¹û  BatchNodeÓÃµ½
+    // é¢å¤–å†æœ€åä¹˜è¿™ä¸ªé™„åŠ çŸ©é˜µ ç”¨äºå†éçˆ¶å­ç»“æ„ä¸­ æ¨¡æ‹Ÿè¿™ç§æ•ˆæœ  BatchNodeç”¨åˆ°
 	// note The additional transform will be concatenated at the end of nodeToParentTransform.
 	// It could be used to simulate `parent-child` relationship between two nodes(e.g.one is in BatchNode, another isn't).
     void                setAdditionalTransform(const AffineTransform& additionalTransform);
@@ -167,7 +167,7 @@ public:
 
     Point               convertToNodeSpace(const Point& worldPoint);
     Point               convertToWorldSpace(const Point& nodePoint);
-    Point               convertToNodeSpaceAR(const Point& worldPoint);  //ºöÂÔÃªµã ÒÔ×øÏÂÎªÖĞĞÄ
+    Point               convertToNodeSpaceAR(const Point& worldPoint);  //å¿½ç•¥é”šç‚¹ ä»¥åä¸‹ä¸ºä¸­å¿ƒ
     Point               convertToWorldSpaceAR(const Point& nodePoint);
     Point               convertTouchToNodeSpace(Touch* touch);
     Point               convertTouchToNodeSpaceAR(Touch* touch);
@@ -178,11 +178,11 @@ protected:
 
 
 protected:
-    bool            _bRunning;  //onEnterºó²ÅËãÔËĞĞ
+    bool            _bRunning;  //onEnteråæ‰ç®—è¿è¡Œ
     bool            _bVisible;
     int             _nTag;
     int             _nZOrder;
-    unsigned int    _uOrderOfArrival;  //µ±zorderÏàÍ¬Ê± °´Õâ¸öÅÅĞò Ò»°ãÎªÌí¼ÓµÄË³Ğò
+    unsigned int    _uOrderOfArrival;  //å½“zorderç›¸åŒæ—¶ æŒ‰è¿™ä¸ªæ’åº ä¸€èˆ¬ä¸ºæ·»åŠ çš„é¡ºåº
     float           _fVertexZ;     //OpenGL real Z vertex
 
 	Array*          _pChildren;
@@ -199,7 +199,7 @@ protected:
 	float           _fSkewX;
 	float           _fSkewY;
     
-	Point           _obAnchorPointInPoints;    //(100,100) »»Ëã³ÉÊµ¼ÊµÄÎ»ÖÃ
+	Point           _obAnchorPointInPoints;    //(100,100) æ¢ç®—æˆå®é™…çš„ä½ç½®
 	Point           _obAnchorPoint;            //(0.5, 0.5)
     bool            _bIgnoreAnchorPointForPosition;
 

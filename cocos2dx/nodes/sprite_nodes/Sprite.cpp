@@ -37,7 +37,7 @@ Sprite::~Sprite(void)
 
 
 //////////////////////////////////
-// ´´½¨ºÍ³õÊ¼»¯
+// åˆ›å»ºå’Œåˆå§‹åŒ–
 //
 
 Sprite* Sprite::create()
@@ -582,7 +582,7 @@ void Sprite::draw(void)
 
 
 //////////////////////////////////////////
-// batchnode ĞèÒª ÖØĞ´Ò»Ğ©»ù±¾º¯Êı
+// batchnode éœ€è¦ é‡å†™ä¸€äº›åŸºæœ¬å‡½æ•°
 //
 void Sprite::setDirtyRecursively(bool bValue)
 {

@@ -44,32 +44,32 @@ static inline float ccpCross(const Point& v1, const Point& v2)
     return v1.cross(v2);
 }
 
-// ´¹Ö±Ïß ÄæÊ±Õë90¶È
+// å‚ç›´çº¿ é€†æ—¶é’ˆ90åº¦
 static inline Point ccpPerp(const Point& v)
 {
     return v.getPerp();
 }
 
-// ´¹Ö±Ïß Ë³Ê±Õë90¶È
+// å‚ç›´çº¿ é¡ºæ—¶é’ˆ90åº¦
 static inline Point ccpRPerp(const Point& v)
 {
     return v.getRPerp();
 }
 
 
-// v1ÔÚv2µÄÍ¶Ó°
+// v1åœ¨v2çš„æŠ•å½±
 static inline Point ccpProject(const Point& v1, const Point& v2)
 {
     return v1.project(v2);
 }
 
-// ĞÂÏòÁ¿ ½Ç¶ÈÎªÁ½ÕßÖ®ºÍ ³¤¶ÈÎªÁ½ÕßÖ®»ı
+// æ–°å‘é‡ è§’åº¦ä¸ºä¸¤è€…ä¹‹å’Œ é•¿åº¦ä¸ºä¸¤è€…ä¹‹ç§¯
 static inline Point ccpRotate(const Point& v1, const Point& v2)
 {
     return v1.rotate(v2);
 }
 
-// ĞÂÏòÁ¿ ½Ç¶ÈÎªÁ½ÕßÖ®²î ³¤¶ÈÎªÁ½ÕßÖ®»ı
+// æ–°å‘é‡ è§’åº¦ä¸ºä¸¤è€…ä¹‹å·® é•¿åº¦ä¸ºä¸¤è€…ä¹‹ç§¯
 static inline Point ccpUnrotate(const Point& v1, const Point& v2)
 {
     return v1.unrotate(v2);

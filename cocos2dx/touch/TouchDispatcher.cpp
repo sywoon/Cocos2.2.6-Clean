@@ -90,7 +90,7 @@ void TouchDispatcher::addStandardDelegate(TouchDelegate* pDelegate, int nPriorit
 		_bToAdd = true;
 	}
 }
-// 按优先级排序 且不能有重复的delegate
+// 鎸変紭鍏堢骇鎺掑簭 涓斾笉鑳芥湁閲嶅鐨刣elegate
 void TouchDispatcher::forceAddHandler(TouchHandler* pHandler, Array* pArray)
 {
 	unsigned int u = 0;

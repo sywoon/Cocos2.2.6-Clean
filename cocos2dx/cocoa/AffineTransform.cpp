@@ -24,7 +24,7 @@ Point __PointApplyAffineTransform(const Point& point, const AffineTransform& t)
 	return p;
 }
 
-// ¶Ô´óĞ¡Ö»×öÏßĞÔ±ä»» ²»×öÆ½ÒÆ±ä»»
+// å¯¹å¤§å°åªåšçº¿æ€§å˜æ¢ ä¸åšå¹³ç§»å˜æ¢
 Size __SizeApplyAffineTransform(const Size& size, const AffineTransform& t)
 {
 	Size s;
@@ -42,8 +42,8 @@ AffineTransform AffineTransformMakeIdentity()
 extern const AffineTransform CCAffineTransformIdentity = AffineTransformMakeIdentity();
 
 
-// ¶ÔËÄ¸ö¶¥µã×ö±ä»»  µÃµ½µÄĞÂµã¸ù¾İ´óĞ¡ ÖØĞÂµÃµ½¾ØĞÎ
-// ÓÃÓÚÇó°üÎ§ºĞ
+// å¯¹å››ä¸ªé¡¶ç‚¹åšå˜æ¢  å¾—åˆ°çš„æ–°ç‚¹æ ¹æ®å¤§å° é‡æ–°å¾—åˆ°çŸ©å½¢
+// ç”¨äºæ±‚åŒ…å›´ç›’
 Rect RectApplyAffineTransform(const Rect& rect, const AffineTransform& anAffineTransform)
 {
 	float top = rect.getMinY();
@@ -66,7 +66,7 @@ Rect RectApplyAffineTransform(const Rect& rect, const AffineTransform& anAffineT
 
 
 
-/* Æ½ÒÆ¾ØÕó ×ó³ËÄ¿±ê¾ØÕó
+/* å¹³ç§»çŸ©é˜µ å·¦ä¹˜ç›®æ ‡çŸ©é˜µ
 |1  0  0| |a  b  0|
 |0  1  0| |c  d  0|
 |tx ty 1| |tx ty 1|
@@ -76,7 +76,7 @@ AffineTransform AffineTransformTranslate(const AffineTransform& t, float tx, flo
     return __AffineTransformMake(t.a, t.b, t.c, t.d, t.tx + t.a * tx + t.c * ty, t.ty + t.b * tx + t.d * ty);
 }
 
-/* Ëõ·Å¾ØÕó ×ó³ËÄ¿±ê¾ØÕó
+/* ç¼©æ”¾çŸ©é˜µ å·¦ä¹˜ç›®æ ‡çŸ©é˜µ
 |sx 0  0| |a  b  0|
 |0  sy 0| |c  d  0|
 |0  0  1| |tx ty 1|
@@ -86,7 +86,7 @@ AffineTransform AffineTransformScale(const AffineTransform& t, float sx, float s
     return __AffineTransformMake(t.a * sx, t.b * sx, t.c * sy, t.d * sy, t.tx, t.ty);
 }
 
-/* Ğı×ª¾ØÕó ×ó³ËÄ¿±ê¾ØÕó
+/* æ—‹è½¬çŸ©é˜µ å·¦ä¹˜ç›®æ ‡çŸ©é˜µ
 |cosa  sina 0| |a  b  0|
 |-sina cosa 0| |c  d  0|
 |  0    0   1| |tx ty 1|
@@ -106,7 +106,7 @@ AffineTransform AffineTransformRotate(const AffineTransform& t, float anAngle)
 
 /* Concatenate `t2' to `t1' and return the result:
      t' = t1 * t2 */
-/* ¾ØÕó t1×ó³Ët2
+/* çŸ©é˜µ t1å·¦ä¹˜t2
 |a  b  0| |a  b  0|
 |c  d  0| |c  d  0|
 |tx ty 1| |tx ty 1|
@@ -120,7 +120,7 @@ AffineTransform AffineTransformConcat(const AffineTransform& t1, const AffineTra
 }
 
 /* Return true if `t1' and `t2' are equal, false otherwise. */
-// ¸¡µãÊıÓÃÇ¿==£¿
+// æµ®ç‚¹æ•°ç”¨å¼º==ï¼Ÿ
 bool AffineTransformEqualToTransform(const AffineTransform& t1, const AffineTransform& t2)
 {
     //return (t1.a == t2.a && t1.b == t2.b && t1.c == t2.c && t1.d == t2.d && t1.tx == t2.tx && t1.ty == t2.ty);

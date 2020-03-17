@@ -38,10 +38,10 @@ static const ccColor3B ccYELLOW = { 255,255,0 };
 static const ccColor3B ccBLUE = { 0,0,255 };
 static const ccColor3B ccGREEN = { 0,255,0 };
 static const ccColor3B ccRED = { 255,0,0 };
-// Magenta  ÑóºìÉ«
+// Magenta  æ´‹çº¢è‰²
 static const ccColor3B ccMAGENTA = { 255,0,255 };
 static const ccColor3B ccBLACK = { 0,0,0 };
-// Orange  ³ÈÉ«
+// Orange  æ©™è‰²
 static const ccColor3B ccORANGE = { 255,127,0 };
 // Gray
 static const ccColor3B ccGRAY = { 166,166,166 };
@@ -160,7 +160,7 @@ static inline ccTex2F tex2(const float u, const float v)
 
 
 ////////////////////////////////
-// ¸÷ÖÖopengl¶¥µã½á¹¹ 
+// å„ç§openglé¡¶ç‚¹ç»“æ„ 
 //
 
 typedef struct _ccPointSprite
@@ -171,7 +171,7 @@ typedef struct _ccPointSprite
 } ccPointSprite;
 
 
-// Quadrilateral ËÄ±ßĞÎ
+// Quadrilateral å››è¾¹å½¢
 //!    A 2D Quad. 4 * 2 floats
 typedef struct _ccQuad2 {
 	ccVertex2F        tl;
@@ -334,7 +334,10 @@ typedef struct _ccFontShadow
 {
 public:
 	// shadow is not enabled by default
-	_ccFontShadow() : m_shadowEnabled(false) {}
+	_ccFontShadow() : m_shadowEnabled(false)
+					, m_shadowBlur(false)
+					, m_shadowOpacity(1.0f)
+					{}
 
 	bool   m_shadowEnabled;
 	// shadow x and y offset
@@ -349,7 +352,9 @@ public:
 typedef struct _ccFontStroke
 {
 public:
-	_ccFontStroke() : m_strokeEnabled(false) {}
+	_ccFontStroke() : m_strokeEnabled(false)
+					, m_strokeSize(1.0f)
+					{}
 
 	bool        m_strokeEnabled;
 	ccColor3B   m_strokeColor;

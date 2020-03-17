@@ -21,7 +21,7 @@ public:
 	/** Loads a config file. If the keys are already present, then they are going to be replaced. Otherwise the new keys are added. */
 	void		loadConfigFile(const char* filename);
 
-	/** gathers OpenGL / GPU information  在opengl初始化后调用 */
+	/** gathers OpenGL / GPU information  鍦╫pengl鍒濆鍖栧悗璋冪敤 */
 	void		gatherGPUInfo(void);
 
 

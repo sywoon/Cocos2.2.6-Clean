@@ -24,14 +24,14 @@ enum {
 class CC_DLL ZipUtils
 {
 public:
-	// 解压
+	// 瑙ｅ帇
 	// Inflates either zlib or gzip deflated memory
 	// The inflated memory is expected to be freed by the caller
 	// It will allocate 256k for the destination buffer. If it is not enough it will multiply the previous buffer size per 2, 
 	// until there is enough memory
 	static int  ccInflateMemory(unsigned char* in, unsigned int inLength, unsigned char** out);
 
-	// 额外多返回了解压后的空间大小
+	// 棰濆澶氳繑鍥炰簡瑙ｅ帇鍚庣殑绌洪棿澶у皬
 	static int  ccInflateMemoryWithHint(unsigned char* in, unsigned int inLength, unsigned char** out, unsigned int outLenghtHint);
 
 	static int  ccInflateGZipFile(const char* filename, unsigned char** out);

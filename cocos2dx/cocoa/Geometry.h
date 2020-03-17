@@ -72,7 +72,7 @@ public:
 		return x * other.y - y * other.x;
 	};
 
-	// Çó´¹Ö±Ïß ÄæÊ±Õë90¶È
+	// æ±‚å‚ç›´çº¿ é€†æ—¶é’ˆ90åº¦
 	// Calculates perpendicular of v, rotated 90 degrees counter-clockwise -- cross(v, perp(v)) >= 0
 	inline Point getPerp() const {
 		return Point(-y, x);

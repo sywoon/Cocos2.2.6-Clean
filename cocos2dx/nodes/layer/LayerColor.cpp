@@ -151,7 +151,7 @@ void LayerColor::setBlendFunc(ccBlendFunc var)
 	_tBlendFunc = var;
 }
 
-// ËÄ¸ö¶¥µãµÄÅÅĞò?
+// å››ä¸ªé¡¶ç‚¹çš„æ’åº?
 // 2   3
 // 0   1
 void LayerColor::setContentSize(const Size& size)

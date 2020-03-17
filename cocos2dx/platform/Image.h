@@ -58,7 +58,7 @@ public:
 	bool initWithImageData(void* pData, int nDataLen, EImageFormat eFmt = kFmtUnKnown,
 							int nWidth = 0, int nHeight = 0, int nBitsPerComponent = 8);
 	
-	// 不同平台实现
+	// 涓嶅悓骞冲彴瀹炵幇
 	bool initWithString(const char* pText, int nWidth = 0, int nHeight = 0, 
 						ETextAlign eAlignMask = kAlignCenter, const char* pFontName = 0, int nSize = 0);
 

@@ -575,7 +575,7 @@ unsigned int Texture2D::bitsPerPixelForFormat(Texture2DPixelFormat format)
 		break;
 	case kCCTexture2DPixelFormat_RGB888:
 		// It is 32 and not 24, since its internal representation uses 32 bits.
-		ret = 32;  //ÄÚ´æÖĞÊµ¼Ê´óĞ¡
+		ret = 32;  //å†…å­˜ä¸­å®é™…å¤§å°
 		break;
 	case kCCTexture2DPixelFormat_RGB565:
 		ret = 16;

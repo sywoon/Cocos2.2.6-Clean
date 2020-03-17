@@ -7,7 +7,7 @@ NS_CC_BEGIN
 
 
 //////////////////////////////////
-// Win32 DCµÄ·â×°  
+// Win32 DCçš„å°è£…  
 //
 static BitmapDC& sharedBitmapDC()
 {
@@ -97,7 +97,7 @@ bool BitmapDC::setFont(const char* pFontName/* = NULL*/, int nSize/* = 0*/)
 				fontName = &fontName[nFindPos + 1];
 
 				nFindPos = fontName.rfind(".");
-				fontName = fontName.substr(0, nFindPos); //´¿ttfÎÄ¼şÃû
+				fontName = fontName.substr(0, nFindPos); //çº¯ttfæ–‡ä»¶å
 			}
 			else
 			{
@@ -326,7 +326,7 @@ int BitmapDC::drawText(const char* pszText, SIZE& tSize, Image::ETextAlign eAlig
 
 
 //////////////////////////////////
-// Image½Ó¿ÚµÄÆ½Ì¨ÊµÏÖ
+// Imageæ¥å£çš„å¹³å°å®ç°
 //
 bool Image::initWithString(
 	const char* pText,

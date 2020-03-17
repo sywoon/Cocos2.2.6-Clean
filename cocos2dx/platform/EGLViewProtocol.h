@@ -36,13 +36,13 @@ public:
 	virtual void		setDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy);
 	virtual const Size& getDesignResolutionSize() const;
 
-	// Éè¼Æ·Ö±æÂÊÏÂµÄ´óĞ¡
+	// è®¾è®¡åˆ†è¾¨ç‡ä¸‹çš„å¤§å°
 	virtual Size		getVisibleSize() const;
 	virtual Point		getVisibleOrigin() const;
 
 	virtual bool		isScissorEnabled();
 
-	// Éè¼Æ·Ö±æÂÊÏÂµÄ´óĞ¡  Ô­µã»ùÓÚ_rectViewPort.origin
+	// è®¾è®¡åˆ†è¾¨ç‡ä¸‹çš„å¤§å°  åŸç‚¹åŸºäº_rectViewPort.origin
 	virtual void		setViewPortInPoints(float x, float y, float w, float h);
 	virtual void		setScissorInPoints(float x, float y, float w, float h);
 

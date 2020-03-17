@@ -25,11 +25,11 @@ public:
 	virtual void touchesCancelled(Set* pTouches, TouchEvent* pEvent) { CC_UNUSED_PARAM(pTouches); CC_UNUSED_PARAM(pEvent); }
 };
 
-// µ¥µã´¥Ãş
+// å•ç‚¹è§¦æ‘¸
 class CC_DLL OneTouchDelegate : public TouchDelegate
 {
 public:
-    // Return YES to claim the touch.   ·µ»Øtrue ÈÏÁìÕâ¸ötouch ºóÃæµÄmoveµÈÏûÏ¢¶¼»á´«¸øÕâ¸ö¶ÔÏó
+    // Return YES to claim the touch.   è¿”å›true è®¤é¢†è¿™ä¸ªtouch åé¢çš„moveç­‰æ¶ˆæ¯éƒ½ä¼šä¼ ç»™è¿™ä¸ªå¯¹è±¡
     virtual bool touchBegan(Touch* pTouch, TouchEvent* pEvent) { CC_UNUSED_PARAM(pTouch); CC_UNUSED_PARAM(pEvent); return false; };
     virtual void touchMoved(Touch* pTouch, TouchEvent* pEvent) { CC_UNUSED_PARAM(pTouch); CC_UNUSED_PARAM(pEvent); }
     virtual void touchEnded(Touch* pTouch, TouchEvent* pEvent) { CC_UNUSED_PARAM(pTouch); CC_UNUSED_PARAM(pEvent); }
@@ -37,7 +37,7 @@ public:
 };
 
 
-// ¶àµã´¥Ãş
+// å¤šç‚¹è§¦æ‘¸
 class CC_DLL MultiTouchDelegate : public TouchDelegate
 {
 public:

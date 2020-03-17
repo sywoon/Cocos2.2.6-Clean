@@ -15,7 +15,7 @@
     __arr__ >= __end__ && (((__object__) = *__arr__) != NULL/* || true*/);                                              \
     __arr__--)
 
-//¼ì²é´æ´¢µÄ¶ÔÏóÊÇ·ñ¶¼ÊÇÖ¸¶¨ÀàĞÍ
+//æ£€æŸ¥å­˜å‚¨çš„å¯¹è±¡æ˜¯å¦éƒ½æ˜¯æŒ‡å®šç±»å‹
 #if defined(COCOS2D_DEBUG) && (COCOS2D_DEBUG > 0)
 #define ARRAY_VERIFY_TYPE(__array__, __type__)                                                                 \
     do {                                                                                                         \
@@ -29,7 +29,7 @@
 #endif
 
 
-//±éÀú¶ÔÏó Ç¿ÖÆ×ª»»ÎªÖ¸¶¨ÀàĞÍ ²¢µ÷ÓÃÖ¸¶¨º¯ÊıÃû  ×¢ÒâÃ»²ÎÊı
+//éå†å¯¹è±¡ å¼ºåˆ¶è½¬æ¢ä¸ºæŒ‡å®šç±»å‹ å¹¶è°ƒç”¨æŒ‡å®šå‡½æ•°å  æ³¨æ„æ²¡å‚æ•°
 #define arrayMakeObjectsPerformSelector(pArray, func, elementType)    \
 do {                                                                  \
     if(pArray && pArray->count() > 0)                                 \
@@ -47,7 +47,7 @@ do {                                                                  \
 }                                                                     \
 while(false)
 
-//Í¬ÉÏ µ÷ÓÃº¯ÊıÀï ¶àÁËÒ»¸ö¸ø¶¨Object*²ÎÊı
+//åŒä¸Š è°ƒç”¨å‡½æ•°é‡Œ å¤šäº†ä¸€ä¸ªç»™å®šObject*å‚æ•°
 #define arrayMakeObjectsPerformSelectorWithObject(pArray, func, pObject, elementType)   \
 do {                                                                  \
     if(pArray && pArray->count() > 0)                                 \
@@ -85,7 +85,7 @@ public:
 	static Array* createWithArray(Array* otherArray);
 
 
-public:  //ÔÊĞí·Çcreate·½Ê½Ê¹ÓÃ ×Ô¼º¿ØÖÆÊÍ·Å
+public:  //å…è®¸écreateæ–¹å¼ä½¿ç”¨ è‡ªå·±æ§åˆ¶é‡Šæ”¾
 	Array();
 	Array(unsigned int capacity);
 	bool init();

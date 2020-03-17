@@ -75,7 +75,7 @@ class CC_DLL Dictionary : public Object
 public:
 	ACCEPT_VISITOR;
 
-	//µÚÒ»´Îµ÷ÓÃsetObject  ½«È·¶¨±¾×ÖµäkeyµÄĞÎÊ½
+	//ç¬¬ä¸€æ¬¡è°ƒç”¨setObject  å°†ç¡®å®šæœ¬å­—å…¸keyçš„å½¢å¼
 	enum CCDictType
 	{
 		kCCDictUnknown = 0,
@@ -91,7 +91,7 @@ public:
 	Dictionary();
 	~Dictionary();
 
-	// ÈôÒÑÓĞ ÔòÉ¾³ıºÍÊÍ·Å¾ÉµÄ ÓÃĞÂµÄÌæ»»
+	// è‹¥å·²æœ‰ åˆ™åˆ é™¤å’Œé‡Šæ”¾æ—§çš„ ç”¨æ–°çš„æ›¿æ¢
 	void		setObject(Object* pObject, const std::string& key);
 	void		setObject(Object* pObject, intptr_t key);
 
@@ -99,8 +99,8 @@ public:
 	void		removeObjectForKey(intptr_t key);
 	void		removeObjectsForKeys(Array* pKeyArray);
 
-	// ÕæÕıÉ¾³ıÔªËØµÄµØ·½ 
-	// ÏÈrelease DictElement ÖĞµÄObject È»ºódeleteÕâ¸öDictElement
+	// çœŸæ­£åˆ é™¤å…ƒç´ çš„åœ°æ–¹ 
+	// å…ˆrelease DictElement ä¸­çš„Object ç„¶ådeleteè¿™ä¸ªDictElement
 	void		removeObjectForElememt(DictElement* pElement);
 
 	void		removeAllObjects();
@@ -112,7 +112,7 @@ public:
 	Object*		objectForKey(intptr_t key);
 	Object*		randomObject();
 
-	// ÔªËØ±ØĞëÊÇString*
+	// å…ƒç´ å¿…é¡»æ˜¯String*
 	const String* valueForKey(const std::string& key);
 	const String* valueForKey(intptr_t key);
 
@@ -131,7 +131,7 @@ protected:
 
 
 private:
-	// retain Object ²¢¼ÓÈë_pElementsÖĞ
+	// retain Object å¹¶åŠ å…¥_pElementsä¸­
 	void		setObjectUnSafe(Object* pObject, const std::string& key);
 	void		setObjectUnSafe(Object* pObject, const intptr_t key);
 

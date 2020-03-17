@@ -33,7 +33,7 @@ public:
 
 	SetIterator		begin();
 	SetIterator		end();
-	Object*			anyObject();  //ºöÂÔË³Ğò È¡³öµÚÒ»¸ö¶ÔÏó  ±ÈÈçÈÎÒâ¶ÔÏó¶¼ÓĞÄ³¸ö¹¦ÄÜº¯Êı
+	Object*			anyObject();  //å¿½ç•¥é¡ºåº å–å‡ºç¬¬ä¸€ä¸ªå¯¹è±¡  æ¯”å¦‚ä»»æ„å¯¹è±¡éƒ½æœ‰æŸä¸ªåŠŸèƒ½å‡½æ•°
 
 protected:
 	virtual Object* cloneSelf();

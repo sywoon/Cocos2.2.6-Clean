@@ -17,7 +17,7 @@ NS_CC_BEGIN
     ((unsigned)(unsigned char)(va) << 24))
 
 
-// ÓÐµã´Ö±© Í¨¹ýºó×ºµÄ·½Ê½
+// æœ‰ç‚¹ç²—æš´ é€šè¿‡åŽç¼€çš„æ–¹å¼
 Image::EImageFormat Image::computeImageFormatType(std::string& filename)
 {
 	Image::EImageFormat ret = Image::kFmtUnKnown;
@@ -104,7 +104,7 @@ bool Image::initWithImageFileThreadSafe(const char* fullpath, EImageFormat image
 	FileUtilsAndroid* fileUtils = (FileUtilsAndroid*)FileUtils::sharedFileUtils();
 	unsigned char* pBuffer = fileUtils->getFileDataForAsync(fullpath, "rb", &nSize);
 #else
-	// ÄÚ²¿µÄfullPathForFilename ·ÇÏß³Ì°²È« ´«ÈëÊ± ±ØÐëÊ±È«Â·¾¶
+	// å†…éƒ¨çš„fullPathForFilename éžçº¿ç¨‹å®‰å…¨ ä¼ å…¥æ—¶ å¿…é¡»æ—¶å…¨è·¯å¾„
 	unsigned char* pBuffer = FileUtils::sharedFileUtils()->getFileData(fullpath, "rb", &nSize);
 #endif
 

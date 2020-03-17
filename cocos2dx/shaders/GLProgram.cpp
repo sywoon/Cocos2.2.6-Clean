@@ -525,7 +525,7 @@ void GLProgram::setUniformsForBuiltins()
 		setUniformLocationWith4f(_uUniforms[kCCUniformRandom01], CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1());
 	}
 
-	// »¹ÓĞÒ»¸ökCCUniformSampler  ÔÚĞèÒªµÄ¿Ø¼şÖĞ´¦Àí ±ÈÈçsprite
+	// è¿˜æœ‰ä¸€ä¸ªkCCUniformSampler  åœ¨éœ€è¦çš„æ§ä»¶ä¸­å¤„ç† æ¯”å¦‚sprite
 }
 
 

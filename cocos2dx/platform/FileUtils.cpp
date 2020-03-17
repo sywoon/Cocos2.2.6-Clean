@@ -80,7 +80,7 @@ unsigned char* FileUtils::getFileDataFromZip(const char* pszZipFilePath, const c
 		CC_BREAK_IF(!pszZipFilePath || !pszFileName);
 		CC_BREAK_IF(strlen(pszZipFilePath) == 0);
 
-		// Œ™ ≤√¥≤ª”√ fullPathForFilename £ø
+		// ‰∏∫‰ªÄ‰πà‰∏çÁî® fullPathForFilename Ôºü
 
 		pFile = unzOpen(pszZipFilePath);
 		CC_BREAK_IF(!pFile);

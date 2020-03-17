@@ -17,19 +17,19 @@ struct AffineTransform {
 
 extern CC_DLL const AffineTransform CCAffineTransformIdentity;
 
-// ´´½¨Ò»¸ö·ÂÉä¾ØÕó
+// åˆ›å»ºä¸€ä¸ªä»¿å°„çŸ©é˜µ
 CC_DLL AffineTransform __AffineTransformMake(float a, float b, float c, float d, float tx, float ty);
 #define AffineTransformMake __AffineTransformMake
 
-// µã·ÂÉä±ä»»
+// ç‚¹ä»¿å°„å˜æ¢
 CC_DLL Point __PointApplyAffineTransform(const Point& point, const AffineTransform& t);
 #define PointApplyAffineTransform __PointApplyAffineTransform
 
-// ´óĞ¡ÏßĞÔ±ä»» ÉÙÁËÆ½ÒÆ±ä»»
+// å¤§å°çº¿æ€§å˜æ¢ å°‘äº†å¹³ç§»å˜æ¢
 CC_DLL Size __SizeApplyAffineTransform(const Size& size, const AffineTransform& t);
 #define SizeApplyAffineTransform __SizeApplyAffineTransform
 
-// µ¥Î»¾ØÕó
+// å•ä½çŸ©é˜µ
 CC_DLL AffineTransform AffineTransformMakeIdentity();
 CC_DLL Rect RectApplyAffineTransform(const Rect& rect, const AffineTransform& anAffineTransform);
 

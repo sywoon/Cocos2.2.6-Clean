@@ -17,7 +17,7 @@ static unsigned int s_indexBitsUsed = 0;
 static Dictionary s_TouchesIntergerDict;
 
 
-// È¡0Î»Ë÷Òý ±íÊ¾Ã»±»Õ¼ÓÃ
+// å–0ä½ç´¢å¼• è¡¨ç¤ºæ²¡è¢«å ç”¨
 static int getUnUsedIndex()
 {
 	int i;
@@ -106,11 +106,11 @@ void EGLViewProtocol::setDesignResolutionSize(float width, float height, Resolut
 		_sizeDesignResolution.height = ceilf(_sizeFrame.height / _fScaleY);
 	}
 
-	// ¸ù¾ÝÊÊÅä²ßÂÔ  ¼ÆËã³öviewport  Ä¿±ê£ºÔõÑù¾¡Á¿ÌîÂú´°¿Ú
+	// æ ¹æ®é€‚é…ç­–ç•¥  è®¡ç®—å‡ºviewport  ç›®æ ‡ï¼šæ€Žæ ·å°½é‡å¡«æ»¡çª—å£
 	float viewPortW = _sizeDesignResolution.width * _fScaleX;
 	float viewPortH = _sizeDesignResolution.height * _fScaleY;
 
-	//×¢Òâ£º(0,0)µã¿ÉÄÜÔÚÍâ²¿
+	//æ³¨æ„ï¼š(0,0)ç‚¹å¯èƒ½åœ¨å¤–éƒ¨
 	_rectViewPort.setRect((_sizeFrame.width - viewPortW) / 2, (_sizeFrame.height - viewPortH) / 2, viewPortW, viewPortH);
 
 	_eResolutionPolicy = resolutionPolicy;
@@ -249,7 +249,7 @@ void EGLViewProtocol::handleTouchesBegin(int num, int ids[], float xs[], float y
 			}
 
 			Touch* pTouch = s_pTouches[nUnusedIndex] = new Touch();
-			//ÆÁÄ»×ø±êÏÈ×ªÎªviewport×ø±ê  ÔÙ³ý_fScaleXºó ×ªÎªdesignsizeÏÂµÄ×ø±ê
+			//å±å¹•åæ ‡å…ˆè½¬ä¸ºviewportåæ ‡  å†é™¤_fScaleXåŽ è½¬ä¸ºdesignsizeä¸‹çš„åæ ‡
 			pTouch->setTouchInfo(nUnusedIndex, (x - _rectViewPort.origin.x) / _fScaleX,
 				(y - _rectViewPort.origin.y) / _fScaleY);
 

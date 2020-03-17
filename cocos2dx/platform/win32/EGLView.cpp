@@ -78,7 +78,7 @@ static void SetupPixelFormat(HDC hDC)
 	SetPixelFormat(hDC, pixelFormat, &pfd);
 }
 
-// framebufferµÄÖ§³Ö ¿ÉÒÔ´ÓÀ©Õ¹ÖĞ»ñÈ¡½Ó¿Ú
+// framebufferçš„æ”¯æŒ å¯ä»¥ä»æ‰©å±•ä¸­è·å–æ¥å£
 static bool glew_dynamic_binding()
 {
 	const char* gl_extensions = (const char*)glGetString(GL_EXTENSIONS);

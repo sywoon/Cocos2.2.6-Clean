@@ -52,7 +52,7 @@ void KeypadHandler::releaseDelegate()
 {
 	if (_pDelegate)
 	{
-		// KeypadDelegate Êµ¼ÊÊÇ×÷ÎªInterfaceÊ¹ÓÃµÄ Êµ¼Ê×ÓÀà´ÓObjectÖĞ¼Ì³Ğ
+		// KeypadDelegate å®é™…æ˜¯ä½œä¸ºInterfaceä½¿ç”¨çš„ å®é™…å­ç±»ä»Objectä¸­ç»§æ‰¿
 		dynamic_cast<Object*>(_pDelegate)->release();
 	}
 }

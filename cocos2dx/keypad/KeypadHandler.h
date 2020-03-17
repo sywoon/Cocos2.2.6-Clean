@@ -13,7 +13,7 @@ public:
 	KeypadHandler();
 	virtual ~KeypadHandler(void);
 
-	// 用一个delegate创建一个handler
+	// 鐢ㄤ竴涓猟elegate鍒涘缓涓�涓猦andler
 	static KeypadHandler* handlerWithDelegate(KeypadDelegate* pDelegate);
 
 public:

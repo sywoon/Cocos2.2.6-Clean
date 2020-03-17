@@ -5,8 +5,8 @@
 NS_CC_BEGIN
 
 
-// opengl²ÉÓÃÁÐÖ÷Ðò Êý×é±£´æµÄË³ÐòÒ²ÊÇ°´ÁÐÓÅÏÈ
-// cocosµÄAffine½á¹¹²ÉÓÃÐÐÖ÷Ðò
+// openglé‡‡ç”¨åˆ—ä¸»åº æ•°ç»„ä¿å­˜çš„é¡ºåºä¹Ÿæ˜¯æŒ‰åˆ—ä¼˜å…ˆ
+// cocosçš„Affineç»“æž„é‡‡ç”¨è¡Œä¸»åº
 void CGAffineToGL(const AffineTransform* t, GLfloat* m)
 {
 	// | m[0] m[4] m[8]  m[12] |     | m11 m21 m31 m41 |     | a c 0 tx |
@@ -20,7 +20,7 @@ void CGAffineToGL(const AffineTransform* t, GLfloat* m)
 	m[1] = t->b; m[5] = t->d; m[13] = t->ty;
 }
 
-// ´ÓÁÐÖ÷ÐòµÄÊý×éÖÐÌáÈ¡Êý¾Ý
+// ä»Žåˆ—ä¸»åºçš„æ•°ç»„ä¸­æå–æ•°æ®
 void GLToCGAffine(const GLfloat* m, AffineTransform* t)
 {
 	t->a = m[0]; t->c = m[4]; t->tx = m[12];

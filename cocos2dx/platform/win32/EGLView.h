@@ -33,7 +33,7 @@ public:
 
 	virtual LRESULT windowProc(UINT message, WPARAM wParam, LPARAM lParam);
 
-	// ¼ÓËÙÆ÷µÄ¼üÅÌ¹³×Ó
+	// åŠ é€Ÿå™¨çš„é”®ç›˜é’©å­
 	typedef void (*LPFN_ACCELEROMETER_KEYHOOK)(UINT message, WPARAM wParam, LPARAM lParam);
 	void setAccelerometerKeyHook(LPFN_ACCELEROMETER_KEYHOOK lpfnAccelerometerKeyHook);
 

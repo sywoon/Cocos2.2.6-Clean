@@ -75,8 +75,8 @@ protected:
 	Array*		_pOneHandlers;
 	Array*		_pMultiHandlers;
 
-	Array*		_pHandlersToAdd;			//ĞÂÔöÊ± (delegate + priority) ËùÒÔ·â×°³ÉhandlerÀ´±£´æ
-	struct _ccCArray* _pDelegateToRemove;  //É¾³ıÊ± delegate
+	Array*		_pHandlersToAdd;			//æ–°å¢æ—¶ (delegate + priority) æ‰€ä»¥å°è£…æˆhandleræ¥ä¿å­˜
+	struct _ccCArray* _pDelegateToRemove;  //åˆ é™¤æ—¶ delegate
 
 	bool		_bLocked;
 	bool		_bToAdd;
